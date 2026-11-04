@@ -115,6 +115,39 @@ section .sub { color: var(--muted); margin: 0 0 32px; }
 
 footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
 
+/* ---------- detail pages ---------- */
+.detail { padding: 32px 0 64px; }
+.detail h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.25; margin: 6px 0 10px; }
+.detail h2 { font-size: 24px; margin: 56px 0 6px; }
+.detail .sub { color: var(--muted); margin: 0 0 22px; }
+.detail .lead { color: var(--muted); font-size: 17px; margin: 0 0 16px; }
+.back { display: inline-block; font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; }
+.fact {
+  font-size: 13px; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid var(--line); color: var(--text); background: var(--surface);
+}
+.flyers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+.flyers figure { margin: 0; }
+.flyers img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); }
+.flyers figcaption { margin-top: 10px; font-size: 14px; color: #cfd3da; }
+.diagram {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px; max-width: 560px; margin: 0 auto;
+}
+.diagram svg { width: 100%; height: auto; display: block; }
+.diagram .bx { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; }
+.diagram .bx.hl { stroke: var(--accent); }
+.diagram .bx.dash { fill: none; stroke-dasharray: 5 5; }
+.diagram .ln { stroke: var(--muted); stroke-width: 1.5; fill: none; }
+.diagram .t1 { fill: var(--text); font-size: 15px; font-weight: 700; font-family: inherit; }
+.diagram .t2 { fill: var(--muted); font-size: 12.5px; font-family: inherit; }
+.diagram .t3 { fill: var(--accent); font-size: 12px; font-family: inherit; }
+.mini { font-size: 15px; margin: 0 0 8px; color: var(--accent); }
+.plain { margin: 0; padding-left: 18px; color: #cfd3da; font-size: 14px; }
+.plain li { margin-bottom: 6px; }
+.note { color: var(--muted); font-size: 13px; margin: 14px 0 0; }
+
 /* ---------- mobile ---------- */
 @media (max-width: 760px) {
   .work, .two { grid-template-columns: 1fr; }

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>はまこく 詳細 | Pero Portfolio</title>
+  <meta name="description" content="横浜国立大学から横浜駅への最速ルートを案内する乗換アプリ「はまこく」の詳細と構成図。">
+  <meta name="theme-color" content="#0c0d10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Pero</a>
+    <nav>
+      <a href="../index.html#works">Works</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="detail">
+  <div class="wrap">
+
+    <a class="back" href="../index.html#works">← 作品一覧に戻る</a>
+
+    <p class="eyebrow">Work / Team Project</p>
+    <h1>はまこく(team 301)</h1>
+    <p class="lead">横浜国立大学から横浜駅へ、最速ルートを案内する乗換アプリ。</p>
+    <div class="facts">
+      <span class="fact">4人で開発</span>
+      <span class="fact">期間 1年半(継続中)</span>
+      <span class="fact">担当: バックエンド全般</span>
+      <span class="fact">公共交通オープンデータチャレンジ2026 出場</span>
+    </div>
+    <div class="btns" style="margin-top:20px">
+      <a class="btn primary" href="https://team301.jp/" target="_blank" rel="noopener">アプリを開く</a>
+      <a class="btn" href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub(公開版)</a>
+    </div>
+
+    <!-- ===== チラシ ===== -->
+    <h2>2つのアプリ</h2>
+    <p class="sub">チームで作った紹介用のチラシです。</p>
+    <div class="flyers">
+      <figure>
+        <img src="../assets/hamakoku-exp-flyer.webp" alt="はまこく Exp. のチラシ: 国大から横浜駅へ最短ルートをすぐに" loading="lazy">
+        <figcaption><strong>はまこく Exp.</strong> 出発地と時刻を選ぶと、バス・電車・シェアサイクル・徒歩を組み合わせた最速ルートを、到着が早い順に出します。乗り換えと運賃、遅れの情報までまとめて表示します。</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/hamakoku-map-flyer.webp" alt="はまこく マップのチラシ: 横国周りの交通を一枚の地図に" loading="lazy">
+        <figcaption><strong>はまこく マップ</strong> シェアサイクルの空き台数、バスの位置と時刻表、横浜駅から先の鉄道情報を、1枚の地図で見られます。</figcaption>
+      </figure>
+    </div>
+
+    <!-- ===== 担当 ===== -->
+    <h2>私の担当</h2>
+    <p class="sub">バックエンド全般を担当しました。</p>
+    <div class="grid">
+      <div class="card">
+        <h3>最短経路を探すモジュール</h3>
+        <p>経路のパターンごとに処理を分けて並列に実行し、到着が早い順に最大6件を返します。1つのパターンが失敗しても、ほかの結果は返ります。</p>
+      </div>
+      <div class="card">
+        <h3>アプリ全体のモジュール設計</h3>
+        <p>外部データごとに adapter を分け、事業者ごとのデータの癖を閉じ込めました。運賃・停留所と駅の ID・事業者の設定は、1か所に集めています。</p>
+      </div>
+      <div class="card">
+        <h3>汎用的なデバッグシステム</h3>
+        <p>
+          <!-- TODO: デバッグシステムの仕組み・工夫した点・効果を具体的に書く -->
+          経路探索のような複数のデータが絡む処理でも、原因を追いやすくするための仕組みです。
+        </p>
+      </div>
+      <div class="card">
+        <h3>フロントエンドとの接続</h3>
+        <p>
+          <!-- TODO: 接続の方式(API の形、データの受け渡し)・工夫した点を具体的に書く -->
+          画面とバックエンドをつなぎ、検索条件を受け取って結果を返す流れを作りました。
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== 構成図 ===== -->
+    <h2>しくみ(構成図)</h2>
+    <p class="sub">公開リポジトリの README に書かれた設計をもとに、作図しました。</p>
+    <div class="diagram">
+      <svg viewBox="0 0 420 600" role="img" aria-labelledby="dg-title dg-desc">
+        <title id="dg-title">はまこく Exp. のモジュール構成図</title>
+        <desc id="dg-desc">画面から検索の受け口、ルート検索、経路パターンの並列実行、外部データごとの adapter、データ源へとつながる流れ。設定は config に集約している。</desc>
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/>
+          </marker>
+        </defs>
+
+        <!-- 1. 画面 -->
+        <rect class="bx" x="20" y="10" width="380" height="56" rx="10"/>
+        <text class="t1" x="210" y="35" text-anchor="middle">画面(フォーム)</text>
+        <text class="t2" x="210" y="55" text-anchor="middle">EJS(サーバー描画)/ React 19</text>
+        <line class="ln" x1="210" y1="66" x2="210" y2="90" marker-end="url(#ar)"/>
+
+        <!-- 2. 受け口 -->
+        <rect class="bx" x="20" y="92" width="380" height="56" rx="10"/>
+        <text class="t1" x="210" y="117" text-anchor="middle">検索の受け口</text>
+        <text class="t2" x="210" y="137" text-anchor="middle">Express 5 / 入力の検証(express-validator)</text>
+        <line class="ln" x1="210" y1="148" x2="210" y2="172" marker-end="url(#ar)"/>
+
+        <!-- 3. ルート検索 -->
+        <rect class="bx hl" x="20" y="174" width="380" height="64" rx="10"/>
+        <text class="t1" x="210" y="200" text-anchor="middle">ルート検索</text>
+        <text class="t2" x="210" y="222" text-anchor="middle">パターンを並列に実行 → 到着が早い順に上位6件</text>
+
+        <!-- 分岐 -->
+        <line class="ln" x1="210" y1="238" x2="78"  y2="266" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="238" x2="210" y2="266" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="238" x2="342" y2="266" marker-end="url(#ar)"/>
+
+        <!-- 4. 経路パターン -->
+        <rect class="bx" x="20"  y="268" width="116" height="64" rx="10"/>
+        <text class="t1" x="78"  y="295" text-anchor="middle">パターン A</text>
+        <text class="t2" x="78"  y="316" text-anchor="middle">徒歩→地下鉄 など</text>
+        <rect class="bx" x="152" y="268" width="116" height="64" rx="10"/>
+        <text class="t1" x="210" y="295" text-anchor="middle">パターン B</text>
+        <text class="t2" x="210" y="316" text-anchor="middle">自転車を使う</text>
+        <rect class="bx" x="284" y="268" width="116" height="64" rx="10"/>
+        <text class="t1" x="342" y="295" text-anchor="middle">パターン C…</text>
+        <text class="t2" x="342" y="316" text-anchor="middle">バス など</text>
+        <line class="ln" x1="78"  y1="332" x2="78"  y2="378" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="332" x2="210" y2="378" marker-end="url(#ar)"/>
+        <line class="ln" x1="342" y1="332" x2="342" y2="378" marker-end="url(#ar)"/>
+
+        <!-- 5. adapter -->
+        <rect class="bx hl" x="20" y="380" width="380" height="60" rx="10"/>
+        <text class="t1" x="210" y="406" text-anchor="middle">adapter(外部データごとに分離)</text>
+        <text class="t2" x="210" y="427" text-anchor="middle">事業者ごとのデータの癖を、ここに閉じ込める</text>
+
+        <line class="ln" x1="78"  y1="440" x2="78"  y2="468" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="440" x2="210" y2="468" marker-end="url(#ar)"/>
+        <line class="ln" x1="342" y1="440" x2="342" y2="468" marker-end="url(#ar)"/>
+
+        <!-- 6. データ源 -->
+        <rect class="bx" x="20"  y="470" width="116" height="56" rx="10"/>
+        <text class="t1" x="78"  y="495" text-anchor="middle">ODPT API</text>
+        <text class="t2" x="78"  y="514" text-anchor="middle">バス・鉄道</text>
+        <rect class="bx" x="152" y="470" width="116" height="56" rx="10"/>
+        <text class="t1" x="210" y="495" text-anchor="middle">時刻表</text>
+        <text class="t2" x="210" y="514" text-anchor="middle">ローカル</text>
+        <rect class="bx" x="284" y="470" width="116" height="56" rx="10"/>
+        <text class="t1" x="342" y="495" text-anchor="middle">GBFS</text>
+        <text class="t2" x="342" y="514" text-anchor="middle">シェアサイクル</text>
+
+        <!-- config -->
+        <rect class="bx dash" x="20" y="548" width="380" height="44" rx="10"/>
+        <text class="t2" x="210" y="575" text-anchor="middle">config/ : 運賃・停留所と駅の ID・事業者の設定を1か所に集約</text>
+      </svg>
+    </div>
+    <p class="note" style="text-align:center">経路のパターンは1つ1ファイルです。1つのパターンが失敗しても、ほかの結果は返ります。</p>
+
+    <!-- ===== データ・技術 ===== -->
+    <h2>使っているデータと技術</h2>
+    <div class="two" style="margin-top:20px">
+      <div>
+        <h3 class="mini">データ</h3>
+        <ul class="plain">
+          <li>横浜市営バス、相鉄バス、横浜市営地下鉄、相鉄線: 公共交通オープンデータ(ODPT)</li>
+          <li>神奈川中央交通: 公開されている時刻表</li>
+          <li>シェアサイクル: HELLO CYCLING、ドコモ・バイクシェアの空き台数(GBFS)</li>
+          <li>地図: OpenStreetMap</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mini">技術</h3>
+        <div class="tags" style="margin:0">
+          <span class="tag">Node.js</span><span class="tag">Express 5</span>
+          <span class="tag">EJS</span><span class="tag">React 19</span>
+          <span class="tag">Vite</span><span class="tag">express-validator</span>
+          <span class="tag">helmet</span>
+        </div>
+        <p class="note">深夜の「25:30」のような24時超えの時刻は、単調に増える分として扱っています。</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Pero</div>
+</footer>
+
+</body>
+</html>
