@@ -131,6 +131,11 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 .flyers figure { margin: 0; }
 .flyers img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); }
 .flyers figcaption { margin-top: 10px; font-size: 14px; color: #cfd3da; }
+.figs { display: grid; gap: 28px; }
+.figs figure { margin: 0; }
+.fig-light { background: #fff; border-radius: var(--radius); padding: 12px; border: 1px solid var(--line); }
+.fig-light img { width: 100%; height: auto; display: block; }
+.figs figcaption { margin-top: 10px; font-size: 14px; color: #cfd3da; }
 .diagram {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 18px; max-width: 560px; margin: 0 auto;

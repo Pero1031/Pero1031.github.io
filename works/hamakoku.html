@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../style.css?v=2">
 </head>
 <body>
 
@@ -41,6 +41,24 @@
     <div class="btns" style="margin-top:20px">
       <a class="btn primary" href="https://team301.jp/" target="_blank" rel="noopener">アプリを開く</a>
       <a class="btn" href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub(公開版)</a>
+    </div>
+
+    <!-- ===== なぜ作ったか ===== -->
+    <h2>なぜ作ったか</h2>
+    <p class="sub">横浜国立大学から横浜駅へ行くには、選べる手段が多く、しかも駅まで遠いという事情があります。</p>
+    <div class="figs">
+      <figure>
+        <div class="fig-light">
+          <img src="../assets/hamakoku-why-modals.png" alt="横浜国大から横浜駅までの行き方の図: 徒歩、レンタルサイクル、相鉄バス、市営バス、市営地下鉄、相鉄線など、複数の公共交通が混在している" loading="lazy">
+        </div>
+        <figcaption>横浜国大から横浜駅へは、徒歩、レンタルサイクル、バス、地下鉄、相鉄線と、行き方がいくつもあります。「どれに乗れば早い?」を、その場で答えられるようにしたいと考えました。</figcaption>
+      </figure>
+      <figure>
+        <div class="fig-light">
+          <img src="../assets/hamakoku-why-distance.png" alt="横浜国大は駅から遠く坂が多いことを示す図: 最寄りの駅までの所要時間と、坂のあるルートを示した路線図" loading="lazy">
+        </div>
+        <figcaption>もともとゴルフ場だった立地で、鉄道のアクセスが考えられていません。駅や門まで遠く、坂も多いので、歩く距離と時間を含めて選ぶ必要があります。</figcaption>
+      </figure>
     </div>
 
     <!-- ===== チラシ ===== -->
@@ -89,12 +107,21 @@
     <h2>しくみ(構成図)</h2>
     <p class="sub">公開リポジトリの README に書かれた設計をもとに、作図しました。</p>
     <div class="diagram">
-      <svg viewBox="0 0 420 600" role="img" aria-labelledby="dg-title dg-desc">
+      <svg viewBox="0 0 420 600" width="420" height="600" role="img" aria-labelledby="dg-title dg-desc" style="width:100%;height:auto;display:block">
         <title id="dg-title">はまこく Exp. のモジュール構成図</title>
         <desc id="dg-desc">画面から検索の受け口、ルート検索、経路パターンの並列実行、外部データごとの adapter、データ源へとつながる流れ。設定は config に集約している。</desc>
+        <!-- 外部 CSS が古いまま残っていても崩れないよう、図のスタイルは図の中にも持たせる -->
+        <style>
+          .bx { fill: #1b1e25; stroke: #262a33; stroke-width: 1.5; }
+          .bx.hl { stroke: #e0b25a; }
+          .bx.dash { fill: none; stroke-dasharray: 5 5; }
+          .ln { stroke: #9aa1ad; stroke-width: 1.5; fill: none; }
+          .t1 { fill: #e8eaee; font-size: 15px; font-weight: 700; font-family: "Noto Sans JP", system-ui, sans-serif; }
+          .t2 { fill: #9aa1ad; font-size: 12.5px; font-family: "Noto Sans JP", system-ui, sans-serif; }
+        </style>
         <defs>
           <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0 0 L10 5 L0 10 z" fill="var(--muted)"/>
+            <path d="M0 0 L10 5 L0 10 z" fill="#9aa1ad"/>
           </marker>
         </defs>
 
