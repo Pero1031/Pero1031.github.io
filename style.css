@@ -47,6 +47,12 @@ nav a:hover { color: var(--text); text-decoration: none; }
 .hero { padding: 88px 0 56px; }
 .eyebrow { color: var(--accent); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; }
 .hero h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.2; margin: 0 0 18px; letter-spacing: -.01em; }
+.hero h1 .ph { display: inline-block; white-space: nowrap; }
+.hero p.en {
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-style: italic; font-size: clamp(20px, 3.4vw, 30px);
+  color: var(--accent); letter-spacing: .02em; margin: -4px 0 22px;
+}
 .hero p.lead { color: var(--muted); max-width: 620px; font-size: 17px; margin: 0 0 28px; }
 .btns { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn {
