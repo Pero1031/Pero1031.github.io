@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pero Portfolio</title>
+  <meta name="description" content="3Dレンダラー、視線計測ゲーム、バックエンド開発の作品集。">
+  <meta name="theme-color" content="#0c0d10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Pero</a>
+    <nav>
+      <a href="#works">Works</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <div class="wrap hero">
+    <p class="eyebrow">Portfolio</p>
+    <h1>計測し、実装し、<br>検証する。</h1>
+    <p class="lead">
+      金属の色を分光測定し、その差を埋めるレンダラーを一から作りました。
+      視線計測を使ったゲームや、チーム開発アプリのバックエンドも担当しています。
+    </p>
+    <div class="btns">
+      <a class="btn primary" href="#works">作品を見る</a>
+      <a class="btn" href="https://github.com/Pero1031" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
+  <!-- ===== Works ===== -->
+  <section id="works">
+    <div class="wrap">
+      <h2>Works</h2>
+      <p class="sub">主な作品3つと、その他の制作物です。</p>
+
+      <!-- GoLD_ray -->
+      <article class="work">
+        <div class="media">
+          <img src="assets/goldray-hero.png" alt="GoLD_rayt で描画した、金の球・クリスタルのグラス・水・海の4枚の画像" loading="lazy">
+        </div>
+        <div class="body">
+          <h3>GoLD_rayt</h3>
+          <p class="tagline">分光レンダリングに取り組む、自作の3Dパストレーサー</p>
+          <p>
+            卒業研究のために作った C++20 製のレンダラーです。分光放射計(SR-5100)で金を測定し、
+            RGB と分光レンダリングの色差を Mitsuba で定量化したうえで、その差を克服するソフトを目指しました。
+          </p>
+          <ul>
+            <li>金・銅・銀で RGB と分光の差を ΔE00 で比較。金は D65 光源で最大 2.1、金属同士の反射を6回重ねると 12.7 まで拡大</li>
+            <li>パストレーシング(NEE+MIS)、フォトンマップによるコースティクス、水・海・肌の表現</li>
+            <li>主要な部分ごとに数値テストを用意し、速度より可読性と検証を優先</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">C++20</span><span class="tag">Path Tracing</span>
+            <span class="tag">Spectral Rendering</span><span class="tag">OpenMP</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">GitHub で見る →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Gaze Dodge -->
+      <article class="work flip">
+        <div class="media">
+          <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
+          <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#e0b25a" stop-opacity=".35"/>
+                <stop offset="1" stop-color="#e0b25a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="640" height="400" fill="#10131a"/>
+            <g fill="#2a2f3b">
+              <rect x="70"  y="50"  width="56" height="56" rx="8" transform="rotate(12 98 78)"/>
+              <rect x="210" y="130" width="44" height="44" rx="8" transform="rotate(-18 232 152)"/>
+              <rect x="380" y="40"  width="64" height="64" rx="8" transform="rotate(25 412 72)"/>
+              <rect x="520" y="150" width="50" height="50" rx="8" transform="rotate(-8 545 175)"/>
+              <rect x="300" y="215" width="40" height="40" rx="8" transform="rotate(30 320 235)"/>
+            </g>
+            <circle cx="360" cy="320" r="90" fill="url(#glow)"/>
+            <circle cx="360" cy="320" r="46" fill="none" stroke="#e0b25a" stroke-width="1.5" stroke-dasharray="4 5"/>
+            <line x1="360" y1="262" x2="360" y2="378" stroke="#e0b25a" stroke-opacity=".5"/>
+            <line x1="302" y1="320" x2="418" y2="320" stroke="#e0b25a" stroke-opacity=".5"/>
+            <circle cx="360" cy="320" r="14" fill="#e0b25a"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h3>Gaze Dodge</h3>
+          <p class="tagline">視線でプレイヤーを動かす、障害物よけブラウザゲーム</p>
+          <p>
+            Tobii Pro アイトラッカーの視線で操作するゲームです。Webカメラ(WebGazer.js)やマウスでも遊べます。
+            ブラウザは Tobii に直接アクセスできないため、Python のブリッジが視線を WebSocket で送る構成にしました。
+          </p>
+          <ul>
+            <li>Pro Fusion の 120 Hz の視線を即時に送信。瞬きでずれる視線の補正、視線を失った間の停止処理を実装</li>
+            <li>両目の間隔(瞳孔間距離)から「○○さんですか?」と本人確認し、ランキングに記録</li>
+            <li>ボタンは1秒見つめると押せる、視線だけで完結する UI</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">JavaScript</span><span class="tag">Python</span>
+            <span class="tag">Tobii Pro SDK</span><span class="tag">WebSocket</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">GitHub で見る →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 乗り換えアプリ -->
+      <article class="work">
+        <div class="media">
+          <div class="shots">
+            <img src="assets/hamakokuex-form.png" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
+            <img src="assets/hamakokuex-ticket.png" alt="はまこく Exp. の結果の画面(案内券)" loading="lazy">
+          </div>
+        </div>
+        <div class="body">
+          <h3>はまこく(team 301)</h3>
+          <p class="tagline">横浜国立大学から横浜駅へ、最速ルートを案内する乗換アプリ / 4人で開発・バックエンド担当</p>
+          <p>
+            構内から横浜駅まで、バス・電車・シェアサイクル・徒歩を組み合わせて、最も早く着く経路を探す Web アプリです(はまこく Exp.)。
+            構内のシェアサイクルの台数や、走っているバスを見られる地図(はまこく Map)もあります。
+            公共交通オープンデータ(ODPT)とシェアサイクルの空き情報を使っています。
+            4人のチームで1年半開発し、いまも運用と改良を続けています。「公共交通オープンデータチャレンジ2026」にも出場します。
+          </p>
+          <p class="role-label">私の担当(バックエンド全般)</p>
+          <ul>
+            <li>最短経路を探すモジュール。経路のパターンごとに処理を分けて並列に実行し、到着が早い順に最大6件を返す</li>
+            <li>アプリ全体のモジュール設計。外部データごとに adapter を分け、事業者ごとのデータの癖を閉じ込める</li>
+            <li>汎用的なデバッグシステム</li>
+            <li>フロントエンドとバックエンドの接続</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span>
+            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
+          </div>
+          <div class="links">
+            <a href="https://team301.jp/" target="_blank" rel="noopener">アプリを開く →</a>
+            <a href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub(公開版) →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- その他 -->
+      <h2 style="margin-top:48px;font-size:20px">その他の制作物</h2>
+      <div class="grid" style="margin-top:16px">
+        <div class="card">
+          <h3>鉄チャリたび(開発中)</h3>
+          <p>電車を幹、シェアサイクルを枝にして、途中下車を前提にした旅程を提案する Web アプリです。はまこくの次の作品として、チームで開発しています。「公共交通オープンデータチャレンジ2026」にも出場します。</p>
+          <div class="tags"><span class="tag">開発中</span><span class="tag">チーム開発</span></div>
+        </div>
+        <div class="card">
+          <h3>2D BRDF Measurement System</h3>
+          <p>BRDF の計測に関する C++ のプロジェクトです。</p>
+          <div class="tags"><span class="tag">C++</span></div>
+          <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
+        </div>
+        <div class="card">
+          <h3>raycast_game</h3>
+          <p>C で作ったゲームの試作です。</p>
+          <div class="tags"><span class="tag">C</span></div>
+          <div class="links"><a href="https://github.com/Pero1031/raycast_game" target="_blank" rel="noopener">GitHub →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about">
+    <div class="wrap two">
+      <div>
+        <h2>About</h2>
+        <p>
+          卒業研究で、分光放射計を使って金の色を測定し、RGB レンダリングと分光レンダリングの差を調べました。
+          その研究をきっかけに、知覚に基づくレンダラーを目標として、自作のレンダラー開発を続けています。
+        </p>
+        <p>
+          計測データを使って結果を確かめることが好きで、作ったものには数値テストや検証を付けるようにしています。
+          視線計測を使ったゲームの制作や、チーム開発でのバックエンド担当など、研究以外の開発も経験しました。
+        </p>
+      </div>
+      <dl class="skills">
+        <dt>言語</dt><dd>C++ / C / Python / JavaScript</dd>
+        <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光)、視線計測、バックエンド開発</dd>
+        <dt>ツール</dt><dd>Visual Studio / Git・GitHub / Tobii Pro SDK / Mitsuba</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="sub">お問い合わせは、GitHub か下記のメールアドレスへお願いします。</p>
+      <div class="btns">
+        <a class="btn primary" href="https://github.com/Pero1031" target="_blank" rel="noopener">GitHub: Pero1031</a>
+        <!-- TODO: 公開してよい連絡先メールアドレスがあれば追加(例: <a class="btn" href="mailto:...">Mail</a>) -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Pero</div>
+</footer>
+
+</body>
+</html>
