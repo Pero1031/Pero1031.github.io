@@ -150,6 +150,8 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
   border-radius: var(--radius); padding: 18px; max-width: 560px; margin: 0 auto;
 }
 .diagram svg { width: 100%; height: auto; display: block; }
+/* スマホで図をタップしたときの、ダブルタップ拡大や強調表示を出さない */
+.diagram { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
 .diagram .bx { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; }
 .diagram .bx.hl { stroke: var(--accent); }
 .diagram .bx.dash { fill: none; stroke-dasharray: 5 5; }
