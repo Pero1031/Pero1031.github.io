@@ -78,7 +78,9 @@ section .sub { color: var(--muted); margin: 0 0 32px; }
 .work .media img, .work .media svg { width: 100%; height: 100%; object-fit: cover; }
 /* 縦に長い画像は切らずに全体を見せる(GoLD_rayt のヒーロー画像など) */
 .work .media img.contain { object-fit: contain; height: auto; align-self: center; }
-.work .media:has(img.contain) { display: flex; align-items: center; }
+.work .media:has(img.contain) { display: flex; flex-direction: column; justify-content: center; }
+.work .media .credit { margin: 0; padding: 10px 14px 12px; font-size: 11.5px; line-height: 1.6; color: var(--muted); }
+.work .media .credit a { color: var(--muted); text-decoration: underline; }
 .work .body { padding: 28px 28px 28px 0; display: flex; flex-direction: column; }
 .work.flip .body { padding: 28px 0 28px 28px; }
 .work h3 { margin: 0 0 4px; font-size: 22px; }

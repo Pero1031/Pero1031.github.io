@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -51,7 +51,14 @@
       <!-- GoLD_ray -->
       <article class="work">
         <div class="media">
-          <img class="contain" src="assets/goldray-hero-v2.png" width="1618" height="1222" alt="GoLD_rayt で描画した画像のまとめ。分光レンダリングの金の球、クリスタルのグラスと光、水の入ったグラス、海、そして金のボウルを RGB と分光で描き分けた比較と、その色差の図" loading="lazy">
+          <img class="contain" src="assets/goldray-hero-v3.webp" width="1824" height="1652" alt="金の彫像 Erato を、RGB レンダラーと分光レンダラーで描き比べた図。上段は昼光(D65)、下段はタングステン光。右の列は両者の色差(CIEDE2000)で、平均は昼光で 1.7、タングステン光で 2.6" loading="lazy">
+          <p class="credit">
+            Model: Erato by Geoffrey Marchal (© 2016,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
+            モンテ・カルヴォの大理石像(紀元2世紀、Ny Carlsberg Glyptotek 所蔵)の3Dスキャン。
+            <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a> より。
+            変更: 拡大縮小と配置、頂点法線の再計算、金の材質の適用。
+          </p>
         </div>
         <div class="body">
           <h3>GoLD_rayt</h3>
@@ -61,6 +68,7 @@
             RGB と分光レンダリングの色差を Mitsuba で定量化したうえで、その差を克服するソフトを目指しました。
           </p>
           <ul>
+            <li>金の彫像を RGB と分光で描き比べると、色差は昼光で平均 1.7、タングステン光で 2.6。暖かい光の下では、RGB の金がくすんで見える</li>
             <li>金・銅・銀で RGB と分光の差を ΔE00 で比較。金は D65 光源で最大 2.1、金属同士の反射を6回重ねると 12.7 まで拡大</li>
             <li>パストレーシング(NEE+MIS)、フォトンマップによるコースティクス、水・海・肌の表現</li>
             <li>主要な部分ごとに数値テストを用意し、速度より可読性と検証を優先</li>
