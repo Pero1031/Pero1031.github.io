@@ -166,6 +166,32 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 .plain li { margin-bottom: 6px; }
 .note { color: var(--muted); font-size: 13px; margin: 14px 0 0; }
 
+/* ---------- gallery ---------- */
+.gal { columns: 3 260px; column-gap: 18px; }
+.tile {
+  display: block; break-inside: avoid; margin: 0 0 18px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; color: var(--text);
+}
+.tile:hover { border-color: var(--accent); text-decoration: none; }
+.tile img { width: 100%; height: auto; display: block; }
+.tile .cap { display: block; padding: 10px 14px 12px; font-size: 14px; }
+.lb {
+  padding: 0; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); color: var(--text);
+  width: min(96vw, 960px); max-height: 94vh; overflow: auto;
+}
+.lb::backdrop { background: rgba(0, 0, 0, .82); }
+.lb-img { background: #000; }
+.lb-img img { display: block; max-width: 100%; max-height: 62vh; width: auto; height: auto; margin: 0 auto; }
+.lb-text { padding: 18px 22px 22px; }
+.lb-title { margin: 0 0 8px; font-size: 18px; }
+.lb-desc { margin: 0 0 12px; font-size: 14px; color: #cfd3da; }
+.lb-credit { margin: 0 0 14px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+.lb-credit a { color: var(--muted); text-decoration: underline; }
+.lb-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.lb-btns .btn { background: transparent; cursor: pointer; font: inherit; font-size: 14px; }
+
 /* ---------- mobile ---------- */
 @media (max-width: 760px) {
   .work, .two { grid-template-columns: 1fr; }

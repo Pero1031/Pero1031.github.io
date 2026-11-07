@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery | Pero Portfolio</title>
+  <meta name="description" content="自作の3Dレンダラー GoLD_rayt で描いた画像と、モデル読み込みの例。">
+  <meta name="theme-color" content="#0c0d10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Pero</a>
+    <nav>
+      <a href="index.html#works">Works</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="detail">
+  <div class="wrap">
+
+    <a class="back" href="index.html">← トップに戻る</a>
+
+    <p class="eyebrow">Gallery</p>
+    <h1>描いた画像</h1>
+    <p class="lead">自作の3Dレンダラー GoLD_rayt で描いた画像と、モデル読み込みの例です。画像をクリックすると、大きく見られます。</p>
+
+    <!-- ===== 1. 分光レンダリング ===== -->
+    <h2>分光レンダリング: 色を波長で計算する</h2>
+    <p class="sub">RGB で近似した場合との違いを、同じシーンで描き比べました。</p>
+    <div class="gal">
+      <a class="tile" href="assets/gallery/erato_gold.webp" data-credit="erato-gold" data-w="1600" data-h="1449"
+         data-title="金の彫像を、RGB と分光で描き比べる"
+         data-desc="同じ金の彫像を、RGB のビルドと分光のビルドで描きました。上段は昼光(D65)、下段はタングステン光で、右の列は両者の色差(CIEDE2000)です。平均の色差は、昼光で 1.7、タングステン光で 2.6。昼光ではほぼ同じですが、暖かい光の下では、RGB の金がくすんで見えます。600×800、256 spp、OIDN でノイズ除去。"
+         data-alt="金の彫像を RGB レンダラーと分光レンダラーで描き比べた図。上段は昼光、下段はタングステン光。右の列は色差">
+        <img src="assets/gallery/erato_gold-thumb.webp" width="640" height="580" alt="金の彫像を RGB レンダラーと分光レンダラーで描き比べた図" loading="lazy">
+        <span class="cap">金の彫像を、RGB と分光で描き比べる</span>
+      </a>
+      <a class="tile" href="assets/gallery/overview.webp" data-w="1600" data-h="1174"
+         data-title="分光モードのまとめ"
+         data-desc="金の3つの粗さと、カットグラスのコースティクス(上)。金のボウルを3つの光の下で、RGB のビルドと分光のビルドで描き、その色差を並べました(下)。"
+         data-alt="分光レンダリングの金の球、カットグラスのコースティクス、金のボウルの RGB と分光の比較と色差">
+        <img src="assets/gallery/overview-thumb.webp" width="640" height="470" alt="分光レンダリングの金の球、カットグラス、金のボウルの比較" loading="lazy">
+        <span class="cap">分光モードのまとめ</span>
+      </a>
+      <a class="tile" href="assets/gallery/light_spheres.webp" data-w="960" data-h="882"
+         data-title="光の色が変わると、物の色はどう変わるか"
+         data-desc="5色の球と金の球を、1つの球状の光源のもとに置きました。分光モードでは、シーン全体が光の色を帯び、球ごとに変わる量が違います。ホワイトバランスで中立の面は戻せますが、色までは戻せません。RGB モードは、白は合っても、色は合いません。"
+         data-alt="5色の球と金の球を、D65、タングステン、LED の光で描いた図">
+        <img src="assets/gallery/light_spheres-thumb.webp" width="640" height="588" alt="5色の球と金の球を、3種類の光で描いた図" loading="lazy">
+        <span class="cap">光の色が変わると、物の色はどう変わるか</span>
+      </a>
+    </div>
+
+    <!-- ===== 2. 光の伝わり方 ===== -->
+    <h2>光の伝わり方: コースティクスと半透明</h2>
+    <p class="sub">屈折した光が集まる模様や、物の内部で散乱する光を描きました。</p>
+    <div class="gal">
+      <a class="tile" href="assets/gallery/crystal_lamp.webp" data-w="800" data-h="450"
+         data-title="カットグラスの中のランプ"
+         data-desc="コースティクスをフォトンマップで計算しました(8組のフォトン集合の平均)。テーブルを照らす光は、すべてグラスを通った光です。縁に分散による色がついた、輪郭の鋭い多角形になります。"
+         data-alt="カットグラスの中のランプが、テーブルに作る光の模様">
+        <img src="assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="カットグラスの中のランプが、テーブルに作る光の模様" loading="lazy">
+        <span class="cap">カットグラスの中のランプ</span>
+      </a>
+      <a class="tile" href="assets/gallery/water_sea.webp" data-w="1600" data-h="456"
+         data-title="水の入ったグラスと、波のある海"
+         data-desc="左は、点光源がグラスの水を通ってできるコースティクス(フォトンマップ)。右は、Gerstner 波で作った海で、水の吸収を物理的に計算しています。"
+         data-alt="水の入ったグラスのコースティクスと、波のある海">
+        <img src="assets/gallery/water_sea-thumb.webp" width="640" height="182" alt="水の入ったグラスと、波のある海" loading="lazy">
+        <span class="cap">水の入ったグラスと、波のある海</span>
+      </a>
+      <a class="tile" href="assets/gallery/prism_caustic.webp" data-w="1600" data-h="612"
+         data-title="プリズムを通る光の模様"
+         data-desc="コースティクスなし、フォトンマップ、specular manifold NEE(試作)の3つを比べました。最後の方法は、屈折の経路を推定ではなく解きます。分散した光の帯の縁が、鋭く保たれます。滑らかな部分では、2つの方法の差は数%以内です。"
+         data-alt="プリズムのコースティクスを3つの方法で描き比べた図と、帯の縁の拡大">
+        <img src="assets/gallery/prism_caustic-thumb.webp" width="640" height="245" alt="プリズムのコースティクスを3つの方法で描き比べた図" loading="lazy">
+        <span class="cap">プリズムを通る光の模様</span>
+      </a>
+      <a class="tile" href="assets/gallery/erato_translucent.webp" data-credit="erato-translucent" data-w="1080" data-h="675"
+         data-title="同じ彫像を、ろう・大理石・翡翠に"
+         data-desc="後ろと上から光を当て、内部の散乱媒質だけを変えました。光は表面から入り、内部で散乱して、再び出てきます。衣のひだや竪琴のような薄い部分が光ります。係数は、測定値ではなく、目で決めました。1080×675、96 spp、8スレッドで12分。"
+         data-alt="同じ彫像を、ろう、大理石、翡翠の質感で描いた図">
+        <img src="assets/gallery/erato_translucent-thumb.webp" width="640" height="400" alt="同じ彫像を、ろう、大理石、翡翠の質感で描いた図" loading="lazy">
+        <span class="cap">同じ彫像を、ろう・大理石・翡翠に</span>
+      </a>
+    </div>
+
+    <!-- ===== 3. 肌・モデル読み込み ===== -->
+    <h2>肌の表現と、モデルの読み込み</h2>
+    <p class="sub">PMX 形式のモデルを読み込み、ポーズ、表情、肌の散乱を試した例です。</p>
+    <div class="gal">
+      <a class="tile" href="assets/gallery/skin_sss.webp" data-w="1600" data-h="384"
+         data-title="肌のサブサーフェススキャッタリング"
+         data-desc="球とトーラスに、同じ肌の材質を与えました。左から、散乱なし、実際の距離、距離を3倍にしたものです。Burley の正規化拡散プロファイルによる BSSRDF を使っています。"
+         data-alt="球とトーラスの肌の材質を、散乱なし、実際の距離、3倍の距離で描いた図">
+        <img src="assets/gallery/skin_sss-thumb.webp" width="640" height="154" alt="球とトーラスの肌の材質を、散乱の違いで比べた図" loading="lazy">
+        <span class="cap">肌のサブサーフェススキャッタリング</span>
+      </a>
+      <a class="tile" href="assets/gallery/mmd_a.webp" data-credit="mmd" data-w="560" data-h="747"
+         data-title="モデルの読み込み: ポーズ"
+         data-desc="PMX のモデルを読み込み、ボーンの階層とスキニングで、ポーズ(.vpd)をつけました。材質は、MMD のトゥーン用の設定ではなく、髪・目・装飾・肌といった名前から選んだ、物理ベースのシェーディングに置き換えています。スタジオ照明で描いています。"
+         data-alt="PMX モデルに片足を上げたポーズをつけて描いた図">
+        <img src="assets/gallery/mmd_a-thumb.webp" width="560" height="747" alt="PMX モデルに片足を上げたポーズをつけて描いた図" loading="lazy">
+        <span class="cap">モデルの読み込み: ポーズ</span>
+      </a>
+      <a class="tile" href="assets/gallery/mmd_b.webp" data-credit="mmd" data-w="420" data-h="560"
+         data-title="モデルの読み込み: 顔のアップ"
+         data-desc="顔のアップです。表情(モーフ)と、サブサーフェススキャッタリングによる肌の柔らかさを確かめました。全身では目立たない散乱が、アップでは見えてきます。"
+         data-alt="PMX モデルの顔のアップ">
+        <img src="assets/gallery/mmd_b-thumb.webp" width="420" height="560" alt="PMX モデルの顔のアップ" loading="lazy">
+        <span class="cap">モデルの読み込み: 顔のアップ</span>
+      </a>
+    </div>
+    <p class="note">キャラクターのモデルは、利用規約(再配布と商用利用は不可)に従い、個人の技術検証と自己紹介のために載せています。営利目的ではなく、このサイトでの収益化もしていません。モデル自体は配布していません。クレジットは、画像を拡大すると表示されます。</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Pero</div>
+</footer>
+
+<!-- クレジット(画像を拡大したときに表示する) -->
+<div hidden>
+  <div id="credit-erato-gold">
+    Model: Erato by Geoffrey Marchal (© 2016,
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
+    モンテ・カルヴォの大理石像(紀元2世紀、Ny Carlsberg Glyptotek 所蔵)の3Dスキャン。
+    <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a> より。
+    変更: 拡大縮小と配置、頂点法線の再計算、金の材質の適用。
+  </div>
+  <div id="credit-erato-translucent">
+    Model: Erato by Geoffrey Marchal (© 2016,
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
+    モンテ・カルヴォの大理石像(紀元2世紀、Ny Carlsberg Glyptotek 所蔵)の3Dスキャン。
+    <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a> より。
+    変更: 拡大縮小と配置、頂点法線の再計算、2か所の開いた境界を閉じる処理、ろう・大理石・翡翠の媒質の適用。
+  </div>
+  <div id="credit-mmd">
+    モデル: miHoYo(提供)/ 观海(改造。Bilibili: 观海子)。
+    モデルの利用規約に従い、個人の技術検証と自己紹介のために掲載しています(営利目的ではありません)。モデル自体は配布していません。
+  </div>
+</div>
+
+<!-- 拡大表示 -->
+<dialog id="lb" class="lb" aria-label="画像の拡大表示">
+  <div class="lb-img"><img alt="" width="1" height="1"></div>
+  <div class="lb-text">
+    <h3 class="lb-title"></h3>
+    <p class="lb-desc"></p>
+    <p class="lb-credit"></p>
+    <div class="lb-btns">
+      <button type="button" class="btn" data-act="prev">← 前へ</button>
+      <button type="button" class="btn" data-act="next">次へ →</button>
+      <button type="button" class="btn" data-act="close">閉じる</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var tiles = Array.prototype.slice.call(document.querySelectorAll('a.tile'));
+  var dlg = document.getElementById('lb');
+  // dialog に対応していないブラウザでは、画像のリンクをそのまま開く
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var img = dlg.querySelector('.lb-img img');
+  var title = dlg.querySelector('.lb-title');
+  var desc = dlg.querySelector('.lb-desc');
+  var credit = dlg.querySelector('.lb-credit');
+  var index = 0;
+
+  function show(n) {
+    index = (n + tiles.length) % tiles.length;
+    var a = tiles[index];
+    img.src = a.getAttribute('href');
+    img.alt = a.dataset.alt || '';
+    img.width = a.dataset.w;
+    img.height = a.dataset.h;
+    title.textContent = a.dataset.title || '';
+    desc.textContent = a.dataset.desc || '';
+    var src = a.dataset.credit && document.getElementById('credit-' + a.dataset.credit);
+    credit.innerHTML = src ? src.innerHTML : '';
+    credit.hidden = !src;
+  }
+  function open(n) { show(n); if (!dlg.open) dlg.showModal(); }
+
+  tiles.forEach(function (a, i) {
+    a.addEventListener('click', function (e) { e.preventDefault(); open(i); });
+  });
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg) { dlg.close(); return; }
+    var act = e.target.getAttribute && e.target.getAttribute('data-act');
+    if (act === 'close') dlg.close();
+    if (act === 'prev') show(index - 1);
+    if (act === 'next') show(index + 1);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!dlg.open) return;
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+})();
+</script>
+
+</body>
+</html>
