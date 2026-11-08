@@ -109,6 +109,40 @@
       </a>
     </div>
 
+    <!-- ===== 2b. 霧・双方向パストレーシング ===== -->
+    <h2>光源から光を追う: 霧の中の虹と、宝石の輝き</h2>
+    <p class="sub">光源から出た光の経路をたどってカメラにつなぐ、双方向パストレーシング(試作)で描きました。</p>
+    <div class="gal">
+      <a class="tile" href="assets/gallery/prism_fog.webp" data-w="1280" data-h="720"
+         data-title="霧の中の、プリズムと虹"
+         data-desc="細い光がプリズムを通り、虹色の扇になって、霧の中に見えています。光の経路をキャッシュする双方向パストレーシング(試作)で描きました。分散は、描画パスごとに波長を1つに固定して扱います。パストレーシングとフォトンマップの結果と照らして、一致を確かめています。1280×720、光の経路6億本、8スレッドで9分。"
+         data-alt="霧の中で、細い光がプリズムに入り、虹色の扇になって出ていく図">
+        <img src="assets/gallery/prism_fog-thumb.webp" width="640" height="360" alt="霧の中で、細い光がプリズムに入り、虹色の扇になって出ていく図" loading="lazy">
+        <span class="cap">霧の中の、プリズムと虹</span>
+      </a>
+      <a class="tile" href="assets/gallery/lvc_equal_time.webp" data-w="640" data-h="720"
+         data-title="同じ時間で描き比べる"
+         data-desc="同じ約9秒の描画です。上は、パストレーシングとフォトンの光線追跡(64 spp、8.9秒)。下は、この試作(64回の波長パス、9.0秒)です。霧の中の細い光は、パストレーシングでは当たる確率が低く、点々のノイズになります。光源側の経路を使うと、同じ時間でずっと滑らかになります。"
+         data-alt="同じ時間で、パストレーシング(上)と双方向の試作(下)を比べた図。上は点々のノイズ、下は滑らか">
+        <img src="assets/gallery/lvc_equal_time-thumb.webp" width="569" height="640" alt="同じ時間で、パストレーシング(上)と双方向の試作(下)を比べた図。上は点々のノイズ、下は滑らか" loading="lazy">
+        <span class="cap">同じ時間で描き比べる</span>
+      </a>
+      <a class="tile" href="assets/gallery/gem_caustic.webp" data-w="1000" data-h="1000"
+         data-title="宝石の輝き"
+         data-desc="カットされた宝石の、石の中と、影になった床に落ちる、色のついた光です。1000×1000、光の経路4億本、OIDN でノイズ除去、11分。ガラスを通して見える壁に、ガラスが投げる光は、まだ出せていません。"
+         data-alt="カットされた宝石と、その影の床に落ちる虹色の光">
+        <img src="assets/gallery/gem_caustic-thumb.webp" width="640" height="640" alt="カットされた宝石と、その影の床に落ちる虹色の光" loading="lazy">
+        <span class="cap">宝石の輝き</span>
+      </a>
+      <a class="tile" href="assets/gallery/ball_haze.webp" data-w="1000" data-h="1000"
+         data-title="霞の中のガラス玉"
+         data-desc="ガラス玉が光の束を集めて、縁に色のついた円錐にしています。霞の中なので、光の通り道が見えます。"
+         data-alt="霞の中で、ガラス玉が光を集めて、円錐の光にしている図">
+        <img src="assets/gallery/ball_haze-thumb.webp" width="640" height="640" alt="霞の中で、ガラス玉が光を集めて、円錐の光にしている図" loading="lazy">
+        <span class="cap">霞の中のガラス玉</span>
+      </a>
+    </div>
+
     <!-- ===== 3. 肌・モデル読み込み ===== -->
     <h2>肌の表現と、モデルの読み込み</h2>
     <p class="sub">PMX 形式のモデルを読み込み、ポーズ、表情、肌の散乱を試した例です。</p>
