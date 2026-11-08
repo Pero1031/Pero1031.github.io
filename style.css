@@ -166,6 +166,17 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 .plain li { margin-bottom: 6px; }
 .note { color: var(--muted); font-size: 13px; margin: 14px 0 0; }
 
+/* ---------- gallery teaser (home) ---------- */
+.teaser { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.teaser a {
+  display: block; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden; color: var(--text);
+}
+.teaser a:hover { border-color: var(--accent); text-decoration: none; }
+.teaser img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.teaser span { display: block; padding: 10px 14px 12px; font-size: 14px; }
+.more { margin: 24px 0 0; }
+
 /* ---------- gallery ---------- */
 .gal { columns: 3 260px; column-gap: 18px; }
 .tile {
