@@ -82,20 +82,6 @@
         <img src="../assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="A gold ring with a diamond in a dark studio. Light splits into colors inside the stone" loading="lazy">
         <span class="cap">A diamond ring</span>
       </a>
-      <a class="tile" href="../assets/gallery/crystal_lamp.webp" data-w="800" data-h="450"
-         data-title="A lamp inside cut glass"
-         data-desc="Caustics computed with photon mapping (the average of 8 photon sets). All the light on the table has passed through the glass. It forms sharp-edged polygons with dispersion colors along the edges."
-         data-alt="The pattern of light that a lamp inside cut glass casts on the table">
-        <img src="../assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="The pattern of light that a lamp inside cut glass casts on the table" loading="lazy">
-        <span class="cap">A lamp inside cut glass</span>
-      </a>
-      <a class="tile" href="../assets/gallery/water_sea.webp" data-w="1600" data-h="456"
-         data-title="A glass of water and a sea with waves"
-         data-desc="Left: caustics (photon mapping) from a point light through a glass of water. Right: a sea built from Gerstner waves, with the absorption of water computed physically."
-         data-alt="Caustics from a glass of water, and a sea with waves">
-        <img src="../assets/gallery/water_sea-thumb.webp" width="640" height="182" alt="A glass of water and a sea with waves" loading="lazy">
-        <span class="cap">A glass of water and a sea with waves</span>
-      </a>
       <a class="tile" href="../assets/gallery/prism_caustic.webp" data-w="1600" data-h="612"
          data-title="The pattern of light through a prism"
          data-desc="Three methods compared: no caustics, photon mapping, and specular manifold NEE (prototype). The last method solves the refraction path instead of estimating it, so the edges of the dispersed band of light stay sharp. In smooth regions, the two methods differ by a few percent at most."
@@ -143,6 +129,47 @@
          data-alt="A glass ball in haze gathering light into a cone">
         <img src="../assets/gallery/ball_haze-thumb.webp" width="640" height="640" alt="A glass ball in haze gathering light into a cone" loading="lazy">
         <span class="cap">A glass ball in haze</span>
+      </a>
+    </div>
+
+    <!-- ===== 2c. Surface appearance ===== -->
+    <h2>Surface appearance: water, coats, machining marks</h2>
+    <p class="sub">Sun glitter set by the slopes of waves, gloss from a clear coat over a base, and metal reflections that change with the direction of the grooves.</p>
+    <div class="gal">
+      <a class="tile" href="../assets/gallery/ocean_sunset.webp" data-w="1280" data-h="720"
+         data-title="The sea at low sun"
+         data-desc="A wind sea built from a wave spectrum (Pierson-Moskowitz, 10 m/s). The sun is 8 degrees above the horizon, and the sky is computed with single scattering. The sun glitter comes from the slopes of the waves; the slope of waves too small for the mesh to resolve far away is given back as roughness (Cox-Munk). The blue-green in the troughs is light that went into the water, scattered, and came back. 1280×720, 192 spp, denoised with OIDN, 2 minutes."
+         data-alt="A sea in the evening with a low sun near the horizon, and a path of fine glitter on the water below it">
+        <img src="../assets/gallery/ocean_sunset-thumb.webp" width="640" height="360" alt="A sea in the evening with a low sun near the horizon, and a path of fine glitter on the water below it" loading="lazy">
+        <span class="cap">The sea at low sun</span>
+      </a>
+      <a class="tile" href="../assets/gallery/gloss_grid.webp" data-w="1280" data-h="720"
+         data-title="A grid of gloss: roughness and base brightness"
+         data-desc="A grid of spheres: a red diffuse base under a clear coat with an index of refraction of 1.5. Rows (back to front) are the coat roughness (0.03, 0.12, 0.3, 0.55); the rougher it is, the blurrier the reflections. Columns (left to right) are the base brightness (0.02, 0.12, 0.40, 0.80); the darker the base, the more a reflection of the same strength stands out. The sharpness and the contrast of gloss move independently. The light bouncing between the coat and the base is summed by a random walk. 1280×720, 192 spp, denoised with OIDN."
+         data-alt="A grid of red spheres whose gloss changes with the roughness of the coat and the brightness of the base">
+        <img src="../assets/gallery/gloss_grid-thumb.webp" width="640" height="360" alt="A grid of red spheres whose gloss changes with the roughness of the coat and the brightness of the base" loading="lazy">
+        <span class="cap">A grid of gloss: roughness and base brightness</span>
+      </a>
+      <a class="tile" href="../assets/gallery/gloss_lacquered_gold.webp" data-w="1280" data-h="720"
+         data-title="Lacquered gold"
+         data-desc="From the left: bare gold (roughness 0.2), a clear coat, a satin coat and an amber coat. Adding a clear coat puts sharp reflections on top of the gold's rough reflection. With the satin coat, those reflections blur. The amber coat tints the gold with the color of light that passes through the coat twice (in and out); blue is strongly reduced, so it turns a deep orange like copper. 1280×720, 192 spp, denoised with OIDN."
+         data-alt="Four gold spheres in a row. From the left: no coat, a clear coat, a satin coat and an amber coat">
+        <img src="../assets/gallery/gloss_lacquered_gold-thumb.webp" width="640" height="360" alt="Four gold spheres in a row. From the left: no coat, a clear coat, a satin coat and an amber coat" loading="lazy">
+        <span class="cap">Lacquered gold</span>
+      </a>
+      <a class="tile" href="../assets/gallery/aniso_spheres.webp" data-w="1280" data-h="720"
+         data-title="Brushed gold: anisotropic reflection"
+         data-desc="Gold spheres (roughness 0.3). From the left: isotropic, brushed along the tangent, grooves rotated by 45°, and rotated by 90°. The tangent of a sphere follows its lines of latitude, so the highlight stretches vertically (second), diagonally (third) and horizontally (fourth). 1280×720, 192 spp, denoised with OIDN."
+         data-alt="Four gold spheres in a row. From the left: isotropic, brushed, rotated 45° and rotated 90°; the highlight stretches in a different direction on each">
+        <img src="../assets/gallery/aniso_spheres-thumb.webp" width="640" height="360" alt="Four gold spheres in a row. From the left: isotropic, brushed, rotated 45° and rotated 90°; the highlight stretches in a different direction on each" loading="lazy">
+        <span class="cap">Brushed gold: anisotropic reflection</span>
+      </a>
+      <a class="tile" href="../assets/gallery/aniso_bowl.webp" data-w="1280" data-h="720"
+         data-title="A gold bowl turned on a lathe"
+         data-desc="The grooves form circles around the axis, so the highlight stretches perpendicular to them, in a fan toward the inside of the bowl. The direction of the grooves (the tangent) is taken from the shape. 1280×720, 192 spp, denoised with OIDN."
+         data-alt="A gold bowl whose inner highlight fans out from the bottom to the rim">
+        <img src="../assets/gallery/aniso_bowl-thumb.webp" width="640" height="360" alt="A gold bowl whose inner highlight fans out from the bottom to the rim" loading="lazy">
+        <span class="cap">A gold bowl turned on a lathe</span>
       </a>
     </div>
 

@@ -82,20 +82,6 @@
         <img src="assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="暗いスタジオでダイヤモンドの付いた金の指輪。石の中で光が色に分かれている" loading="lazy">
         <span class="cap">ダイヤモンドの指輪</span>
       </a>
-      <a class="tile" href="assets/gallery/crystal_lamp.webp" data-w="800" data-h="450"
-         data-title="カットグラスの中のランプ"
-         data-desc="コースティクスをフォトンマップで計算しました(8組のフォトン集合の平均)。テーブルを照らす光は、すべてグラスを通った光です。縁に分散による色がついた、輪郭の鋭い多角形になります。"
-         data-alt="カットグラスの中のランプがテーブルに作る光の模様">
-        <img src="assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="カットグラスの中のランプがテーブルに作る光の模様" loading="lazy">
-        <span class="cap">カットグラスの中のランプ</span>
-      </a>
-      <a class="tile" href="assets/gallery/water_sea.webp" data-w="1600" data-h="456"
-         data-title="水の入ったグラスと波のある海"
-         data-desc="左は、点光源がグラスの水を通ってできるコースティクス(フォトンマップ)。右は、Gerstner 波で作った海で、水の吸収を物理的に計算しています。"
-         data-alt="水の入ったグラスのコースティクスと波のある海">
-        <img src="assets/gallery/water_sea-thumb.webp" width="640" height="182" alt="水の入ったグラスと波のある海" loading="lazy">
-        <span class="cap">水の入ったグラスと波のある海</span>
-      </a>
       <a class="tile" href="assets/gallery/prism_caustic.webp" data-w="1600" data-h="612"
          data-title="プリズムを通る光の模様"
          data-desc="コースティクスなし、フォトンマップ、specular manifold NEE(試作)の3つを比べました。最後の方法は、屈折の経路を推定ではなく解きます。分散した光の帯の縁が、鋭く保たれます。滑らかな部分では、2つの方法の差は数%以内です。"
@@ -143,6 +129,47 @@
          data-alt="霞の中でガラス玉が光を集めて円錐の光にしている図">
         <img src="assets/gallery/ball_haze-thumb.webp" width="640" height="640" alt="霞の中でガラス玉が光を集めて円錐の光にしている図" loading="lazy">
         <span class="cap">霞の中のガラス玉</span>
+      </a>
+    </div>
+
+    <!-- ===== 2c. 表面の質感 ===== -->
+    <h2>表面の質感: 水面、コート、削り跡</h2>
+    <p class="sub">波の傾きで決まる太陽のきらめき、透明なコートを重ねた光沢、溝の向きで変わる金属の反射を描きました。</p>
+    <div class="gal">
+      <a class="tile" href="assets/gallery/ocean_sunset.webp" data-w="1280" data-h="720"
+         data-title="低い太陽の海"
+         data-desc="波のスペクトル(Pierson-Moskowitz、風速 10 m/s)で作った風の海です。太陽は水平線の上 8° にあり、空は単散乱で計算しています。太陽のきらめきは、波の傾きから生まれます。遠くの、メッシュで解像できない波の傾きは、粗さとして戻しています(Cox-Munk)。波の谷の青緑は、水に入って散乱し、戻ってきた光です。1280×720、192 spp、OIDN でノイズ除去、2分。"
+         data-alt="水平線の近くに低い太陽がある夕方の海。太陽の下の水面に、細かいきらめきの帯ができている">
+        <img src="assets/gallery/ocean_sunset-thumb.webp" width="640" height="360" alt="水平線の近くに低い太陽がある夕方の海。太陽の下の水面に、細かいきらめきの帯ができている" loading="lazy">
+        <span class="cap">低い太陽の海</span>
+      </a>
+      <a class="tile" href="assets/gallery/gloss_grid.webp" data-w="1280" data-h="720"
+         data-title="光沢の格子: 粗さと下地の明るさ"
+         data-desc="赤い拡散の下地に、屈折率 1.5 の透明なコートを重ねた球の格子です。行(奥から手前)はコートの粗さ(0.03、0.12、0.3、0.55)で、粗いほど、映り込みがぼやけます。列(左から右)は下地の明るさ(0.02、0.12、0.40、0.80)で、暗いほど、同じ強さの反射が目立ちます。光沢の「鮮明さ」と「コントラスト」は、独立に動きます。コートと下地の間で往復する光は、ランダムウォークで足しています。1280×720、192 spp、OIDN でノイズ除去。"
+         data-alt="赤い球の格子。コートの粗さと下地の明るさで、光沢の見え方が変わる">
+        <img src="assets/gallery/gloss_grid-thumb.webp" width="640" height="360" alt="赤い球の格子。コートの粗さと下地の明るさで、光沢の見え方が変わる" loading="lazy">
+        <span class="cap">光沢の格子: 粗さと下地の明るさ</span>
+      </a>
+      <a class="tile" href="assets/gallery/gloss_lacquered_gold.webp" data-w="1280" data-h="720"
+         data-title="漆を塗った金"
+         data-desc="左から、金(粗さ 0.2)、透明なコート、つや消しのコート、琥珀色のコートです。透明なコートを足すと、金の粗い反射の上に、鮮明な映り込みが重なります。つや消しのコートでは、その映り込みがぼやけます。琥珀色のコートは、金の色を、コートを2回通った色(往復)に染めます。青が強く減るので、銅のような濃い橙になります。1280×720、192 spp、OIDN でノイズ除去。"
+         data-alt="金の球を4つ並べた図。左から、コートなし、透明なコート、つや消しのコート、琥珀色のコート">
+        <img src="assets/gallery/gloss_lacquered_gold-thumb.webp" width="640" height="360" alt="金の球を4つ並べた図。左から、コートなし、透明なコート、つや消しのコート、琥珀色のコート" loading="lazy">
+        <span class="cap">漆を塗った金</span>
+      </a>
+      <a class="tile" href="assets/gallery/aniso_spheres.webp" data-w="1280" data-h="720"
+         data-title="ヘアラインの金: 異方性の反射"
+         data-desc="金の球(粗さ 0.3)を、左から、等方、接線に沿ったヘアライン、溝を45°回したもの、90°回したものにしました。球の接線は緯線の向きなので、ハイライトは、縦に伸びる(2つ目)、斜めに伸びる(3つ目)、横に伸びる(4つ目)形になります。1280×720、192 spp、OIDN でノイズ除去。"
+         data-alt="金の球を4つ並べた図。左から、等方、ヘアライン、45°回転、90°回転で、ハイライトの伸びる向きが変わる">
+        <img src="assets/gallery/aniso_spheres-thumb.webp" width="640" height="360" alt="金の球を4つ並べた図。左から、等方、ヘアライン、45°回転、90°回転で、ハイライトの伸びる向きが変わる" loading="lazy">
+        <span class="cap">ヘアラインの金: 異方性の反射</span>
+      </a>
+      <a class="tile" href="assets/gallery/aniso_bowl.webp" data-w="1280" data-h="720"
+         data-title="旋盤で削った金の鉢"
+         data-desc="溝が軸の周りの円になるので、ハイライトは、溝に垂直に、鉢の内側へ扇形に伸びます。溝の向き(接線)は、形から決めています。1280×720、192 spp、OIDN でノイズ除去。"
+         data-alt="金の鉢。内側のハイライトが、底から縁へ扇形に伸びている">
+        <img src="assets/gallery/aniso_bowl-thumb.webp" width="640" height="360" alt="金の鉢。内側のハイライトが、底から縁へ扇形に伸びている" loading="lazy">
+        <span class="cap">旋盤で削った金の鉢</span>
       </a>
     </div>
 
