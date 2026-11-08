@@ -32,31 +32,31 @@
 
     <p class="eyebrow">Gallery</p>
     <h1>描いた画像</h1>
-    <p class="lead">自作の3Dレンダラー GoLD_rayt で描いた画像と、モデル読み込みの例です。画像をクリックすると、大きくなります。</p>
+    <p class="lead">自作の3Dレンダラー GoLD_rayt で描いた画像とモデル読み込みの例です。画像をクリックすると、大きくなります。</p>
 
     <!-- ===== 1. 分光レンダリング ===== -->
     <h2>分光レンダリング: 色を波長で計算する</h2>
-    <p class="sub">RGB で近似した場合との違いを、同じシーンで描き比べました。</p>
+    <p class="sub">RGB で近似した場合との違いを同じシーンで描き比べました。</p>
     <div class="gal">
       <a class="tile" href="assets/gallery/erato_gold.webp" data-credit="erato-gold" data-w="1600" data-h="1449"
-         data-title="金の彫像を、RGB と分光で描き比べる"
-         data-desc="同じ金の彫像を、RGB のビルドと分光のビルドで描きました。上段は昼光(D65)、下段はタングステン光で、右の列は両者の色差(CIEDE2000)です。平均の色差は、昼光で 1.7、タングステン光で 2.6。昼光ではほぼ同じですが、暖かい光の下では、RGB の金がくすんで見えます。600×800、256 spp、OIDN でノイズ除去。"
+         data-title="金の彫像を RGB と分光で描き比べる"
+         data-desc="同じ金の彫像を RGB のビルドと分光のビルドで描きました。上段は昼光(D65)、下段はタングステン光で、右の列は両者の色差(CIEDE2000)です。平均の色差は昼光で 1.7、タングステン光で 2.6 です。昼光ではほぼ同じですが、暖かい光の下では、RGB の金がくすんで見えます。600×800、256 spp、OIDN でノイズ除去。"
          data-alt="金の彫像を RGB レンダラーと分光レンダラーで描き比べた図。上段は昼光、下段はタングステン光。右の列は色差">
         <img src="assets/gallery/erato_gold-thumb.webp" width="640" height="580" alt="金の彫像を RGB レンダラーと分光レンダラーで描き比べた図" loading="lazy">
-        <span class="cap">金の彫像を、RGB と分光で描き比べる</span>
+        <span class="cap">金の彫像を RGB と分光で描き比べる</span>
       </a>
       <a class="tile" href="assets/gallery/overview.webp" data-w="1600" data-h="1174"
          data-title="分光モードのまとめ"
-         data-desc="金の3つの粗さと、カットグラスのコースティクス(上)。金のボウルを3つの光の下で、RGB のビルドと分光のビルドで描き、その色差を並べました(下)。"
+         data-desc="粗さを変えた3つの金の球と、カットグラスのコースティクス(上)。金のボウルを3つの光の下で、RGB のビルドと分光のビルドで描き、その色差を並べました(下)。"
          data-alt="分光レンダリングの金の球、カットグラスのコースティクス、金のボウルの RGB と分光の比較と色差">
         <img src="assets/gallery/overview-thumb.webp" width="640" height="470" alt="分光レンダリングの金の球、カットグラス、金のボウルの比較" loading="lazy">
         <span class="cap">分光モードのまとめ</span>
       </a>
       <a class="tile" href="assets/gallery/light_spheres.webp" data-w="960" data-h="882"
          data-title="光の色が変わると、物の色はどう変わるか"
-         data-desc="5色の球と金の球を、1つの球状の光源のもとに置きました。分光モードでは、シーン全体が光の色を帯び、球ごとに変わる量が違います。ホワイトバランスで中立の面は戻せますが、色までは戻せません。RGB モードは、白は合っても、色は合いません。"
-         data-alt="5色の球と金の球を、D65、タングステン、LED の光で描いた図">
-        <img src="assets/gallery/light_spheres-thumb.webp" width="640" height="588" alt="5色の球と金の球を、3種類の光で描いた図" loading="lazy">
+         data-desc="5色の球と金の球を1つの球状の光源のもとに置きました。分光モードでは、シーン全体が光の色を帯び、変わり方が球ごとに違います。ホワイトバランスで中立の面は戻せますが、色までは戻せません。RGB モードは、白は合っても、ほかの色は合いません。"
+         data-alt="5色の球と金の球を D65、タングステン、LED の光で描いた図">
+        <img src="assets/gallery/light_spheres-thumb.webp" width="640" height="588" alt="5色の球と金の球を3種類の光で描いた図" loading="lazy">
         <span class="cap">光の色が変わると、物の色はどう変わるか</span>
       </a>
     </div>
@@ -67,31 +67,31 @@
     <div class="gal">
       <a class="tile" href="assets/gallery/soap_bubble.webp" data-w="900" data-h="900"
          data-title="シャボン玉: 薄膜の干渉"
-         data-desc="膜は上で薄く、下へいくほど厚くなり、液体が回る場所では縞がゆらいで渦を巻きます。色は、膜の表と裏で反射した光の干渉を、波長ごとに計算して出しています(Airy の式)。900×900、512 spp、OIDN でノイズ除去。"
-         data-alt="庭を背景にしたシャボン玉。薄膜の干渉で、虹色の縞がついている">
-        <img src="assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="庭を背景にしたシャボン玉。薄膜の干渉で、虹色の縞がついている" loading="lazy">
+         data-desc="膜は上で薄く、下へいくほど厚くなり、液体が回る場所では縞がゆらいで渦を巻きます。色は膜の表と裏で反射した光の干渉を、波長ごとに計算して出しています(Airy の式)。900×900、512 spp、OIDN でノイズ除去。"
+         data-alt="庭を背景にしたシャボン玉。薄膜の干渉で虹色の縞がついている">
+        <img src="assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="庭を背景にしたシャボン玉。薄膜の干渉で虹色の縞がついている" loading="lazy">
         <span class="cap">シャボン玉: 薄膜の干渉</span>
       </a>
       <a class="tile" href="assets/gallery/diamond_ring.webp" data-w="900" data-h="600"
          data-title="ダイヤモンドの指輪"
-         data-desc="ラウンドブリリアントカットの石に、ダイヤモンドの Sellmeier 分散(n_d 2.417、アッベ数 55)を与えました。石の中で分かれた光が、色のついた輝き(ファイアー)として出てきます。金は Johnson & Christy の定数です。900×600、768 spp、OIDN でノイズ除去。石と指輪は、スクリプトで生成しています。"
-         data-alt="暗いスタジオで、ダイヤモンドの付いた金の指輪。石の中で光が色に分かれている">
-        <img src="assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="暗いスタジオで、ダイヤモンドの付いた金の指輪。石の中で光が色に分かれている" loading="lazy">
+         data-desc="ラウンドブリリアントカットの石にダイヤモンドの Sellmeier 分散(n_d 2.417、アッベ数 55)を与えました。石の中で分かれた光が色のついた輝き(ファイアー)として出てきます。金は Johnson & Christy の定数です。900×600、768 spp、OIDN でノイズ除去。石と指輪はスクリプトで生成しています。"
+         data-alt="暗いスタジオでダイヤモンドの付いた金の指輪。石の中で光が色に分かれている">
+        <img src="assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="暗いスタジオでダイヤモンドの付いた金の指輪。石の中で光が色に分かれている" loading="lazy">
         <span class="cap">ダイヤモンドの指輪</span>
       </a>
       <a class="tile" href="assets/gallery/crystal_lamp.webp" data-w="800" data-h="450"
          data-title="カットグラスの中のランプ"
          data-desc="コースティクスをフォトンマップで計算しました(8組のフォトン集合の平均)。テーブルを照らす光は、すべてグラスを通った光です。縁に分散による色がついた、輪郭の鋭い多角形になります。"
-         data-alt="カットグラスの中のランプが、テーブルに作る光の模様">
-        <img src="assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="カットグラスの中のランプが、テーブルに作る光の模様" loading="lazy">
+         data-alt="カットグラスの中のランプがテーブルに作る光の模様">
+        <img src="assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="カットグラスの中のランプがテーブルに作る光の模様" loading="lazy">
         <span class="cap">カットグラスの中のランプ</span>
       </a>
       <a class="tile" href="assets/gallery/water_sea.webp" data-w="1600" data-h="456"
-         data-title="水の入ったグラスと、波のある海"
+         data-title="水の入ったグラスと波のある海"
          data-desc="左は、点光源がグラスの水を通ってできるコースティクス(フォトンマップ)。右は、Gerstner 波で作った海で、水の吸収を物理的に計算しています。"
-         data-alt="水の入ったグラスのコースティクスと、波のある海">
-        <img src="assets/gallery/water_sea-thumb.webp" width="640" height="182" alt="水の入ったグラスと、波のある海" loading="lazy">
-        <span class="cap">水の入ったグラスと、波のある海</span>
+         data-alt="水の入ったグラスのコースティクスと波のある海">
+        <img src="assets/gallery/water_sea-thumb.webp" width="640" height="182" alt="水の入ったグラスと波のある海" loading="lazy">
+        <span class="cap">水の入ったグラスと波のある海</span>
       </a>
       <a class="tile" href="assets/gallery/prism_caustic.webp" data-w="1600" data-h="612"
          data-title="プリズムを通る光の模様"
@@ -102,34 +102,34 @@
       </a>
       <a class="tile" href="assets/gallery/erato_translucent.webp" data-credit="erato-translucent" data-w="1080" data-h="675"
          data-title="同じ彫像を、ろう・大理石・翡翠に"
-         data-desc="後ろと上から光を当て、内部の散乱媒質だけを変えました。光は表面から入り、内部で散乱して、再び出てきます。衣のひだや竪琴のような薄い部分が光ります。係数は、測定値ではなく、目で決めました。1080×675、96 spp、8スレッドで12分。"
-         data-alt="同じ彫像を、ろう、大理石、翡翠の質感で描いた図">
-        <img src="assets/gallery/erato_translucent-thumb.webp" width="640" height="400" alt="同じ彫像を、ろう、大理石、翡翠の質感で描いた図" loading="lazy">
+         data-desc="後ろと上から光を当て、内部の散乱媒質だけを変えました。光は表面から入り、内部で散乱して、再び出てきます。衣のひだや竪琴のような薄い部分が光ります。係数は測定値ではなく、目で決めました。1080×675、96 spp、8スレッドで12分。"
+         data-alt="同じ彫像を、ろう・大理石・翡翠の質感で描いた図">
+        <img src="assets/gallery/erato_translucent-thumb.webp" width="640" height="400" alt="同じ彫像を、ろう・大理石・翡翠の質感で描いた図" loading="lazy">
         <span class="cap">同じ彫像を、ろう・大理石・翡翠に</span>
       </a>
     </div>
 
     <!-- ===== 2b. 霧・双方向パストレーシング ===== -->
-    <h2>光源から光を追う: 霧の中の虹と、宝石の輝き</h2>
+    <h2>光源から光を追う: 霧の中の虹と宝石の輝き</h2>
     <p class="sub">光源から出た光の経路をたどってカメラにつなぐ、双方向パストレーシング(試作)で描きました。</p>
     <div class="gal">
       <a class="tile" href="assets/gallery/prism_fog.webp" data-w="1280" data-h="720"
-         data-title="霧の中の、プリズムと虹"
-         data-desc="細い光がプリズムを通り、虹色の扇になって、霧の中に見えています。光の経路をキャッシュする双方向パストレーシング(試作)で描きました。分散は、描画パスごとに波長を1つに固定して扱います。パストレーシングとフォトンマップの結果と照らして、一致を確かめています。1280×720、光の経路6億本、8スレッドで9分。"
-         data-alt="霧の中で、細い光がプリズムに入り、虹色の扇になって出ていく図">
-        <img src="assets/gallery/prism_fog-thumb.webp" width="640" height="360" alt="霧の中で、細い光がプリズムに入り、虹色の扇になって出ていく図" loading="lazy">
-        <span class="cap">霧の中の、プリズムと虹</span>
+         data-title="霧の中のプリズムと虹"
+         data-desc="細い光がプリズムを通り、虹色の扇になって霧の中に見えています。光の経路をキャッシュする双方向パストレーシング(試作)で描きました。分散は、描画パスごとに波長を1つに固定して扱います。パストレーシングとフォトンマップの結果と比べて、一致を確かめています。1280×720、光の経路6億本、8スレッドで9分。"
+         data-alt="霧の中で細い光がプリズムに入り、虹色の扇になって出ていく図">
+        <img src="assets/gallery/prism_fog-thumb.webp" width="640" height="360" alt="霧の中で細い光がプリズムに入り、虹色の扇になって出ていく図" loading="lazy">
+        <span class="cap">霧の中のプリズムと虹</span>
       </a>
       <a class="tile" href="assets/gallery/lvc_equal_time.webp" data-w="640" data-h="720"
          data-title="同じ時間で描き比べる"
          data-desc="同じ約9秒の描画です。上は、パストレーシングとフォトンの光線追跡(64 spp、8.9秒)。下は、この試作(64回の波長パス、9.0秒)です。霧の中の細い光は、パストレーシングでは当たる確率が低く、点々のノイズになります。光源側の経路を使うと、同じ時間でずっと滑らかになります。"
-         data-alt="同じ時間で、パストレーシング(上)と双方向の試作(下)を比べた図。上は点々のノイズ、下は滑らか">
-        <img src="assets/gallery/lvc_equal_time-thumb.webp" width="569" height="640" alt="同じ時間で、パストレーシング(上)と双方向の試作(下)を比べた図。上は点々のノイズ、下は滑らか" loading="lazy">
+         data-alt="同じ時間でパストレーシング(上)と双方向の試作(下)を比べた図。上は点々のノイズ、下は滑らか">
+        <img src="assets/gallery/lvc_equal_time-thumb.webp" width="569" height="640" alt="同じ時間でパストレーシング(上)と双方向の試作(下)を比べた図。上は点々のノイズ、下は滑らか" loading="lazy">
         <span class="cap">同じ時間で描き比べる</span>
       </a>
       <a class="tile" href="assets/gallery/gem_caustic.webp" data-w="1000" data-h="1000"
          data-title="宝石の輝き"
-         data-desc="カットされた宝石の、石の中と、影になった床に落ちる、色のついた光です。1000×1000、光の経路4億本、OIDN でノイズ除去、11分。ガラスを通して見える壁に、ガラスが投げる光は、まだ出せていません。"
+         data-desc="カットされた宝石の中と、その影になった床に落ちる、色のついた光です。1000×1000、光の経路4億本、OIDN でノイズ除去、11分。ガラスを通して見える壁にガラスが投げる光は、まだ出せていません。"
          data-alt="カットされた宝石と、その影の床に落ちる虹色の光">
         <img src="assets/gallery/gem_caustic-thumb.webp" width="640" height="640" alt="カットされた宝石と、その影の床に落ちる虹色の光" loading="lazy">
         <span class="cap">宝石の輝き</span>
@@ -137,33 +137,33 @@
       <a class="tile" href="assets/gallery/ball_haze.webp" data-w="1000" data-h="1000"
          data-title="霞の中のガラス玉"
          data-desc="ガラス玉が光の束を集めて、縁に色のついた円錐にしています。霞の中なので、光の通り道が見えます。"
-         data-alt="霞の中で、ガラス玉が光を集めて、円錐の光にしている図">
-        <img src="assets/gallery/ball_haze-thumb.webp" width="640" height="640" alt="霞の中で、ガラス玉が光を集めて、円錐の光にしている図" loading="lazy">
+         data-alt="霞の中でガラス玉が光を集めて円錐の光にしている図">
+        <img src="assets/gallery/ball_haze-thumb.webp" width="640" height="640" alt="霞の中でガラス玉が光を集めて円錐の光にしている図" loading="lazy">
         <span class="cap">霞の中のガラス玉</span>
       </a>
     </div>
 
     <!-- ===== 3. 肌・モデル読み込み ===== -->
-    <h2>肌の表現と、モデルの読み込み</h2>
+    <h2>肌の表現とモデルの読み込み</h2>
     <p class="sub">PMX 形式のモデルを読み込み、ポーズ、表情、肌の散乱を試した例です。</p>
     <div class="gal">
       <a class="tile" href="assets/gallery/skin_sss.webp" data-w="1600" data-h="384"
          data-title="肌のサブサーフェススキャッタリング"
-         data-desc="球とトーラスに、同じ肌の材質を与えました。左から、散乱なし、実際の距離、距離を3倍にしたものです。Burley の正規化拡散プロファイルによる BSSRDF を使っています。"
-         data-alt="球とトーラスの肌の材質を、散乱なし、実際の距離、3倍の距離で描いた図">
-        <img src="assets/gallery/skin_sss-thumb.webp" width="640" height="154" alt="球とトーラスの肌の材質を、散乱の違いで比べた図" loading="lazy">
+         data-desc="球とトーラスに同じ肌の材質を与えました。左から、散乱なし、実際の距離、距離を3倍にしたものです。Burley の正規化拡散プロファイルによる BSSRDF を使っています。"
+         data-alt="球とトーラスの肌の材質を散乱なし、実際の距離、3倍の距離で描いた図">
+        <img src="assets/gallery/skin_sss-thumb.webp" width="640" height="154" alt="球とトーラスの肌の材質を散乱の違いで比べた図" loading="lazy">
         <span class="cap">肌のサブサーフェススキャッタリング</span>
       </a>
       <a class="tile" href="assets/gallery/mmd_a.webp" data-credit="mmd" data-w="560" data-h="747"
          data-title="モデルの読み込み: ポーズ"
-         data-desc="PMX のモデルを読み込み、ボーンの階層とスキニングで、ポーズ(.vpd)をつけました。材質は、MMD のトゥーン用の設定ではなく、髪・目・装飾・肌といった名前から選んだ、物理ベースのシェーディングに置き換えています。スタジオ照明で描いています。"
+         data-desc="PMX のモデルを読み込み、ボーンの階層とスキニングでポーズ(.vpd)をつけました。材質は MMD のトゥーン用の設定ではなく、髪・目・装飾・肌といった名前から選んだ物理ベースのシェーディングに置き換えています。スタジオ照明で描いています。"
          data-alt="PMX モデルに片足を上げたポーズをつけて描いた図">
         <img src="assets/gallery/mmd_a-thumb.webp" width="560" height="747" alt="PMX モデルに片足を上げたポーズをつけて描いた図" loading="lazy">
         <span class="cap">モデルの読み込み: ポーズ</span>
       </a>
       <a class="tile" href="assets/gallery/mmd_b.webp" data-credit="mmd" data-w="420" data-h="560"
          data-title="モデルの読み込み: 顔のアップ"
-         data-desc="顔のアップです。表情(モーフ)と、サブサーフェススキャッタリングによる肌の柔らかさを確かめました。全身では目立たない散乱が、アップでは見えてきます。"
+         data-desc="顔のアップです。表情(モーフ)とサブサーフェススキャッタリングによる肌の柔らかさを確かめました。全身では目立たない散乱が、アップでは見えてきます。"
          data-alt="PMX モデルの顔のアップ">
         <img src="assets/gallery/mmd_b-thumb.webp" width="420" height="560" alt="PMX モデルの顔のアップ" loading="lazy">
         <span class="cap">モデルの読み込み: 顔のアップ</span>

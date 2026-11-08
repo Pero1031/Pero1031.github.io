@@ -34,8 +34,8 @@
     <!-- 英文は「Veni, vidi, vici(来た、見た、勝った)」へのオマージュ。主語を省いた三つの過去形で、日本語の三句(測る・知覚する・創る)に対応させている -->
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      金属の色を分光測定し、その差を埋めるレンダラーを一から作りました。
-      視線計測を使ったゲームや、チーム開発アプリのバックエンドも担当しています。
+      金の色を分光測定し、RGB と分光の差を調べたうえで、分光で描くレンダラーを一から作りました。
+      視線計測を使ったゲームを作り、チーム開発のアプリではバックエンドを担当しています。
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">作品を見る</a>
@@ -53,7 +53,7 @@
       <!-- GoLD_ray -->
       <article class="work">
         <div class="media">
-          <img class="contain" src="assets/goldray-hero-v3.webp" width="1824" height="1652" alt="金の彫像 Erato を、RGB レンダラーと分光レンダラーで描き比べた図。上段は昼光(D65)、下段はタングステン光。右の列は両者の色差(CIEDE2000)で、平均は昼光で 1.7、タングステン光で 2.6" loading="lazy">
+          <img class="contain" src="assets/goldray-hero-v3.webp" width="1824" height="1652" alt="金の彫像 Erato を RGB レンダラーと分光レンダラーで描き比べた図。上段は昼光(D65)、下段はタングステン光。右の列は両者の色差(CIEDE2000)で、平均は昼光で 1.7、タングステン光で 2.6" loading="lazy">
           <p class="credit">
             Model: Erato by Geoffrey Marchal (© 2016,
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
@@ -67,7 +67,7 @@
           <p class="tagline">分光レンダリングに取り組む、自作の3Dパストレーサー</p>
           <p>
             卒業研究のために作った C++20 製のレンダラーです。分光放射計(SR-5100)で金を測定し、
-            RGB と分光レンダリングの色差を Mitsuba で定量化したうえで、その差を克服するソフトを目指しました。
+            RGB と分光レンダリングの色差を Mitsuba で定量化したうえで、その差を克服するレンダラーを目指しました。
           </p>
           <ul>
             <li>金の彫像を RGB と分光で描き比べると、色差は昼光で平均 1.7、タングステン光で 2.6。暖かい光の下では、RGB の金がくすんで見える</li>
@@ -116,7 +116,7 @@
           <h3>Gaze Dodge</h3>
           <p class="tagline">視線でプレイヤーを動かす、障害物よけブラウザゲーム</p>
           <p>
-            Tobii Pro アイトラッカーの視線で操作するゲームです。Webカメラ(WebGazer.js)やマウスでも遊べます。
+            Tobii Pro アイトラッカーの視線で操作するゲームです。Web カメラ(WebGazer.js)やマウスでも遊べます。
             ブラウザは Tobii に直接アクセスできないため、Python のブリッジが視線を WebSocket で送る構成にしました。
           </p>
           <ul>
@@ -154,7 +154,7 @@
           <p class="role-label">私の担当(バックエンド全般)</p>
           <ul>
             <li>最短経路を探すモジュール。経路のパターンごとに処理を分けて並列に実行し、到着が早い順に最大6件を返す</li>
-            <li>アプリ全体のモジュール設計。外部データごとに adapter を分け、事業者ごとのデータの癖を閉じ込める</li>
+            <li>アプリ全体のモジュール設計。外部データごとに adapter を分け、事業者ごとのデータ形式の違いを閉じ込める</li>
             <li>汎用的なデバッグシステム</li>
             <li>フロントエンドとバックエンドの接続</li>
           </ul>
@@ -198,19 +198,19 @@
   <section id="gallery">
     <div class="wrap">
       <h2>Gallery</h2>
-      <p class="sub">GoLD_rayt で描いた画像を、解説つきでまとめています。</p>
+      <p class="sub">GoLD_rayt で描いた画像を解説つきでまとめています。</p>
       <div class="teaser">
         <a href="gallery.html">
-          <img src="assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="シャボン玉。薄膜の干渉で、虹色の縞がついている" loading="lazy">
+          <img src="assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="シャボン玉。薄膜の干渉で虹色の縞がついている" loading="lazy">
           <span>シャボン玉: 薄膜の干渉</span>
         </a>
         <a href="gallery.html">
-          <img src="assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="カットグラスの中のランプが、テーブルに作る光の模様" loading="lazy">
+          <img src="assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="カットグラスの中のランプがテーブルに作る光の模様" loading="lazy">
           <span>カットグラスの中のランプ</span>
         </a>
         <a href="gallery.html">
-          <img src="assets/gallery/light_spheres-thumb.webp" width="640" height="588" alt="5色の球と金の球を、いろいろな光で描いた図" loading="lazy">
-          <span>光の色と、物の色</span>
+          <img src="assets/gallery/light_spheres-thumb.webp" width="640" height="588" alt="5色の球と金の球をいろいろな光で描いた図" loading="lazy">
+          <span>光の色と物の色</span>
         </a>
       </div>
       <p class="more"><a class="btn" href="gallery.html">ギャラリーをすべて見る →</a></p>
@@ -225,11 +225,11 @@
         <p>
           ニックネームは Petrichor(ペトリコール)。雨上がりの道路の匂いを指す言葉です。
           匂いと情景、そして多感覚の知覚から生まれる、人それぞれの美しい主観が好きです。
-          この関心が、知覚に基づくレンダラーを目指す、いまの研究と開発につながっています。
+          この関心が、知覚に基づくレンダラーを目指すいまの研究と開発につながっています。
         </p>
         <p>
           卒業研究で、分光放射計を使って金の色を測定し、RGB レンダリングと分光レンダリングの差を調べました。
-          その研究をきっかけに、知覚に基づくレンダラーを目標として、自作のレンダラー開発を続けています。
+          その研究をきっかけに、知覚に基づくレンダラーを目指して、自作を続けています。
         </p>
         <p>
           計測データを使って結果を確かめることが好きで、作ったものには数値テストや検証を付けるようにしています。
@@ -248,7 +248,7 @@
   <section id="contact">
     <div class="wrap">
       <h2>Contact</h2>
-      <p class="sub">お問い合わせは、GitHub か下記のメールアドレスへお願いします。</p>
+      <p class="sub">お問い合わせは、GitHub からお願いします。</p>
       <div class="btns">
         <a class="btn primary" href="https://github.com/Pero1031" target="_blank" rel="noopener">GitHub: Pero1031</a>
         <!-- TODO: 公開してよい連絡先メールアドレスがあれば追加(例: <a class="btn" href="mailto:...">Mail</a>) -->
