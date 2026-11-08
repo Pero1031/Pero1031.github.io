@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery | Pero Portfolio</title>
+  <meta name="description" content="Images rendered with my homemade 3D renderer GoLD_rayt, and examples of model loading.">
+  <meta name="theme-color" content="#0c0d10">
+  <link rel="alternate" hreflang="ja" href="https://pero1031.github.io/gallery.html">
+  <link rel="alternate" hreflang="en" href="https://pero1031.github.io/en/gallery.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=9">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Pero</a>
+    <nav>
+      <a href="index.html#works">Works</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <a class="lang" href="../gallery.html" hreflang="ja" lang="ja" title="日本語で見る">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main class="detail">
+  <div class="wrap">
+
+    <a class="back" href="index.html">← Back to top</a>
+
+    <p class="eyebrow">Gallery</p>
+    <h1>Rendered images</h1>
+    <p class="lead">Images rendered with my homemade 3D renderer GoLD_rayt, plus examples of model loading. Click an image to enlarge it.</p>
+
+    <!-- ===== 1. Spectral rendering ===== -->
+    <h2>Spectral rendering: computing color by wavelength</h2>
+    <p class="sub">The same scenes rendered with an RGB approximation, for comparison.</p>
+    <div class="gal">
+      <a class="tile" href="../assets/gallery/erato_gold.webp" data-credit="erato-gold" data-w="1600" data-h="1449"
+         data-title="A gold statue, RGB vs. spectral"
+         data-desc="The same gold statue rendered with the RGB build and the spectral build. The top row is daylight (D65), the bottom row is tungsten light, and the right column shows the color difference (CIEDE2000) between the two. The average color difference is 1.7 in daylight and 2.6 under tungsten light. They are nearly identical in daylight, but under warm light the RGB gold looks dull. 600×800, 256 spp, denoised with OIDN."
+         data-alt="A gold statue rendered with an RGB renderer and a spectral renderer. Top row: daylight; bottom row: tungsten light. The right column shows the color difference">
+        <img src="../assets/gallery/erato_gold-thumb.webp" width="640" height="580" alt="A gold statue rendered with an RGB renderer and a spectral renderer" loading="lazy">
+        <span class="cap">A gold statue, RGB vs. spectral</span>
+      </a>
+      <a class="tile" href="../assets/gallery/overview.webp" data-w="1600" data-h="1174"
+         data-title="Spectral mode overview"
+         data-desc="Three gold spheres with different roughness, and the caustics of cut glass (top). A gold bowl rendered under three lights with the RGB build and the spectral build, with their color differences side by side (bottom)."
+         data-alt="RGB vs. spectral comparison and color differences for gold spheres, cut-glass caustics and a gold bowl">
+        <img src="../assets/gallery/overview-thumb.webp" width="640" height="470" alt="Comparison of spectral-rendered gold spheres, cut glass and a gold bowl" loading="lazy">
+        <span class="cap">Spectral mode overview</span>
+      </a>
+      <a class="tile" href="../assets/gallery/light_spheres.webp" data-w="960" data-h="882"
+         data-title="How object colors change when the light changes"
+         data-desc="Five colored spheres and a gold sphere sit under one spherical light. In spectral mode the whole scene takes on the color of the light, and each sphere changes differently. White balance can restore neutral surfaces but not colors. In RGB mode, white matches but the other colors do not."
+         data-alt="Five colored spheres and a gold sphere rendered under D65, tungsten and LED light">
+        <img src="../assets/gallery/light_spheres-thumb.webp" width="640" height="588" alt="Five colored spheres and a gold sphere rendered under three kinds of light" loading="lazy">
+        <span class="cap">How object colors change when the light changes</span>
+      </a>
+    </div>
+
+    <!-- ===== 2. How light travels ===== -->
+    <h2>How light travels: interference, caustics, translucency</h2>
+    <p class="sub">Interference in a thin film, patterns formed by refracted light, and light scattering inside objects.</p>
+    <div class="gal">
+      <a class="tile" href="../assets/gallery/soap_bubble.webp" data-w="900" data-h="900"
+         data-title="Soap bubble: thin-film interference"
+         data-desc="The film is thin at the top and gets thicker toward the bottom, and where the liquid swirls the fringes waver and curl. The colors come from interference between light reflected at the front and back of the film, computed per wavelength (Airy formula). 900×900, 512 spp, denoised with OIDN."
+         data-alt="A soap bubble against a garden, with rainbow fringes from thin-film interference">
+        <img src="../assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="A soap bubble against a garden, with rainbow fringes from thin-film interference" loading="lazy">
+        <span class="cap">Soap bubble: thin-film interference</span>
+      </a>
+      <a class="tile" href="../assets/gallery/diamond_ring.webp" data-w="900" data-h="600"
+         data-title="A diamond ring"
+         data-desc="A round brilliant cut stone using the Sellmeier dispersion of diamond (n_d 2.417, Abbe number 55). Light split inside the stone comes out as colored sparkle (fire). The gold uses Johnson &amp; Christy constants. 900×600, 768 spp, denoised with OIDN. The stone and the ring are generated by a script."
+         data-alt="A gold ring with a diamond in a dark studio. Light splits into colors inside the stone">
+        <img src="../assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="A gold ring with a diamond in a dark studio. Light splits into colors inside the stone" loading="lazy">
+        <span class="cap">A diamond ring</span>
+      </a>
+      <a class="tile" href="../assets/gallery/crystal_lamp.webp" data-w="800" data-h="450"
+         data-title="A lamp inside cut glass"
+         data-desc="Caustics computed with photon mapping (the average of 8 photon sets). All the light on the table has passed through the glass. It forms sharp-edged polygons with dispersion colors along the edges."
+         data-alt="The pattern of light that a lamp inside cut glass casts on the table">
+        <img src="../assets/gallery/crystal_lamp-thumb.webp" width="640" height="360" alt="The pattern of light that a lamp inside cut glass casts on the table" loading="lazy">
+        <span class="cap">A lamp inside cut glass</span>
+      </a>
+      <a class="tile" href="../assets/gallery/water_sea.webp" data-w="1600" data-h="456"
+         data-title="A glass of water and a sea with waves"
+         data-desc="Left: caustics (photon mapping) from a point light through a glass of water. Right: a sea built from Gerstner waves, with the absorption of water computed physically."
+         data-alt="Caustics from a glass of water, and a sea with waves">
+        <img src="../assets/gallery/water_sea-thumb.webp" width="640" height="182" alt="A glass of water and a sea with waves" loading="lazy">
+        <span class="cap">A glass of water and a sea with waves</span>
+      </a>
+      <a class="tile" href="../assets/gallery/prism_caustic.webp" data-w="1600" data-h="612"
+         data-title="The pattern of light through a prism"
+         data-desc="Three methods compared: no caustics, photon mapping, and specular manifold NEE (prototype). The last method solves the refraction path instead of estimating it, so the edges of the dispersed band of light stay sharp. In smooth regions, the two methods differ by a few percent at most."
+         data-alt="Prism caustics rendered with three methods, with a close-up of the band edge">
+        <img src="../assets/gallery/prism_caustic-thumb.webp" width="640" height="245" alt="Prism caustics rendered with three methods" loading="lazy">
+        <span class="cap">The pattern of light through a prism</span>
+      </a>
+      <a class="tile" href="../assets/gallery/erato_translucent.webp" data-credit="erato-translucent" data-w="1080" data-h="675"
+         data-title="The same statue as wax, marble and jade"
+         data-desc="Lit from behind and above, with only the scattering medium inside changed. Light enters the surface, scatters inside, and comes back out. Thin parts such as the folds of the robe and the lyre glow. The coefficients were chosen by eye, not measured. 1080×675, 96 spp, 12 minutes on 8 threads."
+         data-alt="The same statue rendered with wax, marble and jade materials">
+        <img src="../assets/gallery/erato_translucent-thumb.webp" width="640" height="400" alt="The same statue rendered with wax, marble and jade materials" loading="lazy">
+        <span class="cap">The same statue as wax, marble and jade</span>
+      </a>
+    </div>
+
+    <!-- ===== 2b. Fog / bidirectional path tracing ===== -->
+    <h2>Tracing light from the source: rainbows in fog and the sparkle of a gem</h2>
+    <p class="sub">Rendered with bidirectional path tracing (prototype), which follows light paths from the light source and connects them to the camera.</p>
+    <div class="gal">
+      <a class="tile" href="../assets/gallery/prism_fog.webp" data-w="1280" data-h="720"
+         data-title="A prism and a rainbow in fog"
+         data-desc="A thin beam of light passes through a prism and fans out into rainbow colors in the fog. Rendered with a bidirectional path tracer (prototype) that caches light paths. Dispersion is handled by fixing one wavelength per rendering pass. I checked that the result agrees with path tracing and photon mapping. 1280×720, 600 million light paths, 9 minutes on 8 threads."
+         data-alt="A thin beam of light enters a prism in fog and leaves as a rainbow-colored fan">
+        <img src="../assets/gallery/prism_fog-thumb.webp" width="640" height="360" alt="A thin beam of light enters a prism in fog and leaves as a rainbow-colored fan" loading="lazy">
+        <span class="cap">A prism and a rainbow in fog</span>
+      </a>
+      <a class="tile" href="../assets/gallery/lvc_equal_time.webp" data-w="640" data-h="720"
+         data-title="An equal-time comparison"
+         data-desc="Both are about 9 seconds of rendering. Top: path tracing with photon ray tracing (64 spp, 8.9 s). Bottom: this prototype (64 wavelength passes, 9.0 s). A thin beam in fog is unlikely to be hit by path tracing, which leaves speckled noise. Using paths from the light side makes the image much smoother in the same time."
+         data-alt="Path tracing (top) and the bidirectional prototype (bottom) at equal time. The top is speckled with noise; the bottom is smooth">
+        <img src="../assets/gallery/lvc_equal_time-thumb.webp" width="569" height="640" alt="Path tracing (top) and the bidirectional prototype (bottom) at equal time. The top is speckled with noise; the bottom is smooth" loading="lazy">
+        <span class="cap">An equal-time comparison</span>
+      </a>
+      <a class="tile" href="../assets/gallery/gem_caustic.webp" data-w="1000" data-h="1000"
+         data-title="The sparkle of a gem"
+         data-desc="Colored light inside a cut gem, and on the floor in its shadow. 1000×1000, 400 million light paths, denoised with OIDN, 11 minutes. The light that the glass casts onto a wall seen through the glass cannot be rendered yet."
+         data-alt="A cut gem and rainbow-colored light on the floor in its shadow">
+        <img src="../assets/gallery/gem_caustic-thumb.webp" width="640" height="640" alt="A cut gem and rainbow-colored light on the floor in its shadow" loading="lazy">
+        <span class="cap">The sparkle of a gem</span>
+      </a>
+      <a class="tile" href="../assets/gallery/ball_haze.webp" data-w="1000" data-h="1000"
+         data-title="A glass ball in haze"
+         data-desc="A glass ball gathers a bundle of light into a cone with colored edges. Because of the haze, the path of the light is visible."
+         data-alt="A glass ball in haze gathering light into a cone">
+        <img src="../assets/gallery/ball_haze-thumb.webp" width="640" height="640" alt="A glass ball in haze gathering light into a cone" loading="lazy">
+        <span class="cap">A glass ball in haze</span>
+      </a>
+    </div>
+
+    <!-- ===== 3. Skin / model loading ===== -->
+    <h2>Skin and model loading</h2>
+    <p class="sub">Examples of loading a PMX model and trying out poses, expressions and skin scattering.</p>
+    <div class="gal">
+      <a class="tile" href="../assets/gallery/skin_sss.webp" data-w="1600" data-h="384"
+         data-title="Subsurface scattering in skin"
+         data-desc="The same skin material on a sphere and a torus. From the left: no scattering, the true distance, and three times the distance. It uses a BSSRDF based on Burley's normalized diffusion profile."
+         data-alt="A sphere and a torus with a skin material, rendered with no scattering, the true distance and three times the distance">
+        <img src="../assets/gallery/skin_sss-thumb.webp" width="640" height="154" alt="A sphere and a torus with a skin material, compared by scattering distance" loading="lazy">
+        <span class="cap">Subsurface scattering in skin</span>
+      </a>
+      <a class="tile" href="../assets/gallery/mmd_a.webp" data-credit="mmd" data-w="560" data-h="747"
+         data-title="Model loading: pose"
+         data-desc="I loaded a PMX model and posed it (.vpd) using the bone hierarchy and skinning. Instead of MMD's toon settings, the materials are replaced with physically based shading chosen by names such as hair, eyes, accessories and skin. Rendered under studio lighting."
+         data-alt="A PMX model posed with one leg raised">
+        <img src="../assets/gallery/mmd_a-thumb.webp" width="560" height="747" alt="A PMX model posed with one leg raised" loading="lazy">
+        <span class="cap">Model loading: pose</span>
+      </a>
+      <a class="tile" href="../assets/gallery/mmd_b.webp" data-credit="mmd" data-w="420" data-h="560"
+         data-title="Model loading: close-up of the face"
+         data-desc="A close-up of the face, checking expressions (morphs) and the softness that subsurface scattering gives to skin. Scattering that is hardly noticeable in a full-body shot becomes visible up close."
+         data-alt="A close-up of a PMX model's face">
+        <img src="../assets/gallery/mmd_b-thumb.webp" width="420" height="560" alt="A close-up of a PMX model's face" loading="lazy">
+        <span class="cap">Model loading: close-up of the face</span>
+      </a>
+    </div>
+    <p class="note">The character models are shown for personal technical verification and self-introduction, in accordance with their terms of use (no redistribution or commercial use). This is not for profit, and the site is not monetized. The models themselves are not distributed. Credits are shown when you enlarge an image.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Pero</div>
+</footer>
+
+<!-- Credits (shown when an image is enlarged) -->
+<div hidden>
+  <div id="credit-erato-gold">
+    Model: Erato by Geoffrey Marchal (© 2016,
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
+    A 3D scan of a marble statue from Monte Calvo (2nd century AD, Ny Carlsberg Glyptotek collection).
+    From <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a>.
+    Modifications: scaling and placement, recomputed vertex normals, gold material applied.
+  </div>
+  <div id="credit-erato-translucent">
+    Model: Erato by Geoffrey Marchal (© 2016,
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
+    A 3D scan of a marble statue from Monte Calvo (2nd century AD, Ny Carlsberg Glyptotek collection).
+    From <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a>.
+    Modifications: scaling and placement, recomputed vertex normals, closing two open boundaries, wax, marble and jade media applied.
+  </div>
+  <div id="credit-mmd">
+    Model: miHoYo (provided) / 观海 (modified; Bilibili: 观海子).
+    Shown in accordance with the model's terms of use, for personal technical verification and self-introduction (not for profit). The model itself is not distributed.
+  </div>
+</div>
+
+<!-- Enlarged view -->
+<dialog id="lb" class="lb" aria-label="Enlarged image">
+  <div class="lb-img"><img alt="" width="1" height="1"></div>
+  <div class="lb-text">
+    <h3 class="lb-title"></h3>
+    <p class="lb-desc"></p>
+    <p class="lb-credit"></p>
+    <div class="lb-btns">
+      <button type="button" class="btn" data-act="prev">← Previous</button>
+      <button type="button" class="btn" data-act="next">Next →</button>
+      <button type="button" class="btn" data-act="close">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var tiles = Array.prototype.slice.call(document.querySelectorAll('a.tile'));
+  var dlg = document.getElementById('lb');
+  // Browsers without <dialog> support just open the image link
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var img = dlg.querySelector('.lb-img img');
+  var title = dlg.querySelector('.lb-title');
+  var desc = dlg.querySelector('.lb-desc');
+  var credit = dlg.querySelector('.lb-credit');
+  var index = 0;
+
+  function show(n) {
+    index = (n + tiles.length) % tiles.length;
+    var a = tiles[index];
+    img.src = a.getAttribute('href');
+    img.alt = a.dataset.alt || '';
+    img.width = a.dataset.w;
+    img.height = a.dataset.h;
+    title.textContent = a.dataset.title || '';
+    desc.textContent = a.dataset.desc || '';
+    var src = a.dataset.credit && document.getElementById('credit-' + a.dataset.credit);
+    credit.innerHTML = src ? src.innerHTML : '';
+    credit.hidden = !src;
+  }
+  function open(n) { show(n); if (!dlg.open) dlg.showModal(); }
+
+  tiles.forEach(function (a, i) {
+    a.addEventListener('click', function (e) { e.preventDefault(); open(i); });
+  });
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg) { dlg.close(); return; }
+    var act = e.target.getAttribute && e.target.getAttribute('data-act');
+    if (act === 'close') dlg.close();
+    if (act === 'prev') show(index - 1);
+    if (act === 'next') show(index + 1);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!dlg.open) return;
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+})();
+</script>
+
+</body>
+</html>

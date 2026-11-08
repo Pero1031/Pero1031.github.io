@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hamakoku Details | Pero Portfolio</title>
+  <meta name="description" content="Details and architecture of Hamakoku, a transit app that guides you by the fastest route from Yokohama National University to Yokohama Station.">
+  <meta name="theme-color" content="#0c0d10">
+  <link rel="alternate" hreflang="ja" href="https://pero1031.github.io/works/hamakoku.html">
+  <link rel="alternate" hreflang="en" href="https://pero1031.github.io/en/works/hamakoku.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css?v=9">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Pero</a>
+    <nav>
+      <a href="../index.html#works">Works</a>
+      <a href="../index.html#gallery">Gallery</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#contact">Contact</a>
+      <a class="lang" href="../../works/hamakoku.html" hreflang="ja" lang="ja" title="日本語で見る">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main class="detail">
+  <div class="wrap">
+
+    <a class="back" href="../index.html#works">← Back to works</a>
+
+    <p class="eyebrow">Work / Team Project</p>
+    <h1>Hamakoku (team 301)</h1>
+    <p class="lead">A transit app that guides you by the fastest route from Yokohama National University to Yokohama Station.</p>
+    <div class="facts">
+      <span class="fact">Team of 4</span>
+      <span class="fact">1.5 years (ongoing)</span>
+      <span class="fact">Role: backend overall</span>
+      <span class="fact">Entering the Open Data Challenge for Public Transportation 2026</span>
+    </div>
+    <div class="btns" style="margin-top:20px">
+      <a class="btn primary" href="https://team301.jp/" target="_blank" rel="noopener">Open the app (in Japanese)</a>
+      <a class="btn" href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub (public version)</a>
+    </div>
+
+    <!-- ===== Why we built it ===== -->
+    <h2>Why we built it</h2>
+    <p class="sub">Getting from Yokohama National University to Yokohama Station involves many transport options, and the station is far away.</p>
+    <div class="figs">
+      <figure>
+        <div class="fig-light">
+          <img src="../../assets/hamakoku-why-modals.png" width="1752" height="782" alt="A diagram of ways to get from Yokohama National University to Yokohama Station: walking, rental bikes, Sotetsu buses, city buses, the municipal subway and the Sotetsu Line, a mix of several public transport options" loading="lazy">
+        </div>
+        <figcaption>From the university to Yokohama Station, there are many ways to go: walking, rental bikes, buses, the subway and the Sotetsu Line. We wanted to answer "which one gets me there fastest?" on the spot. (The diagram's labels are in Japanese.)</figcaption>
+      </figure>
+      <figure>
+        <div class="fig-light">
+          <img src="../../assets/hamakoku-why-distance.png" width="1732" height="650" alt="A diagram showing that the university is far from stations and hilly: travel times to the nearest stations and a route map with the slopes" loading="lazy">
+        </div>
+        <figcaption>The campus was originally a golf course, and rail access was never part of its planning. Stations and gates are far away and the terrain is hilly, so walking distance and time have to be part of the choice. (The diagram's labels are in Japanese.)</figcaption>
+      </figure>
+    </div>
+
+    <!-- ===== Flyers ===== -->
+    <h2>Two apps</h2>
+    <p class="sub">Flyers our team made to introduce them (in Japanese).</p>
+    <div class="flyers">
+      <figure>
+        <img src="../../assets/hamakoku-exp-flyer.webp" width="972" height="1376" alt="Flyer for Hamakoku Exp.: the fastest route from campus to Yokohama Station, right away" loading="lazy">
+        <figcaption><strong>Hamakoku Exp.</strong> Choose a starting point and a time, and it shows the fastest routes, combining bus, train, bike share and walking, in order of arrival time. You can also see transfers, fares and delay information together.</figcaption>
+      </figure>
+      <figure>
+        <img src="../../assets/hamakoku-map-flyer.webp" width="972" height="1376" alt="Flyer for Hamakoku Map: transport around the university on one map" loading="lazy">
+        <figcaption><strong>Hamakoku Map</strong> Bike-share availability, bus positions and timetables, and rail information beyond Yokohama Station, all on a single map.</figcaption>
+      </figure>
+    </div>
+
+    <!-- ===== My role ===== -->
+    <h2>My role</h2>
+    <p class="sub">I was responsible for the backend overall.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>The shortest-route module</h3>
+        <p>It splits the work by route pattern, runs the patterns in parallel, and returns up to 6 results in order of arrival time. If one pattern fails, the other results are still returned.</p>
+      </div>
+      <div class="card">
+        <h3>Module design of the whole app</h3>
+        <p>One adapter per external data source contains the differences in data formats between operators. Fares, stop and station IDs, and operator settings are gathered in one place.</p>
+      </div>
+      <div class="card">
+        <h3>A general-purpose debugging system</h3>
+        <p>
+          A mechanism that makes it easier to trace causes, even in processing that involves several kinds of data, such as route search.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Connecting to the frontend</h3>
+        <p>
+          I connected the screens to the backend and built the flow that receives search conditions and returns results.
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== Architecture ===== -->
+    <h2>How it works (architecture)</h2>
+    <p class="sub">Drawn based on the design described in the README of the public repository.</p>
+    <div class="diagram">
+      <svg viewBox="0 0 420 600" width="420" height="600" role="img" aria-labelledby="dg-title dg-desc" style="width:100%;height:auto;display:block">
+        <title id="dg-title">Module architecture of Hamakoku Exp.</title>
+        <desc id="dg-desc">The flow from the screen to the search endpoint, route search, parallel execution of route patterns, one adapter per external data source, and the data sources. Settings are gathered in config.</desc>
+        <!-- Keep the diagram styles inside the diagram so it does not break even if an old external CSS is cached -->
+        <style>
+          .bx { fill: #1b1e25; stroke: #262a33; stroke-width: 1.5; }
+          .bx.hl { stroke: #e0b25a; }
+          .bx.dash { fill: none; stroke-dasharray: 5 5; }
+          .ln { stroke: #9aa1ad; stroke-width: 1.5; fill: none; }
+          .t1 { fill: #e8eaee; font-size: 15px; font-weight: 700; font-family: "Noto Sans JP", system-ui, sans-serif; }
+          .t2 { fill: #9aa1ad; font-size: 12.5px; font-family: "Noto Sans JP", system-ui, sans-serif; }
+        </style>
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#9aa1ad"/>
+          </marker>
+        </defs>
+
+        <!-- 1. Screen -->
+        <rect class="bx" x="20" y="10" width="380" height="56" rx="10"/>
+        <text class="t1" x="210" y="35" text-anchor="middle">Screen (form)</text>
+        <text class="t2" x="210" y="55" text-anchor="middle">EJS (server-rendered) / React 19</text>
+        <line class="ln" x1="210" y1="66" x2="210" y2="90" marker-end="url(#ar)"/>
+
+        <!-- 2. Endpoint -->
+        <rect class="bx" x="20" y="92" width="380" height="56" rx="10"/>
+        <text class="t1" x="210" y="117" text-anchor="middle">Search endpoint</text>
+        <text class="t2" x="210" y="137" text-anchor="middle">Express 5 / input validation (express-validator)</text>
+        <line class="ln" x1="210" y1="148" x2="210" y2="172" marker-end="url(#ar)"/>
+
+        <!-- 3. Route search -->
+        <rect class="bx hl" x="20" y="174" width="380" height="64" rx="10"/>
+        <text class="t1" x="210" y="200" text-anchor="middle">Route search</text>
+        <text class="t2" x="210" y="222" text-anchor="middle">Run patterns in parallel → top 6 by arrival time</text>
+
+        <!-- Branches -->
+        <line class="ln" x1="210" y1="238" x2="78"  y2="266" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="238" x2="210" y2="266" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="238" x2="342" y2="266" marker-end="url(#ar)"/>
+
+        <!-- 4. Route patterns -->
+        <rect class="bx" x="20"  y="268" width="116" height="64" rx="10"/>
+        <text class="t1" x="78"  y="295" text-anchor="middle">Pattern A</text>
+        <text class="t2" x="78"  y="316" text-anchor="middle">Walk → subway</text>
+        <rect class="bx" x="152" y="268" width="116" height="64" rx="10"/>
+        <text class="t1" x="210" y="295" text-anchor="middle">Pattern B</text>
+        <text class="t2" x="210" y="316" text-anchor="middle">Uses a bike</text>
+        <rect class="bx" x="284" y="268" width="116" height="64" rx="10"/>
+        <text class="t1" x="342" y="295" text-anchor="middle">Pattern C…</text>
+        <text class="t2" x="342" y="316" text-anchor="middle">Bus, etc.</text>
+        <line class="ln" x1="78"  y1="332" x2="78"  y2="378" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="332" x2="210" y2="378" marker-end="url(#ar)"/>
+        <line class="ln" x1="342" y1="332" x2="342" y2="378" marker-end="url(#ar)"/>
+
+        <!-- 5. adapter -->
+        <rect class="bx hl" x="20" y="380" width="380" height="60" rx="10"/>
+        <text class="t1" x="210" y="406" text-anchor="middle">adapter (one per external data source)</text>
+        <text class="t2" x="210" y="427" text-anchor="middle">Absorbs each operator's data format differences</text>
+
+        <line class="ln" x1="78"  y1="440" x2="78"  y2="468" marker-end="url(#ar)"/>
+        <line class="ln" x1="210" y1="440" x2="210" y2="468" marker-end="url(#ar)"/>
+        <line class="ln" x1="342" y1="440" x2="342" y2="468" marker-end="url(#ar)"/>
+
+        <!-- 6. Data sources -->
+        <rect class="bx" x="20"  y="470" width="116" height="56" rx="10"/>
+        <text class="t1" x="78"  y="495" text-anchor="middle">ODPT API</text>
+        <text class="t2" x="78"  y="514" text-anchor="middle">Bus / rail</text>
+        <rect class="bx" x="152" y="470" width="116" height="56" rx="10"/>
+        <text class="t1" x="210" y="495" text-anchor="middle">Timetable</text>
+        <text class="t2" x="210" y="514" text-anchor="middle">Local</text>
+        <rect class="bx" x="284" y="470" width="116" height="56" rx="10"/>
+        <text class="t1" x="342" y="495" text-anchor="middle">GBFS</text>
+        <text class="t2" x="342" y="514" text-anchor="middle">Bike share</text>
+
+        <!-- config -->
+        <rect class="bx dash" x="20" y="548" width="380" height="44" rx="10"/>
+        <text class="t2" x="210" y="575" text-anchor="middle">config/ : fares, stop/station IDs, operator settings</text>
+      </svg>
+    </div>
+    <p class="note" style="text-align:center">Each route pattern is one file. If one pattern fails, the other results are still returned.</p>
+
+    <!-- ===== Data and technology ===== -->
+    <h2>Data and technology</h2>
+    <div class="two" style="margin-top:20px">
+      <div>
+        <h3 class="mini">Data</h3>
+        <ul class="plain">
+          <li>Yokohama Municipal Bus, Sotetsu Bus, Yokohama Municipal Subway, Sotetsu Line: Open Data for Public Transportation (ODPT)</li>
+          <li>Kanagawa Chuo Kotsu: published timetables</li>
+          <li>Bike share: availability from HELLO CYCLING and Docomo Bike Share (GBFS)</li>
+          <li>Map: OpenStreetMap</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mini">Technology</h3>
+        <div class="tags" style="margin:0">
+          <span class="tag">Node.js</span><span class="tag">Express 5</span>
+          <span class="tag">EJS</span><span class="tag">React 19</span>
+          <span class="tag">Vite</span><span class="tag">express-validator</span>
+          <span class="tag">helmet</span>
+        </div>
+        <p class="note">Late-night times past 24:00, such as "25:30", are handled as values that do not wrap back to 0 partway through.</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Pero</div>
+</footer>
+
+</body>
+</html>

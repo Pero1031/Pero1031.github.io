@@ -42,6 +42,13 @@ header.site .wrap {
 .brand { font-weight: 700; letter-spacing: .02em; color: var(--text); }
 nav a { color: var(--muted); margin-left: 22px; font-size: 14px; }
 nav a:hover { color: var(--text); text-decoration: none; }
+nav { white-space: nowrap; }
+/* 言語切り替え(JP / EN) */
+nav a.lang {
+  color: var(--text); font-size: 12px; line-height: 1;
+  padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px;
+}
+nav a.lang:hover { border-color: var(--accent); }
 
 /* ---------- hero ---------- */
 .hero { padding: 88px 0 56px; }
@@ -209,6 +216,12 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
   .work.flip .media { order: 0; }
   .work .body, .work.flip .body { padding: 22px; }
   .work .media { min-height: 200px; }
-  nav a { margin-left: 14px; }
+  nav a { margin-left: 11px; font-size: 13px; }
+  nav a.lang { font-size: 11px; padding: 4px 8px; }
   .hero { padding: 56px 0 36px; }
+}
+@media (max-width: 350px) {
+  .wrap { padding: 0 14px; }
+  nav a { margin-left: 8px; font-size: 12px; }
+  nav a.lang { padding: 4px 7px; }
 }

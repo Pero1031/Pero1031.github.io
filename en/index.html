@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pero Portfolio</title>
+  <meta name="description" content="Portfolio: a 3D renderer, an eye-tracking game and backend development.">
+  <meta name="theme-color" content="#0c0d10">
+  <link rel="alternate" hreflang="ja" href="https://pero1031.github.io/">
+  <link rel="alternate" hreflang="en" href="https://pero1031.github.io/en/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css?v=9">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Pero</a>
+    <nav>
+      <a href="#works">Works</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="lang" href="../index.html" hreflang="ja" lang="ja" title="日本語で見る">日本語</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== Hero ===== -->
+  <div class="wrap hero">
+    <p class="eyebrow">Portfolio</p>
+    <h1><span class="ph">Measure the physics,</span> <span class="ph">decode perception,</span> <span class="ph">create the picture.</span></h1>
+    <p class="en" lang="en">Measured, Perceived, Rendered.</p>
+    <p class="lead">
+      I measured the color of gold with a spectroradiometer, studied how RGB and spectral rendering differ, and built a spectral renderer from scratch.
+      I also made a game controlled by eye tracking, and I work on the backend of a team-developed app.
+    </p>
+    <div class="btns">
+      <a class="btn primary" href="#works">See my works</a>
+      <a class="btn" href="gallery.html">Gallery</a>
+      <a class="btn" href="https://github.com/Pero1031" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
+  <!-- ===== Works ===== -->
+  <section id="works">
+    <div class="wrap">
+      <h2>Works</h2>
+      <p class="sub">Three main projects, and a few other things I have made.</p>
+
+      <!-- GoLD_ray -->
+      <article class="work">
+        <div class="media">
+          <img class="contain" src="../assets/goldray-hero-v3.webp" width="1824" height="1652" alt="A gold statue, Erato, rendered with an RGB renderer and a spectral renderer. Top row: daylight (D65); bottom row: tungsten light. The right column shows the color difference between the two (CIEDE2000), averaging 1.7 in daylight and 2.6 under tungsten light" loading="lazy">
+          <p class="credit">
+            Model: Erato by Geoffrey Marchal (© 2016,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
+            A 3D scan of a marble statue from Monte Calvo (2nd century AD, Ny Carlsberg Glyptotek collection).
+            From <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a>.
+            Modifications: scaling and placement, recomputed vertex normals, gold material applied.
+          </p>
+        </div>
+        <div class="body">
+          <h3>GoLD_rayt</h3>
+          <p class="tagline">A homemade 3D path tracer for spectral rendering</p>
+          <p>
+            A C++20 renderer I built for my graduation research. I measured gold with a spectroradiometer (SR-5100),
+            quantified the color difference between RGB and spectral rendering in Mitsuba, and set out to build a renderer that closes that gap.
+          </p>
+          <ul>
+            <li>Rendering a gold statue in RGB and in spectral mode gives an average color difference of 1.7 in daylight and 2.6 under tungsten light. Under warm light, the RGB gold looks dull</li>
+            <li>Comparing RGB and spectral results for gold, copper and silver in ΔE00: gold differs by up to 2.1 under D65, growing to 12.7 after six metal-to-metal reflections</li>
+            <li>Path tracing (NEE+MIS), photon-mapped caustics, and rendering of water, sea and skin</li>
+            <li>Numerical tests for each major component, with readability and verification prioritized over speed</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">C++20</span><span class="tag">Path Tracing</span>
+            <span class="tag">Spectral Rendering</span><span class="tag">OpenMP</span>
+          </div>
+          <div class="links">
+            <a href="gallery.html">View the gallery →</a>
+            <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Gaze Dodge -->
+      <article class="work flip">
+        <div class="media">
+          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#e0b25a" stop-opacity=".35"/>
+                <stop offset="1" stop-color="#e0b25a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="640" height="400" fill="#10131a"/>
+            <g fill="#2a2f3b">
+              <rect x="70"  y="50"  width="56" height="56" rx="8" transform="rotate(12 98 78)"/>
+              <rect x="210" y="130" width="44" height="44" rx="8" transform="rotate(-18 232 152)"/>
+              <rect x="380" y="40"  width="64" height="64" rx="8" transform="rotate(25 412 72)"/>
+              <rect x="520" y="150" width="50" height="50" rx="8" transform="rotate(-8 545 175)"/>
+              <rect x="300" y="215" width="40" height="40" rx="8" transform="rotate(30 320 235)"/>
+            </g>
+            <circle cx="360" cy="320" r="90" fill="url(#glow)"/>
+            <circle cx="360" cy="320" r="46" fill="none" stroke="#e0b25a" stroke-width="1.5" stroke-dasharray="4 5"/>
+            <line x1="360" y1="262" x2="360" y2="378" stroke="#e0b25a" stroke-opacity=".5"/>
+            <line x1="302" y1="320" x2="418" y2="320" stroke="#e0b25a" stroke-opacity=".5"/>
+            <circle cx="360" cy="320" r="14" fill="#e0b25a"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h3>Gaze Dodge</h3>
+          <p class="tagline">A browser dodging game where your gaze moves the player</p>
+          <p>
+            A game controlled by the gaze of a Tobii Pro eye tracker. It can also be played with a webcam (WebGazer.js) or a mouse.
+            Browsers cannot access Tobii directly, so a Python bridge sends the gaze data over WebSocket.
+          </p>
+          <ul>
+            <li>Sends the Pro Fusion's 120 Hz gaze data immediately, corrects gaze drift caused by blinks, and pauses the game while the gaze is lost</li>
+            <li>Identifies the player from the distance between their eyes (interpupillary distance), asks "Are you ○○?", and records scores in a ranking</li>
+            <li>A UI that works with gaze alone: look at a button for one second to press it</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">JavaScript</span><span class="tag">Python</span>
+            <span class="tag">Tobii Pro SDK</span><span class="tag">WebSocket</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Transit app -->
+      <article class="work">
+        <div class="media">
+          <div class="shots">
+            <img src="../assets/hamakokuex-form.png" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
+            <img src="../assets/hamakokuex-ticket.png" width="468" height="900" alt="Hamakoku Exp. results: the guidance ticket" loading="lazy">
+          </div>
+        </div>
+        <div class="body">
+          <h3>Hamakoku (team 301)</h3>
+          <p class="tagline">A transit app that guides you by the fastest route from Yokohama National University to Yokohama Station / Team of 4, backend</p>
+          <p>
+            A web app (Hamakoku Exp.) that finds the fastest route from campus to Yokohama Station by combining bus, train, bike share and walking.
+            There is also a map (Hamakoku Map) that shows bike-share availability on campus and the buses currently running.
+            It uses Open Data for Public Transportation (ODPT) and bike-share availability data.
+            Four of us developed it over a year and a half, and we still operate and improve it. We are also entering the Open Data Challenge for Public Transportation 2026.
+          </p>
+          <p class="role-label">My role (backend overall)</p>
+          <ul>
+            <li>The shortest-route module: it splits the work by route pattern, runs the patterns in parallel, and returns up to 6 results in order of arrival time</li>
+            <li>The module design of the whole app: one adapter per external data source, containing the differences in data formats between operators</li>
+            <li>A general-purpose debugging system</li>
+            <li>Connecting the frontend and the backend</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span>
+            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
+          </div>
+          <div class="links">
+            <a href="works/hamakoku.html">Details and architecture →</a>
+            <a href="https://team301.jp/" target="_blank" rel="noopener">Open the app (in Japanese) →</a>
+            <a href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub (public version) →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Others -->
+      <h2 style="margin-top:48px;font-size:20px">Other projects</h2>
+      <div class="grid" style="margin-top:16px">
+        <div class="card">
+          <h3>Tetsu-Chari Tabi (in development)</h3>
+          <p>A web app that plans trips built around getting off partway: trains are the trunk and bike share is the branches. Our team is developing it as the follow-up to Hamakoku, and we are also entering the Open Data Challenge for Public Transportation 2026.</p>
+          <div class="tags"><span class="tag">In development</span><span class="tag">Team project</span></div>
+        </div>
+        <div class="card">
+          <h3>2D BRDF Measurement System</h3>
+          <p>A C++ project on BRDF measurement.</p>
+          <div class="tags"><span class="tag">C++</span></div>
+          <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
+        </div>
+        <div class="card">
+          <h3>raycast_game</h3>
+          <p>A game prototype made in C.</p>
+          <div class="tags"><span class="tag">C</span></div>
+          <div class="links"><a href="https://github.com/Pero1031/raycast_game" target="_blank" rel="noopener">GitHub →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section id="gallery">
+    <div class="wrap">
+      <h2>Gallery</h2>
+      <p class="sub">Images rendered with GoLD_rayt, with explanations.</p>
+      <div class="teaser">
+        <a href="gallery.html">
+          <img src="../assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="A soap bubble with rainbow fringes from thin-film interference" loading="lazy">
+          <span>Soap bubble: thin-film interference</span>
+        </a>
+        <a href="gallery.html">
+          <img src="../assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="A gold ring with a diamond in a dark studio. Light splits into colors inside the stone" loading="lazy">
+          <span>A diamond ring</span>
+        </a>
+        <a href="gallery.html">
+          <img src="../assets/gallery/prism_fog-thumb.webp" width="640" height="360" alt="A thin beam of light enters a prism in fog and leaves as a rainbow-colored fan" loading="lazy">
+          <span>A prism and a rainbow in fog</span>
+        </a>
+      </div>
+      <p class="more"><a class="btn" href="gallery.html">See the whole gallery →</a></p>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section id="about">
+    <div class="wrap two">
+      <div>
+        <h2>About</h2>
+        <p>
+          My nickname is Petrichor, a word for the smell of the road after rain.
+          I love the beautiful subjectivity, unique to each person, that comes from smell, scenery and multisensory perception.
+          This interest leads to my current research and development aimed at a perception-based renderer.
+        </p>
+        <p>
+          For my graduation research, I measured the color of gold with a spectroradiometer and studied the difference between RGB rendering and spectral rendering.
+          That research led me to keep building my own renderer, aiming for one based on perception.
+        </p>
+        <p>
+          I like to check results against measured data, so I add numerical tests and verification to what I build.
+          Beyond research, I have also developed an eye-tracking game and worked on the backend of a team-developed app.
+        </p>
+      </div>
+      <dl class="skills">
+        <dt>Languages</dt><dd>C++ / C / Python / JavaScript</dd>
+        <dt>Strengths</dt><dd>Rendering (path tracing, spectral), eye tracking, backend development</dd>
+        <dt>Tools</dt><dd>Visual Studio / Git &amp; GitHub / Tobii Pro SDK / Mitsuba</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="sub">For inquiries, please contact me through GitHub.</p>
+      <div class="btns">
+        <a class="btn primary" href="https://github.com/Pero1031" target="_blank" rel="noopener">GitHub: Pero1031</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Pero</div>
+</footer>
+
+</body>
+</html>
