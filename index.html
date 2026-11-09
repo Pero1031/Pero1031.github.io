@@ -125,8 +125,44 @@
         </div>
       </article>
 
+      <!-- 乗り換えアプリ -->
+      <article class="work flip" id="work-hamakoku">
+        <div class="media">
+          <div class="shots">
+            <img src="assets/hamakokuex-form.png" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
+            <img src="assets/hamakokuex-ticket.png" width="468" height="900" alt="はまこく Exp. の結果の画面(案内券)" loading="lazy">
+          </div>
+        </div>
+        <div class="body">
+          <h3>はまこく(team 301)</h3>
+          <p class="tagline">横浜国立大学から横浜駅へ、最速ルートを案内する乗換アプリ / 4人で開発・バックエンド担当</p>
+          <p>
+            構内から横浜駅まで、バス・電車・シェアサイクル・徒歩を組み合わせて、最も早く着く経路を探す Web アプリです(はまこく Exp.)。
+            構内のシェアサイクルの台数や、走っているバスを見られる地図(はまこく Map)もあります。
+            公共交通オープンデータ(ODPT)とシェアサイクルの空き情報を使っています。
+            4人のチームで1年半開発し、いまも運用と改良を続けています。「公共交通オープンデータチャレンジ2026」にも出場します。
+          </p>
+          <p class="role-label">私の担当(バックエンド全般)</p>
+          <ul>
+            <li>最短経路を探す部分。行き方のパターンごとに処理を分けて同時に実行し、着くのが早い順に最大6件を返す</li>
+            <li>アプリ全体の部品の分け方の設計。データの取得元ごとに窓口(adapter)を分け、事業者ごとのデータ形式の違いを、そこで吸収する</li>
+            <li>どの処理にも使える、不具合の原因を追うしくみ(デバッグシステム)</li>
+            <li>画面側(フロントエンド)との接続</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span>
+            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
+          </div>
+          <div class="links">
+            <a href="works/hamakoku.html">詳細・構成図を見る →</a>
+            <a href="https://team301.jp/" target="_blank" rel="noopener">アプリを開く →</a>
+            <a href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub(公開版) →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Gaze Dodge -->
-      <article class="work flip" id="work-gaze">
+      <article class="work" id="work-gaze">
         <div class="media">
           <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
           <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
@@ -169,42 +205,6 @@
           </div>
           <div class="links">
             <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">GitHub で見る →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 乗り換えアプリ -->
-      <article class="work" id="work-hamakoku">
-        <div class="media">
-          <div class="shots">
-            <img src="assets/hamakokuex-form.png" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
-            <img src="assets/hamakokuex-ticket.png" width="468" height="900" alt="はまこく Exp. の結果の画面(案内券)" loading="lazy">
-          </div>
-        </div>
-        <div class="body">
-          <h3>はまこく(team 301)</h3>
-          <p class="tagline">横浜国立大学から横浜駅へ、最速ルートを案内する乗換アプリ / 4人で開発・バックエンド担当</p>
-          <p>
-            構内から横浜駅まで、バス・電車・シェアサイクル・徒歩を組み合わせて、最も早く着く経路を探す Web アプリです(はまこく Exp.)。
-            構内のシェアサイクルの台数や、走っているバスを見られる地図(はまこく Map)もあります。
-            公共交通オープンデータ(ODPT)とシェアサイクルの空き情報を使っています。
-            4人のチームで1年半開発し、いまも運用と改良を続けています。「公共交通オープンデータチャレンジ2026」にも出場します。
-          </p>
-          <p class="role-label">私の担当(バックエンド全般)</p>
-          <ul>
-            <li>最短経路を探す部分。行き方のパターンごとに処理を分けて同時に実行し、着くのが早い順に最大6件を返す</li>
-            <li>アプリ全体の部品の分け方の設計。データの取得元ごとに窓口(adapter)を分け、事業者ごとのデータ形式の違いを、そこで吸収する</li>
-            <li>どの処理にも使える、不具合の原因を追うしくみ(デバッグシステム)</li>
-            <li>画面側(フロントエンド)との接続</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Node.js</span><span class="tag">Express</span>
-            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
-          </div>
-          <div class="links">
-            <a href="works/hamakoku.html">詳細・構成図を見る →</a>
-            <a href="https://team301.jp/" target="_blank" rel="noopener">アプリを開く →</a>
-            <a href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub(公開版) →</a>
           </div>
         </div>
       </article>

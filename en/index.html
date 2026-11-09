@@ -124,8 +124,44 @@
         </div>
       </article>
 
+      <!-- Transit app -->
+      <article class="work flip" id="work-hamakoku">
+        <div class="media">
+          <div class="shots">
+            <img src="../assets/hamakokuex-form.png" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
+            <img src="../assets/hamakokuex-ticket.png" width="468" height="900" alt="Hamakoku Exp. results: the guidance ticket" loading="lazy">
+          </div>
+        </div>
+        <div class="body">
+          <h3>Hamakoku (team 301)</h3>
+          <p class="tagline">A transit app that guides you by the fastest route from Yokohama National University to Yokohama Station / Team of 4, backend</p>
+          <p>
+            A web app (Hamakoku Exp.) that finds the fastest route from campus to Yokohama Station by combining bus, train, bike share and walking.
+            There is also a map (Hamakoku Map) that shows bike-share availability on campus and the buses currently running.
+            It uses Open Data for Public Transportation (ODPT) and bike-share availability data.
+            Four of us developed it over a year and a half, and we still operate and improve it. We are also entering the Open Data Challenge for Public Transportation 2026.
+          </p>
+          <p class="role-label">My role (backend overall)</p>
+          <ul>
+            <li>The part that finds the shortest route: it splits the work by type of route, runs them at the same time, and returns up to 6 results in order of arrival time</li>
+            <li>The design of how the whole app is divided into parts: one gateway (adapter) per source of data, absorbing the differences in data formats between operators</li>
+            <li>A debugging system that works for any process, to trace the cause of a problem</li>
+            <li>Connecting to the screen side (the frontend)</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Node.js</span><span class="tag">Express</span>
+            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
+          </div>
+          <div class="links">
+            <a href="works/hamakoku.html">Details and architecture →</a>
+            <a href="https://team301.jp/" target="_blank" rel="noopener">Open the app (in Japanese) →</a>
+            <a href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub (public version) →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Gaze Dodge -->
-      <article class="work flip" id="work-gaze">
+      <article class="work" id="work-gaze">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -167,42 +203,6 @@
           </div>
           <div class="links">
             <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">View on GitHub →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Transit app -->
-      <article class="work" id="work-hamakoku">
-        <div class="media">
-          <div class="shots">
-            <img src="../assets/hamakokuex-form.png" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
-            <img src="../assets/hamakokuex-ticket.png" width="468" height="900" alt="Hamakoku Exp. results: the guidance ticket" loading="lazy">
-          </div>
-        </div>
-        <div class="body">
-          <h3>Hamakoku (team 301)</h3>
-          <p class="tagline">A transit app that guides you by the fastest route from Yokohama National University to Yokohama Station / Team of 4, backend</p>
-          <p>
-            A web app (Hamakoku Exp.) that finds the fastest route from campus to Yokohama Station by combining bus, train, bike share and walking.
-            There is also a map (Hamakoku Map) that shows bike-share availability on campus and the buses currently running.
-            It uses Open Data for Public Transportation (ODPT) and bike-share availability data.
-            Four of us developed it over a year and a half, and we still operate and improve it. We are also entering the Open Data Challenge for Public Transportation 2026.
-          </p>
-          <p class="role-label">My role (backend overall)</p>
-          <ul>
-            <li>The part that finds the shortest route: it splits the work by type of route, runs them at the same time, and returns up to 6 results in order of arrival time</li>
-            <li>The design of how the whole app is divided into parts: one gateway (adapter) per source of data, absorbing the differences in data formats between operators</li>
-            <li>A debugging system that works for any process, to trace the cause of a problem</li>
-            <li>Connecting to the screen side (the frontend)</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Node.js</span><span class="tag">Express</span>
-            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
-          </div>
-          <div class="links">
-            <a href="works/hamakoku.html">Details and architecture →</a>
-            <a href="https://team301.jp/" target="_blank" rel="noopener">Open the app (in Japanese) →</a>
-            <a href="https://github.com/team301-yokohama/AppHamakoku-public" target="_blank" rel="noopener">GitHub (public version) →</a>
           </div>
         </div>
       </article>
