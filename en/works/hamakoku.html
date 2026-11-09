@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../style.css?v=9">
+  <link rel="stylesheet" href="../../style.css?v=12">
 </head>
 <body>
 
@@ -84,12 +84,12 @@
     <p class="sub">I was responsible for the backend overall.</p>
     <div class="grid">
       <div class="card">
-        <h3>The shortest-route module</h3>
-        <p>It splits the work by route pattern, runs the patterns in parallel, and returns up to 6 results in order of arrival time. If one pattern fails, the other results are still returned.</p>
+        <h3>The part that finds the shortest route</h3>
+        <p>It splits the work by route pattern, runs them at the same time, and returns up to 6 results in order of arrival time. If one pattern fails, the other results are still returned.</p>
       </div>
       <div class="card">
-        <h3>Module design of the whole app</h3>
-        <p>One adapter per external data source contains the differences in data formats between operators. Fares, stop and station IDs, and operator settings are gathered in one place.</p>
+        <h3>How the whole app is divided into parts</h3>
+        <p>One gateway (adapter) per source of data absorbs the differences in data formats between operators. Fares, stop and station IDs, and operator settings are gathered in one place.</p>
       </div>
       <div class="card">
         <h3>A general-purpose debugging system</h3>
@@ -110,8 +110,8 @@
     <p class="sub">Drawn based on the design described in the README of the public repository.</p>
     <div class="diagram">
       <svg viewBox="0 0 420 600" width="420" height="600" role="img" aria-labelledby="dg-title dg-desc" style="width:100%;height:auto;display:block">
-        <title id="dg-title">Module architecture of Hamakoku Exp.</title>
-        <desc id="dg-desc">The flow from the screen to the search endpoint, route search, parallel execution of route patterns, one adapter per external data source, and the data sources. Settings are gathered in config.</desc>
+        <title id="dg-title">Architecture of Hamakoku Exp.</title>
+        <desc id="dg-desc">The flow from the screen to the search endpoint, route search, running route patterns at the same time, one adapter per external data source, and the data sources. Settings are gathered in config.</desc>
         <!-- Keep the diagram styles inside the diagram so it does not break even if an old external CSS is cached -->
         <style>
           .bx { fill: #1b1e25; stroke: #262a33; stroke-width: 1.5; }
@@ -142,7 +142,7 @@
         <!-- 3. Route search -->
         <rect class="bx hl" x="20" y="174" width="380" height="64" rx="10"/>
         <text class="t1" x="210" y="200" text-anchor="middle">Route search</text>
-        <text class="t2" x="210" y="222" text-anchor="middle">Run patterns in parallel → top 6 by arrival time</text>
+        <text class="t2" x="210" y="222" text-anchor="middle">Run patterns at the same time → top 6 by arrival time</text>
 
         <!-- Branches -->
         <line class="ln" x1="210" y1="238" x2="78"  y2="266" marker-end="url(#ar)"/>

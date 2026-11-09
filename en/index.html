@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=9">
+  <link rel="stylesheet" href="../style.css?v=12">
 </head>
 <body>
 
@@ -32,12 +32,14 @@
 
   <!-- ===== Hero ===== -->
   <div class="wrap hero">
+    <div class="hero-art"><img src="../assets/gallery/prism_fog.webp" width="1280" height="720" alt="A thin beam of light enters a prism in fog and leaves as a rainbow-colored fan" fetchpriority="high"></div>
     <p class="eyebrow">Portfolio</p>
     <h1><span class="ph">Measure the physics,</span> <span class="ph">decode perception,</span> <span class="ph">create the picture.</span></h1>
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      I measured the color of gold with a spectroradiometer, studied how RGB and spectral rendering differ, and built a spectral renderer from scratch.
-      I also made a game controlled by eye tracking, and I work on the backend of a team-developed app.
+      I measured the color of gold with a spectroradiometer, studied how it differs when calculated with RGB, and built from scratch a 3D renderer that draws pictures by calculating light wavelength by wavelength.
+      The look of metal, glass, skin, hair and water can be adjusted by number, so it can also make images to show in vision experiments.
+      I also made a game you control with your eyes, and built the backend of a transit app made by a team.
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">See my works</a>
@@ -46,6 +48,36 @@
     </div>
   </div>
 
+  <!-- ===== What I can do ===== -->
+  <section id="can-do">
+    <div class="wrap">
+      <h2>What I can do</h2>
+      <p class="sub">Four things I can do, together with the work behind them.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Build a 3D renderer from scratch</h3>
+          <p>In C++, I can build a program that calculates how light moves and draws a picture from it. The look of metal, glass, skin, hair and water can be adjusted by number, so it can also make images to show in vision experiments.</p>
+          <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
+        </div>
+        <div class="card">
+          <h3>Measure, then verify</h3>
+          <p>I measured real gold with a spectroradiometer and put the color difference from my rendered pictures into numbers. I add tests to what I build to check that it calculates correctly.</p>
+          <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
+        </div>
+        <div class="card">
+          <h3>Develop with eye tracking</h3>
+          <p>I can use data from an eye tracker (a Tobii Pro) to control a browser game. I also built a check of how accurate the measurement is, and a correction for the drift that blinks cause.</p>
+          <div class="links"><a href="#work-gaze">Gaze Dodge →</a></div>
+        </div>
+        <div class="card">
+          <h3>Build a backend in a team</h3>
+          <p>In Node.js, I built the part that connects bus, train and bike-share data and finds the fastest way to get somewhere. Our team of four still operates it.</p>
+          <div class="links"><a href="#work-hamakoku">Hamakoku →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Works ===== -->
   <section id="works">
     <div class="wrap">
@@ -53,9 +85,9 @@
       <p class="sub">Three main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
-      <article class="work">
+      <article class="work" id="work-goldray">
         <div class="media">
-          <img class="contain" src="../assets/goldray-hero-v3.webp" width="1824" height="1652" alt="A gold statue, Erato, rendered with an RGB renderer and a spectral renderer. Top row: daylight (D65); bottom row: tungsten light. The right column shows the color difference between the two (CIEDE2000), averaging 1.7 in daylight and 2.6 under tungsten light" loading="lazy">
+          <img class="contain" src="../assets/goldray-hero-v3.webp" width="1824" height="1652" alt="A gold statue, Erato, drawn with two methods: RGB and spectral. Top row: daylight; bottom row: an incandescent bulb. The right column shows how different the two are, averaging 1.7 in daylight and 2.6 under the bulb" loading="lazy">
           <p class="credit">
             Model: Erato by Geoffrey Marchal (© 2016,
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
@@ -66,20 +98,24 @@
         </div>
         <div class="body">
           <h3>GoLD_rayt</h3>
-          <p class="tagline">A homemade 3D path tracer for spectral rendering</p>
+<p class="tagline">A homemade 3D renderer that calculates light wavelength by wavelength, and sets the look of materials by number</p>
           <p>
-            A C++20 renderer I built for my graduation research. I measured gold with a spectroradiometer (SR-5100),
-            quantified the color difference between RGB and spectral rendering in Mitsuba, and set out to build a renderer that closes that gap.
+            A C++ program I started for my graduation research. I measured gold with a spectroradiometer and put into numbers how its color differs between calculating with
+            the three colors of RGB and calculating wavelength by wavelength (spectral). I then repeated that study in my own code, and now I keep building toward pictures that look closer to how people see.
+          </p>
+          <p>
+            Refractive index, roughness, film thickness, melanin amount, the strength of the light at each wavelength and more are written as numbers.
+            With the settings fixed, the same image can be made again and again. This makes it a tool for creating images to show in vision experiments.
           </p>
           <ul>
-            <li>Rendering a gold statue in RGB and in spectral mode gives an average color difference of 1.7 in daylight and 2.6 under tungsten light. Under warm light, the RGB gold looks dull</li>
-            <li>Comparing RGB and spectral results for gold, copper and silver in ΔE00: gold differs by up to 2.1 under D65, growing to 12.7 after six metal-to-metal reflections</li>
-            <li>Path tracing (NEE+MIS), photon-mapped caustics, and rendering of water, sea and skin</li>
-            <li>Numerical tests for each major component, with readability and verification prioritized over speed</li>
+            <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (about 1 is visible, and 2 to 3 is clearly different). Under warm light, the RGB gold looks dull</li>
+            <li>Comparing gold, copper and silver the same way, gold differs the most: up to 2.1 in daylight, growing to 12.7 after six reflections from metal to metal</li>
+            <li>Material appearance from physical models: metals (including grooves and paint gloss), the rainbow colors of glass, the film of a soap bubble, translucency, skin (relief and wetness), hair, sea, fog and clouds</li>
+            <li>Tests for each major part to check that it calculates correctly, with readability and reliability prioritized over speed</li>
           </ul>
           <div class="tags">
             <span class="tag">C++20</span><span class="tag">Path Tracing</span>
-            <span class="tag">Spectral Rendering</span><span class="tag">OpenMP</span>
+            <span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">OpenMP</span>
           </div>
           <div class="links">
             <a href="gallery.html">View the gallery →</a>
@@ -89,7 +125,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work flip">
+      <article class="work flip" id="work-gaze">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -117,13 +153,13 @@
           <h3>Gaze Dodge</h3>
           <p class="tagline">A browser dodging game where your gaze moves the player</p>
           <p>
-            A game controlled by the gaze of a Tobii Pro eye tracker. It can also be played with a webcam (WebGazer.js) or a mouse.
-            Browsers cannot access Tobii directly, so a Python bridge sends the gaze data over WebSocket.
+            A game controlled by an eye tracker (a Tobii Pro). It can also be played with a webcam or a mouse.
+            Browsers cannot connect to Tobii directly, so a Python program receives the gaze data and sends it to the browser.
           </p>
           <ul>
-            <li>Sends the Pro Fusion's 120 Hz gaze data immediately, corrects gaze drift caused by blinks, and pauses the game while the gaze is lost</li>
+            <li>Sends gaze data, measured 120 times a second, to the game right away. It corrects gaze drift caused by blinks, and pauses the game while the gaze is lost</li>
             <li>Identifies the player from the distance between their eyes (interpupillary distance), asks "Are you ○○?", and records scores in a ranking</li>
-            <li>A UI that works with gaze alone: look at a button for one second to press it</li>
+            <li>A screen that works with gaze alone: look at a button for one second to press it</li>
           </ul>
           <div class="tags">
             <span class="tag">JavaScript</span><span class="tag">Python</span>
@@ -136,7 +172,7 @@
       </article>
 
       <!-- Transit app -->
-      <article class="work">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="../assets/hamakokuex-form.png" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
@@ -154,10 +190,10 @@
           </p>
           <p class="role-label">My role (backend overall)</p>
           <ul>
-            <li>The shortest-route module: it splits the work by route pattern, runs the patterns in parallel, and returns up to 6 results in order of arrival time</li>
-            <li>The module design of the whole app: one adapter per external data source, containing the differences in data formats between operators</li>
-            <li>A general-purpose debugging system</li>
-            <li>Connecting the frontend and the backend</li>
+            <li>The part that finds the shortest route: it splits the work by type of route, runs them at the same time, and returns up to 6 results in order of arrival time</li>
+            <li>The design of how the whole app is divided into parts: one gateway (adapter) per source of data, absorbing the differences in data formats between operators</li>
+            <li>A debugging system that works for any process, to trace the cause of a problem</li>
+            <li>Connecting to the screen side (the frontend)</li>
           </ul>
           <div class="tags">
             <span class="tag">Node.js</span><span class="tag">Express</span>
@@ -181,13 +217,13 @@
         </div>
         <div class="card">
           <h3>2D BRDF Measurement System</h3>
-          <p>A C++ project on BRDF measurement.</p>
+          <p>A prototype of a measuring system that uses a spectroradiometer and two robot arms (one for the light, one for the sample) to measure how a surface reflects light (its BRDF). Each device has its own connection layer, so behavior can be checked with simulated devices even without the real hardware.</p>
           <div class="tags"><span class="tag">C++</span></div>
           <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
         <div class="card">
           <h3>raycast_game</h3>
-          <p>A game prototype made in C.</p>
+          <p>A prototype of a game that makes a maze-like space look 3D, made with just C and Windows' own drawing functions. The map, player, enemies and items, and drawing are split into separate files.</p>
           <div class="tags"><span class="tag">C</span></div>
           <div class="links"><a href="https://github.com/Pero1031/raycast_game" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
@@ -203,7 +239,7 @@
       <div class="teaser">
         <a href="gallery.html">
           <img src="../assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="A soap bubble with rainbow fringes from thin-film interference" loading="lazy">
-          <span>Soap bubble: thin-film interference</span>
+          <span>Soap bubble: rainbow colors from a thin film</span>
         </a>
         <a href="gallery.html">
           <img src="../assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="A gold ring with a diamond in a dark studio. Light splits into colors inside the stone" loading="lazy">
@@ -229,8 +265,9 @@
           This interest leads to my current research and development aimed at a perception-based renderer.
         </p>
         <p>
-          For my graduation research, I measured the color of gold with a spectroradiometer and studied the difference between RGB rendering and spectral rendering.
+          For my graduation research, I measured the color of gold with a spectroradiometer and studied how it differs between calculating with RGB and calculating wavelength by wavelength.
           That research led me to keep building my own renderer, aiming for one based on perception.
+          It now renders not only metal but also the appearance of skin, hair, water and fog.
         </p>
         <p>
           I like to check results against measured data, so I add numerical tests and verification to what I build.
@@ -239,7 +276,7 @@
       </div>
       <dl class="skills">
         <dt>Languages</dt><dd>C++ / C / Python / JavaScript</dd>
-        <dt>Strengths</dt><dd>Rendering (path tracing, spectral), eye tracking, backend development</dd>
+        <dt>Strengths</dt><dd>Rendering (path tracing, spectral, material appearance), eye tracking, backend development</dd>
         <dt>Tools</dt><dd>Visual Studio / Git &amp; GitHub / Tobii Pro SDK / Mitsuba</dd>
       </dl>
     </div>

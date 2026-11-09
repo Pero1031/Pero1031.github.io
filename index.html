@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=12">
 </head>
 <body>
 
@@ -32,13 +32,15 @@
 
   <!-- ===== Hero ===== -->
   <div class="wrap hero">
+    <div class="hero-art"><img src="assets/gallery/prism_fog.webp" width="1280" height="720" alt="霧の中で細い光がプリズムに入り、虹色の扇になって出ていく図" fetchpriority="high"></div>
     <p class="eyebrow">Portfolio</p>
     <h1><span class="ph">物理を測り、</span><span class="ph">知覚を解き、</span><span class="ph">絵を創る。</span></h1>
     <!-- 英文は「Veni, vidi, vici(来た、見た、勝った)」へのオマージュ。主語を省いた三つの過去形で、日本語の三句(測る・知覚する・創る)に対応させている -->
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      金の色を分光測定し、RGB と分光の差を調べたうえで、分光で描くレンダラーを一から作りました。
-      視線計測を使ったゲームを作り、チーム開発のアプリではバックエンドを担当しています。
+      金の色を分光放射計で測り、RGB で計算した場合との違いを調べたうえで、光を波長ごとに計算して絵を描く3Dレンダラーを、一から作りました。
+      金属、ガラス、肌、髪、水の質感を数値で細かく変えられるので、視覚の実験で見せる画像も作れます。
+      ほかに、視線で操作するゲームと、チームで作った乗換アプリのバックエンドも作りました。
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">作品を見る</a>
@@ -47,6 +49,36 @@
     </div>
   </div>
 
+  <!-- ===== What I can do ===== -->
+  <section id="can-do">
+    <div class="wrap">
+      <h2>What I can do</h2>
+      <p class="sub">私にできることを、作品とあわせて4つにまとめました。</p>
+      <div class="grid">
+        <div class="card">
+          <h3>3Dレンダラーを一から作る</h3>
+          <p>C++ で、光の動きを計算して絵を描くプログラムを作れます。金属、ガラス、肌、髪、水の質感を数値で細かく変えられるので、視覚の実験で見せる画像も作れます。</p>
+          <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
+        </div>
+        <div class="card">
+          <h3>測って、確かめる</h3>
+          <p>実物の金を分光放射計で測り、描いた絵との色の違いを数値にしました。作ったものには、正しく動くかを確かめるテストを付けます。</p>
+          <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
+        </div>
+        <div class="card">
+          <h3>視線を使って開発する</h3>
+          <p>視線を測る機器(Tobii Pro)の情報を、ブラウザのゲームの操作に使えます。測定のずれの確認や、瞬きによる視線のずれの補正も作りました。</p>
+          <div class="links"><a href="#work-gaze">Gaze Dodge →</a></div>
+        </div>
+        <div class="card">
+          <h3>チームでバックエンドを作る</h3>
+          <p>バス・電車・シェアサイクルのデータをつなぎ、一番早い行き方を探して返す部分を、Node.js で作りました。4人のチームで、いまも運用しています。</p>
+          <div class="links"><a href="#work-hamakoku">はまこく →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Works ===== -->
   <section id="works">
     <div class="wrap">
@@ -54,9 +86,9 @@
       <p class="sub">主な作品3つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
-      <article class="work">
+      <article class="work" id="work-goldray">
         <div class="media">
-          <img class="contain" src="assets/goldray-hero-v3.webp" width="1824" height="1652" alt="金の彫像 Erato を RGB レンダラーと分光レンダラーで描き比べた図。上段は昼光(D65)、下段はタングステン光。右の列は両者の色差(CIEDE2000)で、平均は昼光で 1.7、タングステン光で 2.6" loading="lazy">
+          <img class="contain" src="assets/goldray-hero-v3.webp" width="1824" height="1652" alt="金の彫像 Erato を RGB レンダラーと分光レンダラーで描き比べた図。上段は昼の光、下段は白熱電球の光。右の列は2つの色の違いで、平均は昼の光で 1.7、白熱電球の光で 2.6" loading="lazy">
           <p class="credit">
             Model: Erato by Geoffrey Marchal (© 2016,
             <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
@@ -67,20 +99,24 @@
         </div>
         <div class="body">
           <h3>GoLD_rayt</h3>
-          <p class="tagline">分光レンダリングに取り組む、自作の3Dパストレーサー</p>
+          <p class="tagline">光を波長ごとに計算して、質感を数値で作り分ける、自作の3Dレンダラー</p>
           <p>
-            卒業研究のために作った C++20 製のレンダラーです。分光放射計(SR-5100)で金を測定し、
-            RGB と分光レンダリングの色差を Mitsuba で定量化したうえで、その差を克服するレンダラーを目指しました。
+            卒業研究のために作り始めた、C++ のプログラムです。分光放射計で金を測り、波長ごとに計算する方法(分光)と、
+            画面と同じ RGB の3色で計算する方法の、色の違いを数値にしました。その研究を自分のコードで再現し、いまは、人の見え方に近い絵を描くことを目指して作り続けています。
+          </p>
+          <p>
+            屈折率、粗さ、膜の厚さ、メラニンの量、光の波長ごとの強さなどを、数値で書いて指定します。設定を固定すれば、同じ画像を何度でも作れます。
+            この仕組みで、視覚の実験で見せる画像を作る道具として使えます。
           </p>
           <ul>
-            <li>金の彫像を RGB と分光で描き比べると、色差は昼光で平均 1.7、タングステン光で 2.6。暖かい光の下では、RGB の金がくすんで見える</li>
-            <li>金・銅・銀で RGB と分光の差を ΔE00 で比較。金は D65 光源で最大 2.1、金属同士の反射を6回重ねると 12.7 まで拡大</li>
-            <li>パストレーシング(NEE+MIS)、フォトンマップによるコースティクス、水・海・肌の表現</li>
-            <li>主要な部分ごとに数値テストを用意し、速度より可読性と検証を優先</li>
+            <li>金の彫像を2つの方法で描き比べると、色の違いは、昼の光で平均 1.7、白熱電球の光で 2.6(1 で見分けられ、2〜3 ではっきり違う目安)。暖かい光の下では、RGB の金がくすんで見える</li>
+            <li>金・銅・銀でも比べると、違いが一番大きいのは金で、昼の光で最大 2.1。金属から金属へ6回反射させると、12.7 まで広がる</li>
+            <li>質感を物理のモデルで描き分け: 金属(削り跡や塗装のつやも)、ガラスの虹色、シャボン玉の膜、半透明、肌(凹凸や濡れ)、髪、海、霧と雲</li>
+            <li>主な部分ごとに、正しく計算できているかを確かめるテストを用意。速度より、読みやすさと確かさを優先</li>
           </ul>
           <div class="tags">
             <span class="tag">C++20</span><span class="tag">Path Tracing</span>
-            <span class="tag">Spectral Rendering</span><span class="tag">OpenMP</span>
+            <span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">OpenMP</span>
           </div>
           <div class="links">
             <a href="gallery.html">ギャラリーを見る →</a>
@@ -90,7 +126,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work flip">
+      <article class="work flip" id="work-gaze">
         <div class="media">
           <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
           <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
@@ -119,13 +155,13 @@
           <h3>Gaze Dodge</h3>
           <p class="tagline">視線でプレイヤーを動かす、障害物よけブラウザゲーム</p>
           <p>
-            Tobii Pro アイトラッカーの視線で操作するゲームです。Web カメラ(WebGazer.js)やマウスでも遊べます。
-            ブラウザは Tobii に直接アクセスできないため、Python のブリッジが視線を WebSocket で送る構成にしました。
+            視線を測る機器(Tobii Pro アイトラッカー)で操作するゲームです。Web カメラやマウスでも遊べます。
+            ブラウザは Tobii に直接つなげないため、Python のプログラムが視線を受け取り、ブラウザへ送る構成にしました。
           </p>
           <ul>
-            <li>Pro Fusion の 120 Hz の視線を即時に送信。瞬きでずれる視線の補正、視線を失った間の停止処理を実装</li>
+            <li>1秒に120回測る視線を、すぐにゲームへ送ります。瞬きでずれる視線の補正と、視線を見失ったあいだの停止も作りました</li>
             <li>両目の間隔(瞳孔間距離)から「○○さんですか?」と本人確認し、ランキングに記録</li>
-            <li>ボタンは1秒見つめると押せる、視線だけで完結する UI</li>
+            <li>ボタンは1秒見つめると押せる、視線だけで操作が完結する画面</li>
           </ul>
           <div class="tags">
             <span class="tag">JavaScript</span><span class="tag">Python</span>
@@ -138,7 +174,7 @@
       </article>
 
       <!-- 乗り換えアプリ -->
-      <article class="work">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="assets/hamakokuex-form.png" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
@@ -156,10 +192,10 @@
           </p>
           <p class="role-label">私の担当(バックエンド全般)</p>
           <ul>
-            <li>最短経路を探すモジュール。経路のパターンごとに処理を分けて並列に実行し、到着が早い順に最大6件を返す</li>
-            <li>アプリ全体のモジュール設計。外部データごとに adapter を分け、事業者ごとのデータ形式の違いを閉じ込める</li>
-            <li>汎用的なデバッグシステム</li>
-            <li>フロントエンドとバックエンドの接続</li>
+            <li>最短経路を探す部分。行き方のパターンごとに処理を分けて同時に実行し、着くのが早い順に最大6件を返す</li>
+            <li>アプリ全体の部品の分け方の設計。データの取得元ごとに窓口(adapter)を分け、事業者ごとのデータ形式の違いを、そこで吸収する</li>
+            <li>どの処理にも使える、不具合の原因を追うしくみ(デバッグシステム)</li>
+            <li>画面側(フロントエンド)との接続</li>
           </ul>
           <div class="tags">
             <span class="tag">Node.js</span><span class="tag">Express</span>
@@ -183,13 +219,13 @@
         </div>
         <div class="card">
           <h3>2D BRDF Measurement System</h3>
-          <p>BRDF の計測に関する C++ のプロジェクトです。</p>
+          <p>分光放射計と2台のロボットアーム(光源側とサンプル側)で、物の表面の光の反射の仕方(BRDF)を測る、計測システムの試作です。機器ごとに接続の窓口を分け、実機がなくても、模擬の機器で動作を確認できます。</p>
           <div class="tags"><span class="tag">C++</span></div>
           <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
         <div class="card">
           <h3>raycast_game</h3>
-          <p>C で作ったゲームの試作です。</p>
+          <p>C と Windows の描画機能だけで作った、迷路のような空間を3Dに見せるゲームの試作です。マップ、プレイヤー、敵とアイテム、描画を、ファイルごとに分けています。</p>
           <div class="tags"><span class="tag">C</span></div>
           <div class="links"><a href="https://github.com/Pero1031/raycast_game" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
@@ -205,7 +241,7 @@
       <div class="teaser">
         <a href="gallery.html">
           <img src="assets/gallery/soap_bubble-thumb.webp" width="640" height="640" alt="シャボン玉。薄膜の干渉で虹色の縞がついている" loading="lazy">
-          <span>シャボン玉: 薄膜の干渉</span>
+          <span>シャボン玉: 膜が作る虹色</span>
         </a>
         <a href="gallery.html">
           <img src="assets/gallery/diamond_ring-thumb.webp" width="640" height="427" alt="暗いスタジオでダイヤモンドの付いた金の指輪。石の中で光が色に分かれている" loading="lazy">
@@ -231,8 +267,9 @@
           この関心が、知覚に基づくレンダラーを目指すいまの研究と開発につながっています。
         </p>
         <p>
-          卒業研究で、分光放射計を使って金の色を測定し、RGB レンダリングと分光レンダリングの差を調べました。
+          卒業研究で、分光放射計を使って金の色を測り、RGB で計算した場合と、波長ごとに計算した場合の違いを調べました。
           その研究をきっかけに、知覚に基づくレンダラーを目指して、自作を続けています。
+          いまは、金属だけでなく、肌や髪、水、霧などの質感も描けるようになりました。
         </p>
         <p>
           計測データを使って結果を確かめることが好きで、作ったものには数値テストや検証を付けるようにしています。
@@ -241,7 +278,7 @@
       </div>
       <dl class="skills">
         <dt>言語</dt><dd>C++ / C / Python / JavaScript</dd>
-        <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光)、視線計測、バックエンド開発</dd>
+        <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光・質感表現)、視線計測、バックエンド開発</dd>
         <dt>ツール</dt><dd>Visual Studio / Git・GitHub / Tobii Pro SDK / Mitsuba</dd>
       </dl>
     </div>

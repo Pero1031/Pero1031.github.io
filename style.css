@@ -51,7 +51,21 @@ nav a.lang {
 nav a.lang:hover { border-color: var(--accent); }
 
 /* ---------- hero ---------- */
-.hero { padding: 88px 0 56px; }
+.hero { padding: 88px 0 56px; position: relative; }
+/* トップの画像: 右側に置き、端を背景になじませる。文章は画像の手前に出す */
+.hero-art {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 70%;
+  z-index: 0; pointer-events: none;
+  /* 左右と下の端を、背景の色へ溶かす */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 42%, #000 82%, transparent 100%),
+                      linear-gradient(to bottom, #000 72%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(to right, transparent 0, #000 42%, #000 82%, transparent 100%),
+                      linear-gradient(to bottom, #000 72%, transparent 100%);
+          mask-composite: intersect;
+}
+.hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 80% 30%; filter: brightness(1.2) saturate(1.15); }
+.hero > :not(.hero-art) { position: relative; z-index: 1; }
 .eyebrow { color: var(--accent); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; }
 .hero h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.2; margin: 0 0 18px; letter-spacing: -.01em; }
 .hero h1 .ph { display: inline-block; white-space: nowrap; }
@@ -218,10 +232,18 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
   .work .media { min-height: 200px; }
   nav a { margin-left: 11px; font-size: 13px; }
   nav a.lang { font-size: 11px; padding: 4px 8px; }
-  .hero { padding: 56px 0 36px; }
+  .hero { padding: 0 20px 36px; }
+  /* 狭い画面では、画像を文章の上に置いて、下の端を背景になじませる */
+  .hero-art {
+    position: relative; width: auto; margin: 0 -20px 8px; aspect-ratio: 16 / 9;
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
 }
 @media (max-width: 350px) {
   .wrap { padding: 0 14px; }
+  .hero { padding: 0 14px 36px; }
+  .hero-art { margin: 0 -14px 8px; }
   nav a { margin-left: 8px; font-size: 12px; }
   nav a.lang { padding: 4px 7px; }
 }

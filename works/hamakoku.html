@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=9">
+  <link rel="stylesheet" href="../style.css?v=12">
 </head>
 <body>
 
@@ -84,12 +84,12 @@
     <p class="sub">バックエンド全般を担当しました。</p>
     <div class="grid">
       <div class="card">
-        <h3>最短経路を探すモジュール</h3>
-        <p>経路のパターンごとに処理を分けて並列に実行し、到着が早い順に最大6件を返します。1つのパターンが失敗しても、ほかの結果は返ります。</p>
+        <h3>最短経路を探す部分</h3>
+        <p>行き方のパターンごとに処理を分けて同時に実行し、着くのが早い順に最大6件を返します。1つのパターンが失敗しても、ほかの結果は返ります。</p>
       </div>
       <div class="card">
-        <h3>アプリ全体のモジュール設計</h3>
-        <p>外部データごとに adapter を分け、事業者ごとのデータ形式の違いを閉じ込めました。運賃・停留所と駅の ID・事業者の設定は、1か所に集めています。</p>
+        <h3>アプリ全体の部品の分け方の設計</h3>
+        <p>データの取得元ごとに窓口(adapter)を分け、事業者ごとのデータ形式の違いを、そこで吸収しました。運賃、停留所と駅の番号、事業者の設定は、1か所に集めています。</p>
       </div>
       <div class="card">
         <h3>汎用的なデバッグシステム</h3>
@@ -112,8 +112,8 @@
     <p class="sub">公開リポジトリの README に書かれた設計をもとに、作図しました。</p>
     <div class="diagram">
       <svg viewBox="0 0 420 600" width="420" height="600" role="img" aria-labelledby="dg-title dg-desc" style="width:100%;height:auto;display:block">
-        <title id="dg-title">はまこく Exp. のモジュール構成図</title>
-        <desc id="dg-desc">画面から検索の受け口、ルート検索、経路パターンの並列実行、外部データごとの adapter、データ源へとつながる流れ。設定は config に集約している。</desc>
+        <title id="dg-title">はまこく Exp. の構成図</title>
+        <desc id="dg-desc">画面から検索の受け口、ルート検索、経路パターンの同時実行、外部データごとの adapter、データ源へとつながる流れ。設定は config に集約している。</desc>
         <!-- 外部 CSS が古いまま残っていても崩れないよう、図のスタイルは図の中にも持たせる -->
         <style>
           .bx { fill: #1b1e25; stroke: #262a33; stroke-width: 1.5; }
@@ -144,7 +144,7 @@
         <!-- 3. ルート検索 -->
         <rect class="bx hl" x="20" y="174" width="380" height="64" rx="10"/>
         <text class="t1" x="210" y="200" text-anchor="middle">ルート検索</text>
-        <text class="t2" x="210" y="222" text-anchor="middle">パターンを並列に実行 → 到着が早い順に上位6件</text>
+        <text class="t2" x="210" y="222" text-anchor="middle">パターンを同時に実行 → 到着が早い順に上位6件</text>
 
         <!-- 分岐 -->
         <line class="ln" x1="210" y1="238" x2="78"  y2="266" marker-end="url(#ar)"/>
@@ -168,7 +168,7 @@
         <!-- 5. adapter -->
         <rect class="bx hl" x="20" y="380" width="380" height="60" rx="10"/>
         <text class="t1" x="210" y="406" text-anchor="middle">adapter(外部データごとに分離)</text>
-        <text class="t2" x="210" y="427" text-anchor="middle">事業者ごとのデータ形式の違いを、ここに閉じ込める</text>
+        <text class="t2" x="210" y="427" text-anchor="middle">事業者ごとのデータ形式の違いを、ここで吸収する</text>
 
         <line class="ln" x1="78"  y1="440" x2="78"  y2="468" marker-end="url(#ar)"/>
         <line class="ln" x1="210" y1="440" x2="210" y2="468" marker-end="url(#ar)"/>
