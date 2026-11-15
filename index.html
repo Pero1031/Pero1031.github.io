@@ -84,7 +84,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品5つと、その他の制作物です。</p>
+      <p class="sub">主な作品6つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -115,10 +115,7 @@
             <li>質感を物理のモデルで描き分け: 金属(削り跡や塗装のつやも)、ガラスの虹色、シャボン玉の膜、半透明、肌(凹凸や濡れ)、髪、海、霧と雲</li>
             <li>主な部分ごとに、正しく計算できているかを確かめるテストを用意。速度より、読みやすさと確かさを優先</li>
           </ul>
-          <div class="tags">
-            <span class="tag">C++20</span><span class="tag">Path Tracing</span>
-            <span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">OpenMP</span>
-          </div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">Bidirectional Path Tracing</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
             <a href="gallery.html">ギャラリーを見る →</a>
             <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">GitHub で見る →</a>
@@ -152,18 +149,35 @@
             <li>粒子の描画は、1粒子の応答、回転した粒子の閉じた式との一致、粒子の合成の順、BVHと総当たりの一致などのテストを用意</li>
           </ul>
           <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px の絵、1つの照明につき学習120枚・テスト8枚、学習は1回ずつ。2段階目の学習は標準の1/5に短縮。</p>
-          <div class="tags">
-            <span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span>
-            <span class="tag">C++20</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
-          </div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">GitHub で見る →</a>
           </div>
         </div>
       </article>
 
+      <!-- 修士研究 -->
+      <article class="work" id="work-thesis">
+        <div class="media">
+          <img class="contain" src="assets/research-light-ja.webp" width="1400" height="929" alt="同じ素材の物体を、正面からの光と真後ろからの光で描いた2枚の図。正面からでは白く濁って見え、真後ろからでは明るく光ってつやが目立つ" loading="lazy">
+        </div>
+        <div class="body">
+          <h3>修士研究: 質感の知覚を調べる視覚実験</h3>
+          <p class="tagline">物の質感が人にどう見えるかを、視線計測と、統制した刺激で調べる</p>
+          <p>
+            物の質感が人にどう見えるかを調べる、視覚実験の研究です。刺激の作成から、視線計測を含む実験プログラム、データの解析まで、一通りを自分で行っています。
+          </p>
+          <ul>
+            <li>刺激: Blender で、実験用の刺激画像を作る</li>
+            <li>実験: アイトラッカーで視線を記録しながら、画像を提示する実験プログラムを作る</li>
+            <li>解析: 実験で得たデータを、Python で解析する</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
+        </div>
+      </article>
+
       <!-- 乗り換えアプリ -->
-      <article class="work" id="work-hamakoku">
+      <article class="work flip" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="assets/hamakokuex-form.png" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
@@ -186,10 +200,7 @@
             <li>どの処理にも使える、不具合の原因を追う仕組み(デバッグシステム)</li>
             <li>画面側(フロントエンド)との接続</li>
           </ul>
-          <div class="tags">
-            <span class="tag">Node.js</span><span class="tag">Express</span>
-            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
-          </div>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Backend</span><span class="tag">Route Search</span><span class="tag">Open Data (ODPT, GBFS)</span><span class="tag">Team Development</span><span class="tag">Node.js</span><span class="tag">Express</span></div>
           <div class="links">
             <a href="works/hamakoku.html">詳細・構成図を見る →</a>
             <a href="https://team301.jp/" target="_blank" rel="noopener">アプリを開く →</a>
@@ -199,15 +210,15 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work flip" id="work-brdf">
+      <article class="work" id="work-brdf">
         <div class="media">
-          <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計 SR-5100。サンプルは右のロボットアームが持っている" loading="lazy">
+          <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計。サンプルは右のロボットアームが持っている" loading="lazy">
         </div>
         <div class="body">
           <h3>2D BRDF Measurement System</h3>
           <p class="tagline">分光放射計とロボットアーム2台で、物の表面の光の反射(BRDF)を測る計測システム / 開発中</p>
           <p>
-            2次元の分光放射計(SR-5100)と、光源側とサンプル側の2台のロボットアームで、BRDF を測るシステムです。
+            2次元の分光放射計と、光源側とサンプル側の2台のロボットアームで、BRDF を測るシステムです。
             光源とカメラは有限の距離にあるので、サンプルの場所ごとに入射と観測の向きが少しずつ違い、1回の撮影で多くの角度の組のスペクトルが得られます。
             以前の計測システムを、整理し直して作り直しています。
           </p>
@@ -216,11 +227,9 @@
             <li>アームの動きを、ブラウザで開ける3Dアニメーション(HTML 1枚)で確認できる。光源、サンプル、カメラの視野、各点の入射と観測の向きを表示し、アーム同士が近づきすぎると赤くなる。実機を動かす前の動作確認に使う</li>
             <li>模擬のロボットと分光放射計で、校正(円格子ボード)から測定、BRDF の解析まで通しで実行できる。設定は TOML ファイルに書き、動かす前に、関節の範囲とアームの衝突を検査する</li>
             <li>解析は、放射輝度率(試料÷白色板)から BRDF を求める。以前のシステムの系統誤差(約±11%)を補正でき、模擬の光沢 BRDF を誤差 1e-4 以内で復元する</li>
-            <li>実機(DENSO RC8、TOPCON)の接続は、これから</li>
+            <li>実機(ロボットアームと分光放射計)の接続は、これから</li>
           </ul>
-          <div class="tags">
-            <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">開発中</span>
-          </div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub で見る →</a>
           </div>
@@ -228,7 +237,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work" id="work-gaze">
+      <article class="work flip" id="work-gaze">
         <div class="media">
           <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
           <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
@@ -257,18 +266,15 @@
           <h3>Gaze Dodge</h3>
           <p class="tagline">視線でプレイヤーを動かす、障害物よけブラウザゲーム</p>
           <p>
-            視線を測る機器(Tobii Pro アイトラッカー)で操作するゲームです。Web カメラやマウスでも遊べます。
-            ブラウザは Tobii に直接つなげないため、Python のプログラムが視線を受け取り、ブラウザへ送る構成にしました。
+            アイトラッカー(視線を測る機器)で操作するゲームです。Web カメラやマウスでも遊べます。
+            ブラウザはアイトラッカーに直接つなげないため、Python のプログラムが視線を受け取り、ブラウザへ送る構成にしました。
           </p>
           <ul>
             <li>1秒に120回測る視線を、すぐにゲームへ送る。瞬きでずれる視線の補正と、視線を見失ったあいだの停止も作った</li>
             <li>両目の間隔(瞳孔間距離)から「○○さんですか?」と本人確認し、ランキングに記録</li>
             <li>ボタンは1秒見つめると押せる、視線だけで操作が完結する画面</li>
           </ul>
-          <div class="tags">
-            <span class="tag">JavaScript</span><span class="tag">Python</span>
-            <span class="tag">Tobii Pro SDK</span><span class="tag">WebSocket</span>
-          </div>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Eye Tracking</span><span class="tag">Gaze Interaction</span><span class="tag">Real-time Streaming</span><span class="tag">Tobii Pro SDK</span><span class="tag">WebSocket</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">GitHub で見る →</a>
           </div>
@@ -281,13 +287,7 @@
         <div class="card">
           <h3>鉄チャリたび(開発中)</h3>
           <p>電車を幹、シェアサイクルを枝にして、途中下車を前提にした旅程を提案する Web アプリです。はまこくの次の作品として、チームで開発しています。「公共交通オープンデータチャレンジ2026」にも出場します。</p>
-          <div class="tags"><span class="tag">開発中</span><span class="tag">チーム開発</span></div>
-        </div>
-        <div class="card">
-          <h3>raycast_game</h3>
-          <p>C と Windows の描画機能だけで作った、迷路のような空間を3Dに見せるゲームの試作です。マップ、プレイヤー、敵とアイテム、描画を、ファイルごとに分けています。</p>
-          <div class="tags"><span class="tag">C</span></div>
-          <div class="links"><a href="https://github.com/Pero1031/raycast_game" target="_blank" rel="noopener">GitHub →</a></div>
+          <div class="tags"><span class="tag">Web App</span><span class="tag">Team Development</span><span class="tag">Public Transport</span></div>
         </div>
       </div>
     </div>
@@ -339,7 +339,7 @@
       <dl class="skills">
         <dt>言語</dt><dd>C++ / C / Python / JavaScript(Node.js)/ HTML・CSS</dd>
         <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光・質感表現)、3D Gaussian Splatting・NeRF、分光計測、視線計測、バックエンド開発</dd>
-        <dt>ツール</dt><dd>Visual Studio / Git・GitHub / PyTorch / CUDA / Embree・Open Image Denoise / Dear ImGui / Blender / Mitsuba / 分光放射計(SR-5100)/ ロボットアーム / Tobii Pro SDK</dd>
+        <dt>ツール</dt><dd>Visual Studio / VS Code / Git・GitHub / PyTorch / CUDA / Embree・Open Image Denoise / Dear ImGui / Blender / Mitsuba / 分光放射計(SR-5100)/ ロボットアーム / Tobii Pro SDK</dd>
       </dl>
     </div>
   </section>

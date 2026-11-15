@@ -83,7 +83,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Five main projects, and a few other things I have made.</p>
+      <p class="sub">Six main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -113,10 +113,7 @@
             <li>Material appearance from physical models: metals (including grooves and paint gloss), the rainbow colors of glass, the film of a soap bubble, translucency, skin (relief and wetness), hair, sea, fog and clouds</li>
             <li>Tests for each major part to check that it calculates correctly, with readability and reliability prioritized over speed</li>
           </ul>
-          <div class="tags">
-            <span class="tag">C++20</span><span class="tag">Path Tracing</span>
-            <span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">OpenMP</span>
-          </div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">Bidirectional Path Tracing</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
             <a href="gallery.html">View the gallery →</a>
             <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">View on GitHub →</a>
@@ -150,18 +147,35 @@
             <li>Tests for the particle rendering: the response of one particle, agreement with a closed form for rotated particles, the order of compositing, and agreement between the BVH and brute force</li>
           </ul>
           <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px renders, 120 training views and 8 test views per light, one training each; the second training stage was shortened to a fifth of its default.</p>
-          <div class="tags">
-            <span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span>
-            <span class="tag">C++20</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
-          </div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">View on GitHub →</a>
           </div>
         </div>
       </article>
 
+      <!-- Master's research -->
+      <article class="work" id="work-thesis">
+        <div class="media">
+          <img class="contain" src="../assets/research-light-en.webp" width="1400" height="891" alt="The same object drawn with light from the front and with light from directly behind. With front light it looks white and cloudy; with light from behind it looks bright, with strong gloss" loading="lazy">
+        </div>
+        <div class="body">
+          <h3>Master's research: a vision experiment on material perception</h3>
+          <p class="tagline">Studying how the material of an object looks to people, with eye tracking and controlled stimuli</p>
+          <p>
+            A vision-experiment study of how the material of an object looks to people. I handle everything from creating the stimuli and building the experiment program, including eye tracking, to analyzing the data.
+          </p>
+          <ul>
+            <li>Stimuli: creating the stimulus images with Blender</li>
+            <li>Experiment: building an experiment program that presents images while recording gaze with an eye tracker</li>
+            <li>Analysis: analyzing the experimental data in Python</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
+        </div>
+      </article>
+
       <!-- Transit app -->
-      <article class="work" id="work-hamakoku">
+      <article class="work flip" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="../assets/hamakokuex-form.png" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
@@ -184,10 +198,7 @@
             <li>A debugging system, usable from any process, for tracing the cause of a problem</li>
             <li>Integration with the frontend</li>
           </ul>
-          <div class="tags">
-            <span class="tag">Node.js</span><span class="tag">Express</span>
-            <span class="tag">React</span><span class="tag">ODPT API</span><span class="tag">GBFS</span>
-          </div>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Backend</span><span class="tag">Route Search</span><span class="tag">Open Data (ODPT, GBFS)</span><span class="tag">Team Development</span><span class="tag">Node.js</span><span class="tag">Express</span></div>
           <div class="links">
             <a href="works/hamakoku.html">Details and architecture →</a>
             <a href="https://team301.jp/" target="_blank" rel="noopener">Open the app (in Japanese) →</a>
@@ -197,15 +208,15 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work flip" id="work-brdf">
+      <article class="work" id="work-brdf">
         <div class="media">
-          <img src="../assets/brdf-system.webp" width="785" height="603" alt="Two robot arms, one for the light and one for the sample, in a dark room, with the spectroradiometer SR-5100 in the foreground. The sample is held by the right arm" loading="lazy">
+          <img src="../assets/brdf-system.webp" width="785" height="603" alt="Two robot arms, one for the light and one for the sample, in a dark room, with the spectroradiometer in the foreground. The sample is held by the right arm" loading="lazy">
         </div>
         <div class="body">
           <h3>2D BRDF Measurement System</h3>
           <p class="tagline">A system that measures how a surface reflects light (its BRDF) with a spectroradiometer and two robot arms / in progress</p>
           <p>
-            A system that measures BRDFs with a 2D spectroradiometer (SR-5100) and two robot arms, one for the light and one for the sample.
+            A system that measures BRDFs with a 2D spectroradiometer and two robot arms, one for the light and one for the sample.
             The light and the camera are at finite distances, so every point on the sample sees a slightly different incidence and observation direction, and a single capture yields spectra for many angle combinations.
             It is a restructured rewrite of the previous measurement system.
           </p>
@@ -214,11 +225,9 @@
             <li>The arm motion can be checked in a 3D animation, a single HTML file that opens in any browser. It shows the light, the sample, the camera's field of view and the light and viewing directions at each spot, and the arms turn red when they get too close. It is used to check behavior before moving the real arms</li>
             <li>On a simulated robot and spectroradiometer, a run goes end to end, from calibration (circle-grid board) through measurement to BRDF analysis. Settings are written in TOML files, and before anything moves, a pre-flight check finds joint-limit violations and arm collisions</li>
             <li>The analysis computes the BRDF from the radiance factor (sample divided by white plate). It can correct a systematic error of the previous system (about ±11%), and recovers the simulator's true glossy BRDF to within 1e-4</li>
-            <li>Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
+            <li>Connecting the real hardware (the robot arms and the spectroradiometer) comes next</li>
           </ul>
-          <div class="tags">
-            <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">In progress</span>
-          </div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">View on GitHub →</a>
           </div>
@@ -226,7 +235,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work" id="work-gaze">
+      <article class="work flip" id="work-gaze">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -254,18 +263,15 @@
           <h3>Gaze Dodge</h3>
           <p class="tagline">A browser game in which your gaze moves the player to dodge obstacles</p>
           <p>
-            A game controlled by an eye tracker (a Tobii Pro). It can also be played with a webcam or a mouse.
-            Browsers cannot connect to Tobii directly, so a Python program receives the gaze data and sends it to the browser.
+            A game controlled by an eye tracker. It can also be played with a webcam or a mouse.
+            Browsers cannot connect to an eye tracker directly, so a Python program receives the gaze data and sends it to the browser.
           </p>
           <ul>
             <li>Sends gaze data, measured 120 times a second, to the game right away. It corrects gaze drift caused by blinks, and pauses the game while the gaze is lost</li>
             <li>Identifies the player from the distance between their eyes (interpupillary distance), asks "Are you ○○?", and records scores in a ranking</li>
             <li>A screen that works with gaze alone: look at a button for one second to press it</li>
           </ul>
-          <div class="tags">
-            <span class="tag">JavaScript</span><span class="tag">Python</span>
-            <span class="tag">Tobii Pro SDK</span><span class="tag">WebSocket</span>
-          </div>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Eye Tracking</span><span class="tag">Gaze Interaction</span><span class="tag">Real-time Streaming</span><span class="tag">Tobii Pro SDK</span><span class="tag">WebSocket</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">View on GitHub →</a>
           </div>
@@ -278,13 +284,7 @@
         <div class="card">
           <h3>Tetsu-Chari Tabi (in development)</h3>
           <p>A web app that plans trips built around getting off partway: trains are the trunk and bike share is the branches. Our team is developing it as the follow-up to Hamakoku, and we are also entering the Open Data Challenge for Public Transportation 2026.</p>
-          <div class="tags"><span class="tag">In development</span><span class="tag">Team project</span></div>
-        </div>
-        <div class="card">
-          <h3>raycast_game</h3>
-          <p>A prototype of a game that makes a maze-like space look 3D, made with just C and Windows' own drawing functions. The map, player, enemies and items, and drawing are split into separate files.</p>
-          <div class="tags"><span class="tag">C</span></div>
-          <div class="links"><a href="https://github.com/Pero1031/raycast_game" target="_blank" rel="noopener">GitHub →</a></div>
+          <div class="tags"><span class="tag">Web App</span><span class="tag">Team Development</span><span class="tag">Public Transport</span></div>
         </div>
       </div>
     </div>
@@ -336,7 +336,7 @@
       <dl class="skills">
         <dt>Languages</dt><dd>C++ / C / Python / JavaScript (Node.js) / HTML &amp; CSS</dd>
         <dt>Strengths</dt><dd>Rendering (path tracing, spectral, material appearance), 3D Gaussian Splatting and NeRF, spectral measurement, eye tracking, backend development</dd>
-        <dt>Tools</dt><dd>Visual Studio / Git &amp; GitHub / PyTorch / CUDA / Embree &amp; Open Image Denoise / Dear ImGui / Blender / Mitsuba / Spectroradiometer (SR-5100) / Robot arms / Tobii Pro SDK</dd>
+        <dt>Tools</dt><dd>Visual Studio / VS Code / Git &amp; GitHub / PyTorch / CUDA / Embree &amp; Open Image Denoise / Dear ImGui / Blender / Mitsuba / Spectroradiometer (SR-5100) / Robot arms / Tobii Pro SDK</dd>
       </dl>
     </div>
   </section>
