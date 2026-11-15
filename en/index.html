@@ -212,7 +212,8 @@
           <ul>
             <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them (forward kinematics and angle computation)</li>
             <li>The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed</li>
-            <li>Each device has its own connection layer, and it is checked with a simulated robot and spectrometer only. Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
+            <li>Each device (robot and spectroradiometer) has its own connection layer, with simulated devices behind it. The simulated robot checks joint limits and arm-to-arm clearance, and the simulated spectroradiometer "measures" a known BRDF (Lambert or Phong). One full simulated pose runs, from moving the arms to the angles and spectra of each spot</li>
+            <li>Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
           </ul>
           <div class="tags">
             <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">In progress</span>
