@@ -82,7 +82,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Three main projects, and a few other things I have made.</p>
+      <p class="sub">Four main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -124,8 +124,44 @@
         </div>
       </article>
 
+      <!-- 3DGS -->
+      <article class="work flip" id="work-3dgs">
+        <div class="media">
+          <img class="contain" src="../assets/gs-relit-wax.webp" width="974" height="742" alt="An opaque statue and a wax statue under four lights. For each light, the renderer's ground truth is shown next to the relit 3D Gaussian Splatting render" loading="lazy">
+          <p class="credit">
+            Top row: the opaque statue; bottom row: the wax statue. For each light, the ground truth (a render) is on the left and the relit 3D Gaussian Splatting render on the right.<br>
+            Model: Erato by Geoffrey Marchal (© 2016,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
+            From <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a>.
+            Modifications: materials applied and rendered.
+          </p>
+        </div>
+        <div class="body">
+          <h3>Captured objects and 3D Gaussian Splatting</h3>
+          <p class="tagline">Bringing 3D made from photographs into GoLD_rayt and calculating its light / a feature of GoLD_rayt</p>
+          <p>
+            3D Gaussian Splatting (3DGS) reproduces "how a scene looked under that light" from photographs taken from many viewpoints. It holds no physical quantities such as reflectance or scattering, so it breaks when the light changes.
+            So I built a way to bring captured 3D into GoLD_rayt.
+          </p>
+          <ul>
+            <li>A mesh (PLY, OBJ) from a scan or extracted from 3DGS is read as an ordinary object: it can be shown as photographed, or given gold, glass or any other material, under the same lights</li>
+            <li>A 3DGS point cloud (<code>point_cloud.ply</code>) is ray-traced directly, as particles that emit light and also block it. A mirror or a glass ball placed in it reflects and refracts the captured room</li>
+            <li>A relighting study: the same statue was rendered as an opaque material and as wax (translucent), and a relightable 3DGS (Relightable 3D Gaussians) was trained on each. Lit by three other lights and compared with the renderer's picture under the same light, the wax was already off under the training light: the reconstruction brought back shading with 2.4 to 3.7 times the contrast of the smooth, pale truth (the opaque statue: 1.0 to 1.6 times). This agrees with earlier work reporting that the scattering of translucent objects gets baked into the surface color</li>
+            <li>Tests for the particle rendering: the response of one particle, agreement with a closed form for rotated particles, the order of compositing, and agreement between the BVH and brute force</li>
+          </ul>
+          <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px renders, 120 training views and 8 test views per light, one training each; the second training stage was shortened to a fifth of its default.</p>
+          <div class="tags">
+            <span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span>
+            <span class="tag">C++20</span><span class="tag">BVH</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Transit app -->
-      <article class="work flip" id="work-hamakoku">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="../assets/hamakokuex-form.png" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
@@ -161,7 +197,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work" id="work-gaze">
+      <article class="work flip" id="work-gaze">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
             <defs>

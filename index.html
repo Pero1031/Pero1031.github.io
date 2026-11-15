@@ -83,7 +83,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品3つと、その他の制作物です。</p>
+      <p class="sub">主な作品4つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -125,8 +125,44 @@
         </div>
       </article>
 
+      <!-- 3DGS -->
+      <article class="work flip" id="work-3dgs">
+        <div class="media">
+          <img class="contain" src="assets/gs-relit-wax.webp" width="974" height="742" alt="不透明な像とロウの像を、4つの照明の下で描いた図。各照明で、レンダラーが描いた正解と、3D Gaussian Splatting で照明を変えて描いたものを並べている" loading="lazy">
+          <p class="credit">
+            上段は不透明な像、下段はロウの像。各照明の左が正解(レンダラーの絵)、右が3DGSで照明を変えて描いたもの。<br>
+            Model: Erato by Geoffrey Marchal (© 2016,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
+            <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a> より。
+            変更: 材質の適用と、レンダリング。
+          </p>
+        </div>
+        <div class="body">
+          <h3>3D Gaussian Splatting の取り込みと再照明</h3>
+          <p class="tagline">写真から作った3Dを、GoLD_rayt の中で光を計算して描く / GoLD_rayt の機能</p>
+          <p>
+            3D Gaussian Splatting(3DGS)は、多視点の写真から「その照明での見え方」を再現する方法です。反射率や散乱のような物理量は持たないので、照明を変えると崩れます。
+            そこで GoLD_rayt に、撮影から作った3Dを取り込む仕組みを作りました。
+          </p>
+          <ul>
+            <li>スキャンや3DGSから取り出したメッシュ(PLY、OBJ)を読み込み、撮影のままの見た目でも、金やガラスなど好きな材質に差し替えても、同じ照明の下で描ける</li>
+            <li>3DGSの粒子(<code>point_cloud.ply</code>)を、光を出して遮る粒子として直接経路追跡する。その中に鏡やガラス玉を置くと、撮影した部屋が映り、屈折する</li>
+            <li>再照明の検証: 同じ像を、不透明な材質とロウ(半透明)で描き、それぞれに照明を変えられる3DGS(Relightable 3D Gaussians)を学習。別の3つの照明で描いた結果を、同じ照明のレンダラーの絵と比べた。ロウは、学習した照明の下でもずれていて、再構成は、なめらかで淡い正解の2.4〜3.7倍のコントラストの陰影を作った(不透明な像は1.0〜1.6倍)。半透明の物の散乱が表面の色に焼き付くという、先行研究の報告と合っている</li>
+            <li>粒子の描画は、1粒子の応答、回転した粒子の閉じた式との一致、粒子の合成の順、BVHと総当たりの一致などのテストを用意</li>
+          </ul>
+          <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px の絵、1つの照明につき学習120枚・テスト8枚、学習は1回ずつ。2段階目の学習は標準の1/5に短縮。</p>
+          <div class="tags">
+            <span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span>
+            <span class="tag">C++20</span><span class="tag">BVH</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">GitHub で見る →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- 乗り換えアプリ -->
-      <article class="work flip" id="work-hamakoku">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="assets/hamakokuex-form.png" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
@@ -162,7 +198,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work" id="work-gaze">
+      <article class="work flip" id="work-gaze">
         <div class="media">
           <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
           <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
