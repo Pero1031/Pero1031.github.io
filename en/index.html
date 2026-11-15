@@ -65,9 +65,9 @@
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
-          <h3>Develop with eye tracking</h3>
-          <p>I can use data from an eye tracker (a Tobii Pro) to control a browser game. I also built a check of measurement error and a correction for the gaze drift that blinks cause.</p>
-          <div class="links"><a href="#work-gaze">Gaze Dodge →</a></div>
+          <h3>Work with 3D made from photographs</h3>
+          <p>I can bring 3D made with 3D Gaussian Splatting into my own renderer and redraw it with different materials and lights. I also trained a relightable 3DGS model and checked how accurately it reproduces new lighting.</p>
+          <div class="links"><a href="#work-3dgs">3DGS →</a></div>
         </div>
         <div class="card">
           <h3>Develop and run it as a team</h3>
@@ -151,7 +151,7 @@
           <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px renders, 120 training views and 8 test views per light, one training each; the second training stage was shortened to a fifth of its default.</p>
           <div class="tags">
             <span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span>
-            <span class="tag">C++20</span><span class="tag">BVH</span>
+            <span class="tag">C++20</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
           </div>
           <div class="links">
             <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">View on GitHub →</a>
@@ -211,8 +211,9 @@
           <ul>
             <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them (forward kinematics and angle computation)</li>
             <li>The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed</li>
-            <li>Each device (robot and spectroradiometer) has its own connection layer, with simulated devices behind it. The simulated robot checks joint limits and arm-to-arm clearance, and the simulated spectroradiometer "measures" a known BRDF (Lambert or Phong). One full simulated pose runs end to end, from moving the arms to getting the angles and spectra of each spot</li>
-            <li>Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
+            <li>Measurements run end to end on a simulated robot and spectroradiometer, saving the angles and spectra of each spot as CSV. Settings are written in TOML files, and before anything moves, a pre-flight check finds joint-limit violations, arm collisions and spots where the light or camera is behind the surface</li>
+            <li>Calibration-board processing is implemented: circle-grid detection, a homography per pose (the mapping between the image and the paper), and reading and writing spot definition files (XML). On 13 real images from the previous system, the homographies match the saved ones to within 1 pixel at the corners of the paper. A simulated camera draws the board, so calibration through measurement can be tried end to end without hardware</li>
+            <li>Connecting the real hardware (DENSO RC8, TOPCON) and the BRDF analysis come next</li>
           </ul>
           <div class="tags">
             <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">In progress</span>
