@@ -82,7 +82,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Four main projects, and a few other things I have made.</p>
+      <p class="sub">Five main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -196,8 +196,35 @@
         </div>
       </article>
 
+      <!-- 2D BRDF -->
+      <article class="work flip" id="work-brdf">
+        <div class="media">
+          <img src="../assets/brdf-system.webp" width="785" height="603" alt="Two robot arms, one for the light and one for the sample, in a dark room, with the spectroradiometer SR-5100 in the foreground. The sample is held by the right arm" loading="lazy">
+        </div>
+        <div class="body">
+          <h3>2D BRDF Measurement System</h3>
+          <p class="tagline">A system that measures how a surface reflects light (its BRDF) with a spectroradiometer and two robot arms / in progress</p>
+          <p>
+            A system that measures BRDFs with a 2D spectroradiometer (SR-5100) and two robot arms, one for the light and one for the sample.
+            The light and the camera are at finite distances, so every point on the sample sees a slightly different incidence and observation direction, and a single capture yields spectra for many angle combinations.
+            It is a restructured rewrite of the previous measurement system.
+          </p>
+          <ul>
+            <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them (forward kinematics and angle computation)</li>
+            <li>The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed</li>
+            <li>Each device has its own connection layer, and it is checked with a simulated robot and spectrometer only. Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">In progress</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Gaze Dodge -->
-      <article class="work flip" id="work-gaze">
+      <article class="work" id="work-gaze">
         <div class="media">
           <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -250,13 +277,6 @@
           <h3>Tetsu-Chari Tabi (in development)</h3>
           <p>A web app that plans trips built around getting off partway: trains are the trunk and bike share is the branches. Our team is developing it as the follow-up to Hamakoku, and we are also entering the Open Data Challenge for Public Transportation 2026.</p>
           <div class="tags"><span class="tag">In development</span><span class="tag">Team project</span></div>
-        </div>
-        <div class="card">
-          <h3>2D BRDF Measurement System</h3>
-          <p>A system that measures how a surface reflects light (its BRDF) with a 2D spectroradiometer and two robot arms (one for the light, one for the sample). The light and the camera are at finite distances, so every point on the sample sees a slightly different incidence and observation direction, and a single capture yields spectra for many angle combinations. The input is the arm poses, and the angle of each point is computed from them. It is a restructured rewrite of the previous measurement system.</p>
-          <p>So far: a CMake build with tests, forward kinematics and angle computation. The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed. It runs on simulated devices only; connecting the real hardware (DENSO RC8, TOPCON) comes next.</p>
-          <div class="tags"><span class="tag">C++</span><span class="tag">In progress</span><span class="tag">CMake</span></div>
-          <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
         <div class="card">
           <h3>raycast_game</h3>

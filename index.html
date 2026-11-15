@@ -83,7 +83,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品4つと、その他の制作物です。</p>
+      <p class="sub">主な作品5つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -197,8 +197,35 @@
         </div>
       </article>
 
+      <!-- 2D BRDF -->
+      <article class="work flip" id="work-brdf">
+        <div class="media">
+          <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計 SR-5100。サンプルは右のロボットアームが持っている" loading="lazy">
+        </div>
+        <div class="body">
+          <h3>2D BRDF Measurement System</h3>
+          <p class="tagline">分光放射計とロボットアーム2台で、物の表面の光の反射(BRDF)を測る計測システム / 開発中</p>
+          <p>
+            2次元の分光放射計(SR-5100)と、光源側とサンプル側の2台のロボットアームで、BRDF を測るシステムです。
+            光源とカメラは有限の距離にあるので、サンプルの場所ごとに入射と観測の向きが少しずつ違い、1回の撮影で多くの角度の組のスペクトルが得られます。
+            以前の計測システムを、整理し直して作り直しています。
+          </p>
+          <ul>
+            <li>入力はアームの姿勢で、サンプル上の各点の入射角と観測角は、そこから計算する(順運動学と角度計算)</li>
+            <li>以前のシステムの角度表(約35万行)と照合して一致を確認。以前の角度計算にあった、θ が 90° を超えると φ が 180° ずれる不具合も直した</li>
+            <li>機器ごとに接続の窓口を分け、模擬のロボットと分光器だけで動かして確かめている。実機(DENSO RC8、TOPCON)の接続は、これから</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">開発中</span>
+          </div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub で見る →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Gaze Dodge -->
-      <article class="work flip" id="work-gaze">
+      <article class="work" id="work-gaze">
         <div class="media">
           <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
           <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
@@ -252,13 +279,6 @@
           <h3>鉄チャリたび(開発中)</h3>
           <p>電車を幹、シェアサイクルを枝にして、途中下車を前提にした旅程を提案する Web アプリです。はまこくの次の作品として、チームで開発しています。「公共交通オープンデータチャレンジ2026」にも出場します。</p>
           <div class="tags"><span class="tag">開発中</span><span class="tag">チーム開発</span></div>
-        </div>
-        <div class="card">
-          <h3>2D BRDF Measurement System</h3>
-          <p>2次元の分光放射計と2台のロボットアーム(光源側とサンプル側)で、物の表面の光の反射の仕方(BRDF)を測る計測システムです。光源とカメラは有限の距離にあるので、サンプルの場所ごとに入射と観測の向きが少しずつ違い、1回の撮影で多くの角度の組のスペクトルが得られます。入力はアームの姿勢で、各点の角度はそこから計算します。以前の計測システムを、整理し直して作り直しています。</p>
-          <p>いまは、CMake化とテストの整備、順運動学と角度計算までが完成。以前のシステムの角度表(約35万行)と照合して、一致することを確かめました(以前の角度計算にあった、θが90°を超えると φ が180°ずれる不具合も直しました)。機器は模擬のものだけで動かしていて、実機(DENSO RC8、TOPCON)の接続は、これからです。</p>
-          <div class="tags"><span class="tag">C++</span><span class="tag">開発中</span><span class="tag">CMake</span></div>
-          <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
         <div class="card">
           <h3>raycast_game</h3>
