@@ -38,7 +38,7 @@
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
       I measured the color of gold with a spectroradiometer, studied how it differs when calculated with RGB, and built from scratch a 3D renderer that draws pictures by calculating light wavelength by wavelength.
-      The look of metal, glass, skin, hair and water can be adjusted by number, so it can also make images to show in vision experiments.
+      The look of metal, glass, skin, hair and water can be set with numbers, so it can also make images for vision experiments.
       I also made a game you control with your eyes, and built the backend of a transit app made by a team.
     </p>
     <div class="btns">
@@ -56,22 +56,22 @@
       <div class="grid">
         <div class="card">
           <h3>Build a 3D renderer from scratch</h3>
-          <p>In C++, I can build a program that calculates how light moves and draws a picture from it. The look of metal, glass, skin, hair and water can be adjusted by number, so it can also make images to show in vision experiments.</p>
+          <p>In C++, I can build a program that calculates how light moves and draws a picture from it. The look of metal, glass, skin, hair and water can be set with numbers, so it can also make images for vision experiments.</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
           <h3>Measure, then verify</h3>
-          <p>I measured real gold with a spectroradiometer and put the color difference from my rendered pictures into numbers. I add tests to what I build to check that it calculates correctly.</p>
+          <p>I measured gold with a spectroradiometer and quantified how much its color differs between calculating with RGB and calculating wavelength by wavelength. I add tests to what I build to check that it calculates correctly.</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
           <h3>Develop with eye tracking</h3>
-          <p>I can use data from an eye tracker (a Tobii Pro) to control a browser game. I also built a check of how accurate the measurement is, and a correction for the drift that blinks cause.</p>
+          <p>I can use data from an eye tracker (a Tobii Pro) to control a browser game. I also built a check of measurement error and a correction for the gaze drift that blinks cause.</p>
           <div class="links"><a href="#work-gaze">Gaze Dodge →</a></div>
         </div>
         <div class="card">
           <h3>Develop and run it as a team</h3>
-          <p>With a team of four, I developed the transit app Hamakoku over a year and a half, and we still run and improve it. I took the backend: in Node.js, I built the part that connects bus, train and bike-share data and finds the fastest way to get somewhere.</p>
+          <p>With a team of four, I developed the transit app Hamakoku over a year and a half, and we still run and improve it. I was in charge of the backend: in Node.js, I built the part that connects bus, train and bike-share data and finds the fastest way to get somewhere.</p>
           <div class="links"><a href="#work-hamakoku">Hamakoku →</a></div>
         </div>
       </div>
@@ -100,15 +100,14 @@
           <h3>GoLD_rayt</h3>
 <p class="tagline">A homemade 3D renderer that calculates light wavelength by wavelength, and sets the look of materials by number</p>
           <p>
-            A C++ program I started for my graduation research. I measured gold with a spectroradiometer and put into numbers how its color differs between calculating with
-            the three colors of RGB and calculating wavelength by wavelength (spectral). I then repeated that study in my own code, and now I keep building toward pictures that look closer to how people see.
+            A C++ program I started for my graduation research. I measured gold with a spectroradiometer and quantified how much its color differs between calculating wavelength by wavelength (spectral) and calculating with the three colors of RGB. I then repeated that study in my own code, and now I keep building toward pictures that look closer to how people see.
           </p>
           <p>
-            Refractive index, roughness, film thickness, melanin amount, the strength of the light at each wavelength and more are written as numbers.
-            With the settings fixed, the same image can be made again and again. This makes it a tool for creating images to show in vision experiments.
+            Refractive index, roughness, film thickness, melanin amount, the strength of the light at each wavelength and more are specified as numbers.
+            With the settings fixed, the same image can be made again and again. This also makes it a tool for creating images for vision experiments.
           </p>
           <ul>
-            <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (about 1 is visible, and 2 to 3 is clearly different). Under warm light, the RGB gold looks dull</li>
+            <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different). Under warm light, the RGB gold looks dull</li>
             <li>Comparing gold, copper and silver the same way, gold differs the most: up to 2.1 in daylight, growing to 12.7 after six reflections from metal to metal</li>
             <li>Material appearance from physical models: metals (including grooves and paint gloss), the rainbow colors of glass, the film of a soap bubble, translucency, skin (relief and wetness), hair, sea, fog and clouds</li>
             <li>Tests for each major part to check that it calculates correctly, with readability and reliability prioritized over speed</li>
@@ -138,7 +137,7 @@
         </div>
         <div class="body">
           <h3>Captured objects and 3D Gaussian Splatting</h3>
-          <p class="tagline">Bringing 3D made from photographs into GoLD_rayt and calculating its light / a feature of GoLD_rayt</p>
+          <p class="tagline">Bringing 3D made from photographs into GoLD_rayt and drawing it by calculating light / a feature of GoLD_rayt</p>
           <p>
             3D Gaussian Splatting (3DGS) reproduces "how a scene looked under that light" from photographs taken from many viewpoints. It holds no physical quantities such as reflectance or scattering, so it breaks when the light changes.
             So I built a way to bring captured 3D into GoLD_rayt.
@@ -146,7 +145,7 @@
           <ul>
             <li>A mesh (PLY, OBJ) from a scan or extracted from 3DGS is read as an ordinary object: it can be shown as photographed, or given gold, glass or any other material, under the same lights</li>
             <li>A 3DGS point cloud (<code>point_cloud.ply</code>) is ray-traced directly, as particles that emit light and also block it. A mirror or a glass ball placed in it reflects and refracts the captured room</li>
-            <li>A relighting study: the same statue was rendered as an opaque material and as wax (translucent), and a relightable 3DGS (Relightable 3D Gaussians) was trained on each. Lit by three other lights and compared with the renderer's picture under the same light, the wax was already off under the training light: the reconstruction brought back shading with 2.4 to 3.7 times the contrast of the smooth, pale truth (the opaque statue: 1.0 to 1.6 times). This agrees with earlier work reporting that the scattering of translucent objects gets baked into the surface color</li>
+            <li>A relighting study: the same statue was rendered as an opaque material and as wax (translucent), and a relightable 3DGS (Relightable 3D Gaussians) was trained on each. Re-lit under the training light and three others, and compared with the renderer's picture under the same light, the wax statue had shading with 2.4 to 3.7 times the contrast of the smooth, pale ground truth under every light (the opaque statue: 1.0 to 1.6 times). This agrees with earlier work reporting that the scattering of translucent objects gets baked into the surface color</li>
             <li>Tests for the particle rendering: the response of one particle, agreement with a closed form for rotated particles, the order of compositing, and agreement between the BVH and brute force</li>
           </ul>
           <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px renders, 120 training views and 8 test views per light, one training each; the second training stage was shortened to a fifth of its default.</p>
@@ -180,9 +179,9 @@
           <p class="role-label">My role (backend overall)</p>
           <ul>
             <li>The part that finds the shortest route: it splits the work by type of route, runs them at the same time, and returns up to 6 results in order of arrival time</li>
-            <li>The design of how the whole app is divided into parts: one gateway (adapter) per source of data, absorbing the differences in data formats between operators</li>
-            <li>A debugging system that works for any process, to trace the cause of a problem</li>
-            <li>Connecting to the screen side (the frontend)</li>
+            <li>The design of the app's overall structure: one gateway (adapter) per data source, absorbing the differences in data formats between operators</li>
+            <li>A debugging system, usable from any process, for tracing the cause of a problem</li>
+            <li>Integration with the frontend</li>
           </ul>
           <div class="tags">
             <span class="tag">Node.js</span><span class="tag">Express</span>
@@ -212,7 +211,7 @@
           <ul>
             <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them (forward kinematics and angle computation)</li>
             <li>The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed</li>
-            <li>Each device (robot and spectroradiometer) has its own connection layer, with simulated devices behind it. The simulated robot checks joint limits and arm-to-arm clearance, and the simulated spectroradiometer "measures" a known BRDF (Lambert or Phong). One full simulated pose runs, from moving the arms to the angles and spectra of each spot</li>
+            <li>Each device (robot and spectroradiometer) has its own connection layer, with simulated devices behind it. The simulated robot checks joint limits and arm-to-arm clearance, and the simulated spectroradiometer "measures" a known BRDF (Lambert or Phong). One full simulated pose runs end to end, from moving the arms to getting the angles and spectra of each spot</li>
             <li>Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
           </ul>
           <div class="tags">
@@ -251,7 +250,7 @@
         </div>
         <div class="body">
           <h3>Gaze Dodge</h3>
-          <p class="tagline">A browser dodging game where your gaze moves the player</p>
+          <p class="tagline">A browser game in which your gaze moves the player to dodge obstacles</p>
           <p>
             A game controlled by an eye tracker (a Tobii Pro). It can also be played with a webcam or a mouse.
             Browsers cannot connect to Tobii directly, so a Python program receives the gaze data and sends it to the browser.
@@ -318,7 +317,7 @@
       <div>
         <h2>About</h2>
         <p>
-          My nickname is Petrichor, a word for the smell of the road after rain.
+          My nickname is Petrichor, a word for the smell of dry earth when rain falls on it.
           I love the beautiful subjectivity, unique to each person, that comes from smell, scenery and multisensory perception.
           This interest leads to my current research and development aimed at a perception-based renderer.
         </p>
