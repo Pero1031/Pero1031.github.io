@@ -169,7 +169,7 @@
           </p>
           <ul>
             <li>刺激: Blender で、実験用の刺激画像を作る</li>
-            <li>実験: アイトラッカーで視線を記録しながら、画像を提示する実験プログラムを作る</li>
+            <li>実験: アイトラッカー(Tobii Pro Fusion)で視線を記録しながら、画像を提示する実験プログラムを作る</li>
             <li>解析: 実験で得たデータを、Python で解析する</li>
           </ul>
           <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
@@ -212,13 +212,13 @@
       <!-- 2D BRDF -->
       <article class="work" id="work-brdf">
         <div class="media">
-          <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計。サンプルは右のロボットアームが持っている" loading="lazy">
+          <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計(SR-5100)。サンプルは右のロボットアームが持っている" loading="lazy">
         </div>
         <div class="body">
           <h3>2D BRDF Measurement System</h3>
           <p class="tagline">分光放射計とロボットアーム2台で、物の表面の光の反射(BRDF)を測る計測システム / 開発中</p>
           <p>
-            2次元の分光放射計と、光源側とサンプル側の2台のロボットアームで、BRDF を測るシステムです。
+            2次元の分光放射計(SR-5100)と、光源側とサンプル側の2台のロボットアーム(DENSO VP-6242)で、BRDF を測るシステムです。
             光源とカメラは有限の距離にあるので、サンプルの場所ごとに入射と観測の向きが少しずつ違い、1回の撮影で多くの角度の組のスペクトルが得られます。
             以前の計測システムを、整理し直して作り直しています。
           </p>
@@ -266,7 +266,7 @@
           <h3>Gaze Dodge</h3>
           <p class="tagline">視線でプレイヤーを動かす、障害物よけブラウザゲーム</p>
           <p>
-            アイトラッカー(視線を測る機器)で操作するゲームです。Web カメラやマウスでも遊べます。
+            アイトラッカー(Tobii Pro)で操作するゲームです。Web カメラやマウスでも遊べます。
             ブラウザはアイトラッカーに直接つなげないため、Python のプログラムが視線を受け取り、ブラウザへ送る構成にしました。
           </p>
           <ul>
@@ -339,7 +339,7 @@
       <dl class="skills">
         <dt>言語</dt><dd>C++ / C / Python / JavaScript(Node.js)/ HTML・CSS</dd>
         <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光・質感表現)、3D Gaussian Splatting・NeRF、分光計測、視線計測、バックエンド開発</dd>
-        <dt>ツール</dt><dd>Visual Studio / VS Code / Git・GitHub / PyTorch / CUDA / Embree・Open Image Denoise / Dear ImGui / Blender / Mitsuba / 分光放射計(SR-5100)/ ロボットアーム / Tobii Pro SDK</dd>
+        <dt>ツール</dt><dd>Visual Studio / VS Code / Git・GitHub / PyTorch / CUDA / Embree・Open Image Denoise / Dear ImGui / Blender / Mitsuba / 分光放射計(SR-5100)/ ロボットアーム(DENSO VP-6242)/ アイトラッカー(Tobii Pro)</dd>
       </dl>
     </div>
   </section>
