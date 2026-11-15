@@ -253,8 +253,9 @@
         </div>
         <div class="card">
           <h3>2D BRDF Measurement System</h3>
-          <p>A prototype of a measuring system that uses a spectroradiometer and two robot arms (one for the light, one for the sample) to measure how a surface reflects light (its BRDF). Each device has its own connection layer, so behavior can be checked with simulated devices even without the real hardware.</p>
-          <div class="tags"><span class="tag">C++</span></div>
+          <p>A system that measures how a surface reflects light (its BRDF) with a 2D spectroradiometer and two robot arms (one for the light, one for the sample). The light and the camera are at finite distances, so every point on the sample sees a slightly different incidence and observation direction, and a single capture yields spectra for many angle combinations. The input is the arm poses, and the angle of each point is computed from them. It is a restructured rewrite of the previous measurement system.</p>
+          <p>So far: a CMake build with tests, forward kinematics and angle computation. The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed. It runs on simulated devices only; connecting the real hardware (DENSO RC8, TOPCON) comes next.</p>
+          <div class="tags"><span class="tag">C++</span><span class="tag">In progress</span><span class="tag">CMake</span></div>
           <div class="links"><a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub →</a></div>
         </div>
         <div class="card">
