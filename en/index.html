@@ -210,11 +210,11 @@
             It is a restructured rewrite of the previous measurement system.
           </p>
           <ul>
-            <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them (forward kinematics and angle computation)</li>
-            <li>The angles reproduce the previous system's tables (about 350,000 rows), and a bug in the old code that flipped φ by 180° when θ exceeded 90° is fixed</li>
-            <li>Measurements run end to end on a simulated robot and spectroradiometer, saving the angles and spectra of each spot as CSV. Settings are written in TOML files, and before anything moves, a pre-flight check finds joint-limit violations, arm collisions and spots where the light or camera is behind the surface</li>
-            <li>Calibration-board processing is implemented: circle-grid detection, a homography per pose (the mapping between the image and the paper), and reading and writing spot definition files (XML). On 13 real images from the previous system, the homographies match the saved ones to within 1 pixel at the corners of the paper. A simulated camera draws the board, so calibration through measurement can be tried end to end without hardware</li>
-            <li>Connecting the real hardware (DENSO RC8, TOPCON) and the BRDF analysis come next</li>
+            <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them. The results match the previous system's angle tables (about 350,000 rows)</li>
+            <li>The arm motion can be checked in a 3D animation, a single HTML file that opens in any browser. It shows the light, the sample, the camera's field of view and the light and viewing directions at each spot, and the arms turn red when they get too close. It is used to check behavior before moving the real arms</li>
+            <li>On a simulated robot and spectroradiometer, a run goes end to end, from calibration (circle-grid board) through measurement to BRDF analysis. Settings are written in TOML files, and before anything moves, a pre-flight check finds joint-limit violations and arm collisions</li>
+            <li>The analysis computes the BRDF from the radiance factor (sample divided by white plate). It can correct a systematic error of the previous system (about ±11%), and recovers the simulator's true glossy BRDF to within 1e-4</li>
+            <li>Connecting the real hardware (DENSO RC8, TOPCON) comes next</li>
           </ul>
           <div class="tags">
             <span class="tag">C++</span><span class="tag">CMake</span><span class="tag">In progress</span>
