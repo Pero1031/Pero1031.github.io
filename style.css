@@ -105,6 +105,8 @@ section .sub { color: var(--muted); margin: 0 0 32px; }
   border-radius: var(--radius); overflow: hidden; margin-bottom: 28px;
 }
 .work.flip .media { order: 2; }
+.work.text-only { grid-template-columns: 1fr; }
+.work.text-only .body { padding: 28px; }
 .work .media { background: var(--surface-2); min-height: 260px; }
 .work .media img, .work .media svg { width: 100%; height: 100%; object-fit: cover; }
 /* 縦に長い画像は切らずに全体を見せる(GoLD_rayt のヒーロー画像など) */
@@ -238,7 +240,7 @@ footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--m
 @media (max-width: 760px) {
   .work, .two { grid-template-columns: 1fr; }
   .work.flip .media { order: 0; }
-  .work .body, .work.flip .body { padding: 22px; }
+  .work .body, .work.flip .body, .work.text-only .body { padding: 22px; }
   .work .media { min-height: 200px; }
   nav a { margin-left: 11px; font-size: 13px; }
   nav a.lang { font-size: 11px; padding: 4px 8px; }

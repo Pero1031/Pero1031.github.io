@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=13">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 
@@ -84,7 +84,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品6つと、その他の制作物です。</p>
+      <p class="sub">主な作品7つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -227,11 +227,31 @@
             <li>アームの動きを、ブラウザで開ける3Dアニメーション(HTML 1枚)で確認できる。光源、サンプル、カメラの視野、各点の入射と観測の向きを表示し、アーム同士が近づきすぎると赤くなる。実機を動かす前の動作確認に使う</li>
             <li>模擬のロボットと分光放射計で、校正(円格子ボード)から測定、BRDF の解析まで通しで実行できる。設定は TOML ファイルに書き、動かす前に、関節の範囲とアームの衝突を検査する</li>
             <li>解析は、放射輝度率(試料÷白色板)から BRDF を求める。以前のシステムの系統誤差(約±11%)を補正でき、模擬の光沢 BRDF を誤差 1e-4 以内で復元する</li>
-            <li>実機(ロボットアームと分光放射計)の接続は、これから</li>
+            <li>実機を動かすドライバ(ロボットアームと分光放射計)は書き上げた。速度の上限、確認画面、衝突検査などの安全の仕組みを付け、模擬の機器で動作を確認済み。実機での試験は、これから</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">GitHub で見る →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- brdfkit -->
+      <article class="work text-only" id="work-brdfkit">
+        <div class="body">
+          <h3>brdfkit</h3>
+          <p class="tagline">実測のBRDFデータを読み込み、圧縮・解析するツール集</p>
+          <p>
+            公開されている実測のBRDFデータ(MERL、KAIST の偏光BRDF)を読み込み、レンダラーで使える形に圧縮し、物理量に分けて調べる Python のツールです。
+          </p>
+          <ul>
+            <li>13 GB の偏光BRDF(アルミ)を、主成分分析で 231 MB に圧縮した。C++ のヘッダ1枚で読み込め、GoLD_rayt の素材として組み込める形にした(それを使ったレンダリングは、これから)</li>
+            <li>偏光(ミュラー行列)を、二色性・リターダンス・偏光解消に分解し、フレネルの式と比べた。測定したアルミのリターダンスは、アルミに約20 nm の膜(自然酸化膜を想定)があるモデルでよく説明できた</li>
+            <li>MERL の100材質を、材質をまたいで主成分分析した。5成分で分散の96%を説明するが、レンダリングに十分な精度には16〜32成分が必要だった</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Mueller Matrix</span><span class="tag">PCA</span><span class="tag">Data Compression</span><span class="tag">C++</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/brdfkit" target="_blank" rel="noopener">GitHub で見る →</a>
           </div>
         </div>
       </article>

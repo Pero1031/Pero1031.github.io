@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=13">
+  <link rel="stylesheet" href="../style.css?v=14">
 </head>
 <body>
 
@@ -83,7 +83,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Six main projects, and a few other things I have made.</p>
+      <p class="sub">Seven main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -225,11 +225,31 @@
             <li>The arm motion can be checked in a 3D animation, a single HTML file that opens in any browser. It shows the light, the sample, the camera's field of view and the light and viewing directions at each spot, and the arms turn red when they get too close. It is used to check behavior before moving the real arms</li>
             <li>On a simulated robot and spectroradiometer, a run goes end to end, from calibration (circle-grid board) through measurement to BRDF analysis. Settings are written in TOML files, and before anything moves, a pre-flight check finds joint-limit violations and arm collisions</li>
             <li>The analysis computes the BRDF from the radiance factor (sample divided by white plate). It can correct a systematic error of the previous system (about ±11%), and recovers the simulator's true glossy BRDF to within 1e-4</li>
-            <li>Connecting the real hardware (the robot arms and the spectroradiometer) comes next</li>
+            <li>The drivers for the real hardware (the robot arms and the spectroradiometer) are written. They come with safety measures such as a speed limit, a confirmation screen and collision checks, and have been tested on simulated devices. Trying them on the real hardware comes next</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/2D_BRDF_Measurement_System" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- brdfkit -->
+      <article class="work text-only" id="work-brdfkit">
+        <div class="body">
+          <h3>brdfkit</h3>
+          <p class="tagline">Tools to load, compress and analyze measured BRDF data</p>
+          <p>
+            Python tools that load published measured BRDF data (MERL, KAIST polarimetric BRDF), compress it into a form a renderer can use, and break it down into physical quantities.
+          </p>
+          <ul>
+            <li>A 13 GB polarimetric BRDF (aluminum) is compressed to 231 MB by principal component analysis. A single C++ header reads it, and it is packaged as a material for GoLD_rayt (rendering with it comes next)</li>
+            <li>The polarization (Mueller matrix) is split into diattenuation, retardance and depolarization and compared with the Fresnel equations. The measured aluminum's retardance is explained well by a model of aluminum with a film about 20 nm thick (assumed to be the native oxide)</li>
+            <li>The 100 MERL materials are analyzed together by principal component analysis. Five components explain 96% of the variance, but rendering-grade accuracy needs 16 to 32</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Mueller Matrix</span><span class="tag">PCA</span><span class="tag">Data Compression</span><span class="tag">C++</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/brdfkit" target="_blank" rel="noopener">View on GitHub →</a>
           </div>
         </div>
       </article>
