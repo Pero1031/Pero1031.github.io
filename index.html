@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pero Portfolio</title>
+  <title>So Kohinata Portfolio</title>
   <meta name="description" content="3Dレンダラー、3D Gaussian Splatting、チームでの乗換アプリ開発の作品集。">
   <meta name="theme-color" content="#0c0d10">
   <link rel="alternate" hreflang="ja" href="https://pero1031.github.io/">
@@ -11,13 +11,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="#top">Pero</a>
+    <a class="brand" href="#top">So Kohinata</a>
     <nav>
       <a href="#works">Works</a>
       <a href="#gallery">Gallery</a>
@@ -237,7 +237,11 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work text-only" id="work-brdfkit">
+      <article class="work flip" id="work-brdfkit">
+        <div class="media">
+          <img class="contain" src="assets/brdfkit-leather.webp" width="1240" height="432" alt="同じ牛革を、2通りで描いた2枚。左はつや消し、右は半つやのクリアコートつき。表面の細かい凹凸に光が当たっている" loading="lazy">
+          <p class="credit">実験室の2次元分光放射計で測った牛革を、GoLD_rayt で描いたもの。左はつや消し、右は半つやのクリアコートつき。</p>
+        </div>
         <div class="body">
           <h3>brdfkit</h3>
           <p class="tagline">実測のBRDFデータを読み込み、圧縮・解析するツール集</p>
@@ -245,7 +249,7 @@
             公開されている実測のBRDFデータ(MERL、KAIST の偏光BRDF)を読み込み、レンダラーで使える形に圧縮し、物理量に分けて調べる Python のツールです。
           </p>
           <ul>
-            <li>13 GB の偏光BRDF(アルミ)を、主成分分析で 231 MB に圧縮した。C++ のヘッダ1枚で読み込め、GoLD_rayt の素材として組み込める形にした(それを使ったレンダリングは、これから)</li>
+            <li>13 GB の偏光BRDF(アルミ)を、主成分分析で 231 MB に圧縮した。C++ のヘッダ1枚で読み込め、GoLD_rayt の素材として組み込める形にした(GoLD_rayt でレンダリングできる)</li>
             <li>偏光(ミュラー行列)を、二色性・リターダンス・偏光解消に分解し、フレネルの式と比べた。測定したアルミのリターダンスは、アルミに約20 nm の膜(自然酸化膜を想定)があるモデルでよく説明できた</li>
             <li>MERL の100材質を、材質をまたいで主成分分析した。5成分で分散の96%を説明するが、レンダリングに十分な精度には16〜32成分が必要だった</li>
           </ul>
@@ -257,7 +261,7 @@
       </article>
 
       <!-- Gaze Dodge -->
-      <article class="work flip" id="work-gaze">
+      <article class="work" id="work-gaze">
         <div class="media">
           <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
           <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
@@ -379,7 +383,7 @@
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Pero</div>
+  <div class="wrap">© 2026 So Kohinata</div>
 </footer>
 
 </body>
