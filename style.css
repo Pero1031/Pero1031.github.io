@@ -143,6 +143,18 @@ section .sub { color: var(--muted); margin: 0 0 32px; }
 
 /* ---------- small cards ---------- */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.grid.five { grid-template-columns: repeat(6, 1fr); }
+.grid.five .card { grid-column: span 2; }
+.grid.five .card:nth-child(n+4) { grid-column: span 3; }
+@media (max-width: 900px) {
+  .grid.five { grid-template-columns: repeat(2, 1fr); }
+  .grid.five .card, .grid.five .card:nth-child(n+4) { grid-column: auto; }
+  .grid.five .card:last-child { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+  .grid.five { grid-template-columns: 1fr; }
+  .grid.five .card:last-child { grid-column: auto; }
+}
 .card {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: var(--radius); padding: 22px;

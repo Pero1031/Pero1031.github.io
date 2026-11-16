@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css?v=16">
+  <link rel="stylesheet" href="../style.css?v=17">
 </head>
 <body>
 
@@ -37,10 +37,11 @@
     <h1><span class="ph">Measure the physics,</span> <span class="ph">decode perception,</span> <span class="ph">create the picture.</span></h1>
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      I measured the color of gold with a spectroradiometer and studied how it differs when calculated with RGB. That led me to build, from scratch, a 3D renderer that draws pictures by calculating light wavelength by wavelength.
-      The look of metal, glass, skin, hair and water can be set with numbers, so it can also make images for vision experiments.
-      It also takes in 3D made from photographs (3D Gaussian Splatting): in a relighting study, I compared against the renderer's ground-truth images and found that the results drift for translucent objects.
-      I also developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
+      I measured the color of gold with a spectroradiometer and studied how it looks when light is approximated with three colors (RGB) versus calculated wavelength by wavelength.
+      That led me to build, from scratch, a ray-tracing 3D renderer that calculates light wavelength by wavelength.
+      The look of metal, glass, skin and hair can be set with numbers, and it can also make images for vision experiments.
+      It also takes in 3D made from photographs or renders (3D Gaussian Splatting): in a relighting study, I compared against the renderer's ground-truth images and found that translucent objects are not reproduced well.
+      Separately from my research, I developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">See my works</a>
@@ -53,29 +54,34 @@
   <section id="can-do">
     <div class="wrap">
       <h2>What I can do</h2>
-      <p class="sub">Four things I can do, together with the work behind them.</p>
-      <div class="grid">
+      <p class="sub">Five things I can do, together with the work behind them.</p>
+      <div class="grid five">
         <div class="card">
-          <h3>Build a 3D renderer from scratch</h3>
-          <p>In C++, I can build a program that calculates how light moves and draws a picture from it. The look of metal, glass, skin, hair and water can be set with numbers, so it can also make images for vision experiments.</p>
+          <h3>Measure the physics, and verify it</h3>
+          <p>From measuring how a surface reflects light with a spectroradiometer and robot arms, to writing the analysis program, I can carry it through as one flow. I am still rebuilding and extending the measurement system I used in my graduation research.</p>
+          <div class="links"><a href="#work-brdf">2D BRDF →</a></div>
+        </div>
+        <div class="card">
+          <h3>Decode perception through experiments</h3>
+          <p>Through eye tracking and psychophysics experiments, I study how the look of a material appears to people. I carry it from preparing the images to analyzing the data.</p>
+          <div class="links"><a href="#work-thesis">Master's research →</a></div>
+        </div>
+        <div class="card">
+          <h3>Calculate light, create the picture</h3>
+          <p>I built, from scratch in C++, a renderer that calculates light wavelength by wavelength. The look of metal, glass, skin and hair can be set with numbers, and it can also make images for vision experiments.</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
-          <h3>Measure, then verify</h3>
-          <p>I measured gold with a spectroradiometer and quantified how much its color differs between calculating with RGB and calculating wavelength by wavelength. I add tests to what I build to check that it calculates correctly.</p>
-          <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
-        </div>
-        <div class="card">
-          <h3>Work with 3D made from photographs</h3>
-          <p>I can bring 3D made with 3D Gaussian Splatting into my own renderer and redraw it with different materials and lights. I also trained a relightable 3DGS model and checked how accurately it reproduces new lighting.</p>
+          <h3>Bring the latest papers into my own software</h3>
+          <p>I read English papers, brought 3D Gaussian Splatting into my own renderer, and checked how well the relit results match the renderer's ground-truth images.</p>
           <div class="links"><a href="#work-3dgs">3DGS →</a></div>
         </div>
         <div class="card">
-          <h3>Develop and run it as a team</h3>
-          <p>With a team of four, I developed the transit app Hamakoku over a year and a half, and we still run and improve it. I was in charge of the backend: in Node.js, I built the part that connects bus, train and bike-share data and finds the fastest way to get somewhere.</p>
+          <h3>Build together, and keep going</h3>
+          <p>With a team of four, I developed the transit app Hamakoku over a year and a half: starting from research and requirements, dividing roles in weekly meetings, and reflecting together. I was in charge of the backend, and while we keep running it, we are building our next app, Tetsu-Chari Tabi.</p>
           <div class="links"><a href="#work-hamakoku">Hamakoku →</a></div>
         </div>
-      </div>
+            </div>
     </div>
   </section>
 

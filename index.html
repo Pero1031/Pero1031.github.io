@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 
@@ -38,10 +38,11 @@
     <!-- 英文は「Veni, vidi, vici(来た、見た、勝った)」へのオマージュ。主語を省いた三つの過去形で、日本語の三句(測る・知覚する・創る)に対応させている -->
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      金の色を分光放射計で測り、RGB で計算した場合との違いを調べたことから、光を波長ごとに計算して絵を描く3Dレンダラーを、一から作りました。
-      金属、ガラス、肌、髪、水の質感を数値で変えられ、視覚実験用の画像も作れます。
-      さらに、写真から作った3D(3D Gaussian Splatting)も取り込めます。照明を変えて再現する検証では、このレンダラーの正解画像と比べて、半透明な物で結果がずれることを確かめました。
-      ほかに、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。
+      金の色を分光放射計で測り、光の色を赤・緑・青の3つで近似する一般的な方法(RGB)と、波長ごとに細かく計算する方法とで、見え方がどう違うかを調べました。
+      それをきっかけに、光を波長ごとに計算して絵を描く、レイトレーシングの3Dレンダラーを、0から作りました。
+      金属、ガラス、肌、髪などの質感を数値で変えられ、視覚実験用の画像も作れます。
+      さらに、写真やレンダリングから作った3D(3D Gaussian Splatting)も取り込めます。照明を変えて再現する検証では、このレンダラーの正解画像と比べ、半透明な物では見え方をうまく再現できないことを確かめました。
+      研究とは別に、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、現在も運用しています。
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">作品を見る</a>
@@ -54,29 +55,34 @@
   <section id="can-do">
     <div class="wrap">
       <h2>What I can do</h2>
-      <p class="sub">私にできることを、作品とあわせて4つにまとめました。</p>
-      <div class="grid">
+      <p class="sub">私にできることを、作品とあわせて5つにまとめました。</p>
+      <div class="grid five">
         <div class="card">
-          <h3>3Dレンダラーを一から作る</h3>
-          <p>C++ で、光の動きを計算して絵を描くプログラムを作れます。金属、ガラス、肌、髪、水の質感を数値で細かく変えられるので、視覚の実験で見せる画像も作れます。</p>
+          <h3>物理を測り、確かめる</h3>
+          <p>分光放射計とロボットアームで物の光の反射を測るところから、解析のプログラムを作るところまで、ひとつながりで進められます。卒業研究で使った計測システムを、いまも作り直して発展させています。</p>
+          <div class="links"><a href="#work-brdf">2D BRDF →</a></div>
+        </div>
+        <div class="card">
+          <h3>知覚を、実験で解く</h3>
+          <p>視線の計測や心理物理の実験で、物の質感が人にどう見えるかを調べています。画像づくりから、データの解析まで、自分で進めます。</p>
+          <div class="links"><a href="#work-thesis">修士研究 →</a></div>
+        </div>
+        <div class="card">
+          <h3>光を計算して、絵を創る</h3>
+          <p>光の動きを波長ごとに計算して絵を描くレンダラーを、C++ で0から作りました。金属、ガラス、肌、髪の質感を数値で変えられ、視覚実験用の画像も作れます。</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
-          <h3>測って、確かめる</h3>
-          <p>金を分光放射計で測り、波長ごとに計算した場合と RGB で計算した場合とで、色がどれだけ違うかを数値にしました。作ったものには、正しく動くかを確かめるテストを付けます。</p>
-          <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
-        </div>
-        <div class="card">
-          <h3>写真から作った3Dを扱う</h3>
-          <p>3D Gaussian Splatting で作った3Dを、自作のレンダラーに取り込み、材質や照明を変えて描き直せます。照明を変えられる 3DGS の学習と、その精度の検証も行いました。</p>
+          <h3>最新の論文を、自作のソフトにつなぐ</h3>
+          <p>英語の論文を読んで 3D Gaussian Splatting を取り込み、自作のレンダラーの正解画像と比べて、照明を変えた結果を検証しました。</p>
           <div class="links"><a href="#work-3dgs">3DGS →</a></div>
         </div>
         <div class="card">
-          <h3>チームで開発して、運用する</h3>
-          <p>4人のチームで乗換アプリ「はまこく」を1年半開発し、いまも運用と改良を続けています。私はバックエンドを担当し、バス・電車・シェアサイクルのデータをつないで、一番早い行き方を探す部分を、Node.js で作りました。</p>
+          <h3>仲間と作り、続ける</h3>
+          <p>4人で乗換アプリ「はまこく」を1年半開発しました。調査と要件の整理から始め、毎週の会議で役割を分担し、振り返りを重ねています。私はバックエンドを担当し、いまは運用を続けながら、次のアプリ「鉄チャリたび」も作っています。</p>
           <div class="links"><a href="#work-hamakoku">はまこく →</a></div>
         </div>
-      </div>
+            </div>
     </div>
   </section>
 
