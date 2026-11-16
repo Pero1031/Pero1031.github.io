@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pero1031.github.io/sitemap.xml
