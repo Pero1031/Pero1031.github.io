@@ -124,13 +124,13 @@
             A C++ program I started for my graduation research. I measured gold with a spectroradiometer and quantified how much its color differs between calculating wavelength by wavelength (spectral) and calculating with the three colors of RGB. I then repeated that study in my own code, and now I keep building toward pictures that look closer to how people see.
           </p>
           <p>
-            Refractive index, roughness, film thickness, melanin amount, the strength of the light at each wavelength and more are specified as numbers.
-            With the settings fixed, the same image can be made again and again. This also makes it a tool for creating images for vision experiments.
+            Refractive index, roughness and more are specified as numbers, and with the settings fixed, the same image can be made again and again. It also works as a tool for creating images for vision experiments.
           </p>
           <ul>
             <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different). Under warm light, the RGB gold looks dull</li>
-            <li>Comparing gold, copper and silver the same way, gold differs the most: up to 2.1 in daylight, growing to 12.7 after six reflections from metal to metal</li>
-            <li>Material appearance from physical models: metals (including grooves and paint gloss), the rainbow colors of glass, the film of a soap bubble, translucency, skin (relief and wetness), hair, sea, fog and clouds</li>
+            <li>Material appearance from physical models: metals, glass, soap-bubble films, translucency, skin, hair, sea, fog and clouds</li>
+            <li>Measured data can be used as materials: it reads leather measured with a spectroradiometer and published measured BRDF tables</li>
+            <li>By also tracing light from the light source side, it can draw the patterns light makes through glass and rainbows in fog</li>
             <li>Tests for each major part to check that it calculates correctly, with readability and reliability prioritized over speed</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">Bidirectional Path Tracing</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
