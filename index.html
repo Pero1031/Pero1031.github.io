@@ -54,7 +54,7 @@
     <p class="lead">
       金の色を分光放射計で測り、光を RGB の3色で計算すると、波長ごとに計算した場合とどれだけ色が違うかを調べました。
       それをきっかけに、光を波長ごとに計算する3Dレンダラーを C++ で0から作り、いまは、測る(BRDF の計測)、見え方を調べる(視覚実験)、描く(レンダラー)を、ひとつながりで進めています。
-      写真から作った3D(3D Gaussian Splatting)も取り込み、照明を変えたときにどこまで再現できるかを、自作のレンダラーの正解画像で確かめました。
+      3D Gaussian Splatting を PyTorch で一から実装し、照明を変えたときや光沢のある面でどこまで再現できるかを、自作のレンダラーの正解画像で確かめました。
       研究とは別に、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。
     </p>
     <div class="btns">
@@ -87,8 +87,8 @@
         </div>
         <div class="card">
           <h3>最新の論文を、自作のソフトにつなぐ</h3>
-          <p>論文を読んで 3D Gaussian Splatting を取り込み、自作のレンダラーの正解画像で、照明を変えたときの限界を確かめました。</p>
-          <div class="links"><a href="#work-3dgs">3DGS →</a></div>
+          <p>論文を読んで 3D Gaussian Splatting を PyTorch で一から実装し、自作のレンダラーの正解画像で、照明の変化や光沢面での限界を確かめました。</p>
+          <div class="links"><a href="#work-3dgs">3DGS 再照明 →</a><a href="#work-3dgs-toy">3DGS 実装 →</a></div>
         </div>
         <div class="card">
           <h3>仲間と作り、続ける</h3>
@@ -103,7 +103,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品6つと、その他の制作物です。</p>
+      <p class="sub">主な作品7つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -170,8 +170,40 @@
         </div>
       </article>
 
+      <!-- 3DGS from scratch -->
+      <article class="work" id="work-3dgs-toy">
+        <div class="media">
+          <img class="contain" src="assets/gs-gloss-test.webp" width="570" height="660" alt="金の像と、同じ色の拡散面の像を、学習に使っていない視点から描いた図。正解、3DGS、誤差(4倍に強調)を並べている" loading="lazy">
+          <p class="credit">
+            上段は金、下段は拡散面。左から、正解(レンダラーの絵)、3DGS、誤差(4倍に強調)。<br>
+            Model: Erato by Geoffrey Marchal (© 2016,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>)。
+            <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a> より。
+            変更: 材質の適用と、レンダリング。
+          </p>
+        </div>
+        <div class="body">
+          <h3>3D Gaussian Splatting のスクラッチ実装と、崩れる条件の検証</h3>
+          <p class="tagline">3DGS を PyTorch で一から書き、光沢面と動くシーンで、どこがなぜ崩れるかを正解と突き合わせて調べた</p>
+          <p>
+            外部の 3DGS ライブラリは使わず、公式の実装では CUDA で書かれている微分可能ラスタライザも PyTorch で書きました。
+            GoLD_rayt で描いた正解画像や、動きの式が分かっているデータと比べて、どこがなぜ崩れるかを調べています。
+          </p>
+          <ul>
+            <li>金の像は、形と照明が同じ拡散面の像より、PSNR が 16〜17 dB 低い。学習に使った視点でも同じくらい悪いので、原因は新しい視点への汎化ではなく、表現力の不足だった</li>
+            <li>照明を点の間で共有するモデルと、遅延シェーディングも試した。照明は正しく復元できたが、相互反射(観測の 38%)と、画素より細かい凹凸が残り、通常の 3DGS の表し方(球面調和関数)を超えられなかった</li>
+            <li>動くシーン(4DGS)を表す3つの方法を、動きの式が分かっているデータで比べた。動きが小さいときは変形場が 2 dB 上、大きいときは時刻つきのガウシアンが 8 dB 上で、得意なところが逆になる</li>
+          </ul>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/3dgs-toy" target="_blank" rel="noopener">GitHub で見る →</a>
+            <a href="https://github.com/Pero1031/3dgs-toy#%E5%AE%9F%E9%A8%93" target="_blank" rel="noopener">光沢面と動くシーンの検証(GitHub)→</a>
+          </div>
+        </div>
+      </article>
+
       <!-- 修士研究 -->
-      <article class="work" id="work-thesis">
+      <article class="work flip" id="work-thesis">
         <div class="media">
           <img class="contain" src="assets/research-light-ja.webp" width="1400" height="929" alt="同じ素材の物体を、正面からの光と真後ろからの光で描いた2枚の図。正面からでは白く濁って見え、真後ろからでは明るく光ってつやが目立つ" loading="lazy">
         </div>
@@ -192,7 +224,7 @@
       </article>
 
       <!-- 乗り換えアプリ -->
-      <article class="work flip" id="work-hamakoku">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="assets/hamakokuex-form.webp" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
@@ -224,7 +256,7 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work" id="work-brdf">
+      <article class="work flip" id="work-brdf">
         <div class="media">
           <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計(SR-5100)。サンプルは右のロボットアームが持っている" loading="lazy">
         </div>
@@ -249,7 +281,7 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work flip" id="work-brdfkit">
+      <article class="work" id="work-brdfkit">
         <div class="media">
           <img class="contain" src="assets/brdfkit-leather.webp" width="1240" height="432" alt="同じ牛革を、2通りで描いた2枚。左はつや消し、右は半つやのクリアコートつき。表面の細かい凹凸に光が当たっている" loading="lazy">
           <img class="contain" src="assets/gallery/gilt_leather.webp" width="1240" height="432" alt="同じ牛革に金属の箔を貼って、昼光とランプの光で描いた2枚。各図の左半分は金箔、右半分は黄色いニスをかけた銀箔で、2つはよく似ている" loading="lazy">

@@ -53,7 +53,7 @@
     <p class="lead">
       I measured the color of gold with a spectroradiometer and studied how much it changes when light is calculated with three colors (RGB) instead of wavelength by wavelength.
       That led me to build, from scratch in C++, a 3D renderer that calculates light wavelength by wavelength, and I now work on measuring (BRDF measurement), studying how things look (vision experiments) and drawing (the renderer) as one line of work.
-      It also takes in 3D made from photographs (3D Gaussian Splatting), and I checked how far relighting it holds up against the renderer's ground-truth images.
+      I also implemented 3D Gaussian Splatting from scratch in PyTorch and checked, against my renderer's ground-truth images, how far it holds up when the light changes and on glossy surfaces.
       Separately from my research, I developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
     </p>
     <div class="btns">
@@ -86,8 +86,8 @@
         </div>
         <div class="card">
           <h3>Bring the latest papers into my own software</h3>
-          <p>I read the papers, brought 3D Gaussian Splatting into my own renderer, and used its ground-truth images to find where relighting breaks down.</p>
-          <div class="links"><a href="#work-3dgs">3DGS →</a></div>
+          <p>I read the papers, implemented 3D Gaussian Splatting from scratch in PyTorch, and used my renderer's ground-truth images to find where it breaks under new lighting and on glossy surfaces.</p>
+          <div class="links"><a href="#work-3dgs">3DGS relighting →</a><a href="#work-3dgs-toy">3DGS from scratch →</a></div>
         </div>
         <div class="card">
           <h3>Build together, and keep going</h3>
@@ -102,7 +102,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Six main projects, and a few other things I have made.</p>
+      <p class="sub">Seven main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -169,8 +169,40 @@
         </div>
       </article>
 
+      <!-- 3DGS from scratch -->
+      <article class="work" id="work-3dgs-toy">
+        <div class="media">
+          <img class="contain" src="../assets/gs-gloss-test.webp" width="570" height="660" alt="A gold statue and a diffuse statue of the same color, seen from a view not used in training. The ground truth, the 3DGS render and the error (x4) are shown side by side" loading="lazy">
+          <p class="credit">
+            Top row: gold; bottom row: diffuse. From the left: the ground truth (a render), 3DGS, and the error (x4).<br>
+            Model: Erato by Geoffrey Marchal (© 2016,
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
+            From <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a>.
+            Modifications: materials applied and rendered.
+          </p>
+        </div>
+        <div class="body">
+          <h3>3D Gaussian Splatting from scratch, and where it breaks</h3>
+          <p class="tagline">3DGS written from scratch in PyTorch, then checked against ground truth to find where, and why, it breaks on glossy surfaces and moving scenes</p>
+          <p>
+            I wrote it in PyTorch without any external 3DGS library, including the differentiable rasterizer that the official implementation writes in CUDA.
+            I compare it with ground-truth images rendered by GoLD_rayt, and with data whose motion is known exactly, to find where and why it breaks.
+          </p>
+          <ul>
+            <li>A gold statue scores 16 to 17 dB lower in PSNR than a diffuse statue of the same shape under the same lights. It is just as bad on the training views, so the cause is a lack of expressive power, not poor generalization to new views</li>
+            <li>I also tried a model that shares the lighting across points, and deferred shading. The lighting was recovered correctly, but interreflection (38% of the observations) and bumps finer than a pixel remained, so neither beat the plain 3DGS representation (spherical harmonics)</li>
+            <li>I compared three representations of moving scenes (4DGS) on data whose motion is known. With small motion the deformation field is 2 dB ahead; with large motion, Gaussians that carry their own time are 8 dB ahead, so their strengths are reversed</li>
+          </ul>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/3dgs-toy" target="_blank" rel="noopener">View on GitHub →</a>
+            <a href="https://github.com/Pero1031/3dgs-toy#%E5%AE%9F%E9%A8%93" target="_blank" rel="noopener">Glossy surfaces and moving scenes (GitHub) →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Master's research -->
-      <article class="work" id="work-thesis">
+      <article class="work flip" id="work-thesis">
         <div class="media">
           <img class="contain" src="../assets/research-light-en.webp" width="1400" height="891" alt="The same object drawn with light from the front and with light from directly behind. With front light it looks white and cloudy; with light from behind it looks bright, with strong gloss" loading="lazy">
         </div>
@@ -191,7 +223,7 @@
       </article>
 
       <!-- Transit app -->
-      <article class="work flip" id="work-hamakoku">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="../assets/hamakokuex-form.webp" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
@@ -223,7 +255,7 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work" id="work-brdf">
+      <article class="work flip" id="work-brdf">
         <div class="media">
           <img src="../assets/brdf-system.webp" width="785" height="603" alt="Two robot arms, one for the light and one for the sample, in a dark room, with the spectroradiometer (SR-5100) in the foreground. The sample is held by the right arm" loading="lazy">
         </div>
@@ -248,7 +280,7 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work flip" id="work-brdfkit">
+      <article class="work" id="work-brdfkit">
         <div class="media">
           <img class="contain" src="../assets/brdfkit-leather.webp" width="1240" height="432" alt="The same cowhide rendered two ways: matte on the left, with a satin clear coat on the right. The fine grain catches the light" loading="lazy">
           <img class="contain" src="../assets/gallery/gilt_leather.webp" width="1240" height="432" alt="The same cowhide with metal leaf on the raised grain, under daylight and under a lamp. In each picture the left half is gold leaf and the right half is silver leaf under a yellow varnish, and the two look alike" loading="lazy">
