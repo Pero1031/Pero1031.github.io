@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>So Kohinata Portfolio</title>
-  <meta name="description" content="Portfolio: a 3D renderer, 3D Gaussian Splatting and a team-built transit app.">
+  <meta name="description" content="Portfolio: a spectral renderer, 3D Gaussian Splatting, BRDF measurement, vision experiments on material perception, and a team-built transit app.">
   <link rel="canonical" href="https://pero1031.github.io/en/">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="So Kohinata Portfolio">
   <meta property="og:title" content="So Kohinata Portfolio">
-  <meta property="og:description" content="Portfolio: a 3D renderer, 3D Gaussian Splatting and a team-built transit app.">
+  <meta property="og:description" content="Portfolio: a spectral renderer, 3D Gaussian Splatting, BRDF measurement, vision experiments on material perception, and a team-built transit app.">
   <meta property="og:url" content="https://pero1031.github.io/en/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://pero1031.github.io/assets/ogp.jpg">
@@ -51,10 +51,9 @@
     <h1><span class="ph">Measure the physics,</span> <span class="ph">decode perception,</span> <span class="ph">create the picture.</span></h1>
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      I measured the color of gold with a spectroradiometer and studied how it looks when light is approximated with three colors (RGB) versus calculated wavelength by wavelength.
-      That led me to build, from scratch, a ray-tracing 3D renderer that calculates light wavelength by wavelength.
-      The look of metal, glass, skin and hair can be set with numbers, and it can also make images for vision experiments.
-      It also takes in 3D made from photographs or renders (3D Gaussian Splatting): in a relighting study, I compared against the renderer's ground-truth images and found that translucent objects are not reproduced well.
+      I measured the color of gold with a spectroradiometer and studied how much it changes when light is calculated with three colors (RGB) instead of wavelength by wavelength.
+      That led me to build, from scratch in C++, a 3D renderer that calculates light wavelength by wavelength, and I now work on measuring (BRDF measurement), studying how things look (vision experiments) and drawing (the renderer) as one line of work.
+      It also takes in 3D made from photographs (3D Gaussian Splatting), and I checked how far relighting it holds up against the renderer's ground-truth images.
       Separately from my research, I developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
     </p>
     <div class="btns">
@@ -72,27 +71,27 @@
       <div class="grid five">
         <div class="card">
           <h3>Measure the physics, and verify it</h3>
-          <p>From measuring how a surface reflects light with a spectroradiometer and robot arms, to writing the analysis program, I can carry it through as one flow. I am still rebuilding and extending the measurement system I used in my graduation research.</p>
-          <div class="links"><a href="#work-brdf">2D BRDF →</a></div>
+          <p>I measure how surfaces reflect light with a spectroradiometer and robot arms, and I check published measured data against the physics before using it.</p>
+          <div class="links"><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
         </div>
         <div class="card">
           <h3>Decode perception through experiments</h3>
-          <p>Through eye tracking and psychophysics experiments, I study how the look of a material appears to people. I carry it from preparing the images to analyzing the data.</p>
+          <p>With eye tracking and psychophysics experiments, I study which cues people use to perceive translucent materials.</p>
           <div class="links"><a href="#work-thesis">Master's research →</a></div>
         </div>
         <div class="card">
           <h3>Calculate light, create the picture</h3>
-          <p>I built, from scratch in C++, a renderer that calculates light wavelength by wavelength. The look of metal, glass, skin and hair can be set with numbers, and it can also make images for vision experiments.</p>
+          <p>I built, from scratch in C++, a renderer that calculates light wavelength by wavelength.</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
           <h3>Bring the latest papers into my own software</h3>
-          <p>I read English papers, brought 3D Gaussian Splatting into my own renderer, and checked how well the relit results match the renderer's ground-truth images.</p>
+          <p>I read the papers, brought 3D Gaussian Splatting into my own renderer, and used its ground-truth images to find where relighting breaks down.</p>
           <div class="links"><a href="#work-3dgs">3DGS →</a></div>
         </div>
         <div class="card">
           <h3>Build together, and keep going</h3>
-          <p>With a team of four, I developed the transit app Hamakoku over a year and a half: starting from research and requirements, dividing roles in weekly meetings, and reflecting together. I was in charge of the backend, and while we keep running it, we are building our next app, Tetsu-Chari Tabi.</p>
+          <p>With a team of four, I developed a transit app over a year and a half, in charge of the backend, and we still run it. Our next app is in development.</p>
           <div class="links"><a href="#work-hamakoku">Hamakoku →</a></div>
         </div>
             </div>
@@ -103,7 +102,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Seven main projects, and a few other things I have made.</p>
+      <p class="sub">Six main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -121,22 +120,20 @@
           <h3>GoLD_rayt</h3>
 <p class="tagline">A homemade 3D renderer that calculates light wavelength by wavelength, and sets the look of materials by number</p>
           <p>
-            A C++ program I started for my graduation research. I measured gold with a spectroradiometer and quantified how much its color differs between calculating wavelength by wavelength (spectral) and calculating with the three colors of RGB. I then repeated that study in my own code, and now I keep building toward pictures that look closer to how people see.
-          </p>
-          <p>
-            Refractive index, roughness and more are specified as numbers, and with the settings fixed, the same image can be made again and again. It also works as a tool for creating images for vision experiments.
+            In my graduation research, I measured gold with a spectroradiometer and quantified how much its color differs between calculating wavelength by wavelength (spectral) and calculating with the three colors of RGB.
+            I started this renderer to repeat that study in my own code, and I keep building it toward pictures that look closer to how people see.
           </p>
           <ul>
-            <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different). Under warm light, the RGB gold looks dull</li>
-            <li>Material appearance from physical models: metals, glass, soap-bubble films, translucency, skin, hair, sea, fog and clouds</li>
-            <li>Measured data can be used as materials: it reads leather measured with a spectroradiometer and published measured BRDF tables</li>
-            <li>By also tracing light from the light source side, it can draw the patterns light makes through glass and rainbows in fog</li>
-            <li>Tests for each major part to check that it calculates correctly, with readability and reliability prioritized over speed</li>
+            <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different)</li>
+            <li>An sRGB display can hide this difference, but only when the RGB renderer also works in sRGB. Once the image is white balanced, as a photograph would be, the difference under candlelight grows about fourfold (color difference 14) and no display hides it</li>
+            <li>It also simulates the camera: lenses with the glasses of their original patents, exposure set by f-number, shutter time and ISO, sensor noise, and raw (DNG) output. A common raw library (LibRaw) develops the DNG to within 1% of the renderer's colors</li>
+            <li>Metals, glass, soap-bubble films, translucency, skin, hair and fog, and measured BRDFs can be used as materials</li>
           </ul>
-          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">Bidirectional Path Tracing</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
             <a href="gallery.html">View the gallery →</a>
             <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">View on GitHub →</a>
+            <a href="https://github.com/Pero1031/GoLD_ray/blob/main/docs/METAL_ACCURACY.md" target="_blank" rel="noopener">The color-difference study (GitHub) →</a>
           </div>
         </div>
       </article>
@@ -161,15 +158,13 @@
             So I built a way to bring captured 3D into GoLD_rayt.
           </p>
           <ul>
-            <li>A mesh (PLY, OBJ) from a scan or extracted from 3DGS is read as an ordinary object: it can be shown as photographed, or given gold, glass or any other material, under the same lights</li>
-            <li>A 3DGS point cloud (<code>point_cloud.ply</code>) is ray-traced directly, as particles that emit light and also block it. A mirror or a glass ball placed in it reflects and refracts the captured room</li>
-            <li>A relighting study: the same statue was rendered as an opaque material and as wax (translucent), and a relightable 3DGS (Relightable 3D Gaussians) was trained on each. Re-lit under the training light and three others, and compared with the renderer's picture under the same light, the wax statue had shading with 2.4 to 3.7 times the contrast of the smooth, pale ground truth under every light (the opaque statue: 1.0 to 1.6 times). This agrees with earlier work reporting that the scattering of translucent objects gets baked into the surface color</li>
-            <li>Tests for the particle rendering: the response of one particle, agreement with a closed form for rotated particles, the order of compositing, and agreement between the BVH and brute force</li>
+            <li>It reads 3DGS particles, or meshes extracted from them, and draws them as photographed or with gold, glass or any other material, under the same lights</li>
+            <li>The particles are ray-traced directly, so a mirror or a glass ball placed among them reflects and refracts the captured room</li>
+            <li>I trained a relightable 3DGS and compared it with the renderer's ground truth. The shading contrast was 1.0 to 1.6 times the ground truth for the opaque statue, but 2.4 to 3.7 times, far too strong, for the wax (translucent) statue. The scattering of translucent objects gets baked into the surface color, as earlier work reported. How translucent objects look is also the subject of my master's research</li>
           </ul>
-          <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px renders, 120 training views and 8 test views per light, one training each; the second training stage was shortened to a fifth of its default.</p>
           <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
-            <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">View on GitHub →</a>
+            <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">Setup and details (GitHub) →</a>
           </div>
         </div>
       </article>
@@ -180,17 +175,18 @@
           <img class="contain" src="../assets/research-light-en.webp" width="1400" height="891" alt="The same object drawn with light from the front and with light from directly behind. With front light it looks white and cloudy; with light from behind it looks bright, with strong gloss" loading="lazy">
         </div>
         <div class="body">
-          <h3>Master's research: a vision experiment on material perception</h3>
-          <p class="tagline">Studying how the material of an object looks to people, with eye tracking and controlled stimuli</p>
+          <h3>Master's research: the cues behind translucent appearance</h3>
+          <p class="tagline">Vision experiments on the cues people use to perceive translucent materials</p>
           <p>
-            A vision-experiment study of how the material of an object looks to people. I handle everything from creating the stimuli and building the experiment program, including eye tracking, to analyzing the data.
+            A study of which cues people use to perceive translucent materials. The aim is to apply what it finds to lighter-weight material transfer and to AI that judges materials more like people do.
+            I handle everything from creating the stimuli and building the experiment program, including eye tracking, to analyzing the data.
           </p>
           <ul>
             <li>Stimuli: creating the stimulus images with Blender</li>
             <li>Experiment: building an experiment program that presents images while recording gaze with an eye tracker (Tobii Pro Fusion)</li>
             <li>Analysis: analyzing the experimental data in Python</li>
           </ul>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">Translucency</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
         </div>
       </article>
 
@@ -216,7 +212,6 @@
             <li>The part that finds the shortest route: it splits the work by type of route, runs them at the same time, and returns up to 6 results in order of arrival time</li>
             <li>The design of the app's overall structure: one gateway (adapter) per data source, absorbing the differences in data formats between operators</li>
             <li>A debugging system, usable from any process, for tracing the cause of a problem</li>
-            <li>Integration with the frontend</li>
           </ul>
           <div class="tags"><span class="tag">JavaScript</span><span class="tag">Backend</span><span class="tag">Route Search</span><span class="tag">Open Data (ODPT, GBFS)</span><span class="tag">Team Development</span><span class="tag">Node.js</span><span class="tag">Express</span></div>
           <div class="links">
@@ -241,11 +236,9 @@
             It is a restructured rewrite of the previous measurement system.
           </p>
           <ul>
-            <li>The input is the arm poses, and the incidence and observation angles of each point on the sample are computed from them. The results match the previous system's angle tables (about 350,000 rows)</li>
-            <li>The arm motion can be checked in a 3D animation, a single HTML file that opens in any browser. It shows the light, the sample, the camera's field of view and the light and viewing directions at each spot, and the arms turn red when they get too close. It is used to check behavior before moving the real arms</li>
-            <li>On a simulated robot and spectroradiometer, a run goes end to end, from calibration (circle-grid board) through measurement to BRDF analysis. Settings are written in TOML files, and before anything moves, a pre-flight check finds joint-limit violations and arm collisions</li>
-            <li>The analysis computes the BRDF from the radiance factor (sample divided by white plate). It can correct a systematic error of the previous system (about ±11%), and recovers the simulator's true glossy BRDF to within 1e-4</li>
-            <li>The drivers for the real hardware (the robot arms and the spectroradiometer) are written. They come with safety measures such as a speed limit, a confirmation screen and collision checks, and have been tested on simulated devices. Trying them on the real hardware comes next</li>
+            <li>The incidence and observation angles of each point on the sample are computed from the arm poses. The results match the previous system's angle tables (about 350,000 rows)</li>
+            <li>On simulated devices, a run goes end to end, from calibration through measurement to BRDF analysis. It corrects a systematic error of the previous system (about ±11%) and recovers a simulated BRDF to within 1e-4</li>
+            <li>The drivers for the real hardware and their safety measures (speed limit, collision checks, abort) are written, and the arm motion can be checked beforehand in a 3D animation in the browser. Trying them on the real hardware comes next</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
@@ -263,62 +256,19 @@
         </div>
         <div class="body">
           <h3>brdfkit</h3>
-          <p class="tagline">Tools to load, compress and analyze measured BRDF data</p>
+          <p class="tagline">Tools that check published measured BRDF data against the physics and turn it into something a renderer can use</p>
           <p>
-            Python tools that load published measured BRDF data (MERL, KAIST polarimetric BRDF), compress it into a form a renderer can use, and break it down into physical quantities.
+            Python tools that load, compress and analyze published measured BRDF data (MERL, KAIST polarimetric BRDF, and hpBRDF by Moon et al., SIGGRAPH Asia 2025). Before using the data, I check whether it is physically right.
           </p>
           <ul>
-            <li>A 13 GB polarimetric BRDF (aluminum) is compressed to 231 MB by principal component analysis. A single C++ header reads it, and it is packaged as a material for GoLD_rayt (rendering with it comes next)</li>
-            <li>The polarization (Mueller matrix) is split into diattenuation, retardance and depolarization and compared with the Fresnel equations. The measured aluminum's retardance is explained well by a model of aluminum with a film about 20 nm thick (assumed to be the native oxide)</li>
-            <li>The 100 MERL materials are analyzed together by principal component analysis. Five components explain 96% of the variance, but rendering-grade accuracy needs 16 to 32</li>
+            <li>Across eight hpBRDF materials, I collected ten ways the tables depart from the physics, worth knowing before using them. For example, the absolute scale cannot be taken as is: the specular reflection carries 0.47 (at 20°) to 0.08 (at 75°) of the energy the Fresnel equations give. Using the black glass in the data set as a reference, it can be corrected up to about 50°</li>
+            <li>A 13 GB polarimetric BRDF (aluminum) is compressed to 231 MB by principal component analysis. A single C++ header reads it, and GoLD_rayt can use it as a material</li>
+            <li>A measured material can be split into lobe shape, color and polarization and recombined into materials that were never measured. Keeping aluminum's lobe and taking the color and polarization of gold or steel matches the measured luminance and color within 3%</li>
           </ul>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Mueller Matrix</span><span class="tag">PCA</span><span class="tag">Data Compression</span><span class="tag">C++</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Calibration</span><span class="tag">PCA</span><span class="tag">C++</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/brdfkit" target="_blank" rel="noopener">View on GitHub →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Gaze Dodge -->
-      <article class="work" id="work-gaze">
-        <div class="media">
-          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of Gaze Dodge: the player moves to where you look, and obstacles fall from above" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0" stop-color="#e0b25a" stop-opacity=".35"/>
-                <stop offset="1" stop-color="#e0b25a" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="640" height="400" fill="#10131a"/>
-            <g fill="#2a2f3b">
-              <rect x="70"  y="50"  width="56" height="56" rx="8" transform="rotate(12 98 78)"/>
-              <rect x="210" y="130" width="44" height="44" rx="8" transform="rotate(-18 232 152)"/>
-              <rect x="380" y="40"  width="64" height="64" rx="8" transform="rotate(25 412 72)"/>
-              <rect x="520" y="150" width="50" height="50" rx="8" transform="rotate(-8 545 175)"/>
-              <rect x="300" y="215" width="40" height="40" rx="8" transform="rotate(30 320 235)"/>
-            </g>
-            <circle cx="360" cy="320" r="90" fill="url(#glow)"/>
-            <circle cx="360" cy="320" r="46" fill="none" stroke="#e0b25a" stroke-width="1.5" stroke-dasharray="4 5"/>
-            <line x1="360" y1="262" x2="360" y2="378" stroke="#e0b25a" stroke-opacity=".5"/>
-            <line x1="302" y1="320" x2="418" y2="320" stroke="#e0b25a" stroke-opacity=".5"/>
-            <circle cx="360" cy="320" r="14" fill="#e0b25a"/>
-          </svg>
-        </div>
-        <div class="body">
-          <h3>Gaze Dodge</h3>
-          <p class="tagline">A browser game in which your gaze moves the player to dodge obstacles</p>
-          <p>
-            A game controlled by an eye tracker (Tobii Pro). It can also be played with a webcam or a mouse.
-            Browsers cannot connect to an eye tracker directly, so a Python program receives the gaze data and sends it to the browser.
-          </p>
-          <ul>
-            <li>Sends gaze data, measured 120 times a second, to the game right away. It corrects gaze drift caused by blinks, and pauses the game while the gaze is lost</li>
-            <li>Identifies the player from the distance between their eyes (interpupillary distance), asks "Are you ○○?", and records scores in a ranking</li>
-            <li>A screen that works with gaze alone: look at a button for one second to press it</li>
-          </ul>
-          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Eye Tracking</span><span class="tag">Gaze Interaction</span><span class="tag">Real-time Streaming</span><span class="tag">Eye Tracker (Tobii Pro)</span><span class="tag">WebSocket</span></div>
-          <div class="links">
-            <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">View on GitHub →</a>
+            <a href="https://github.com/Pero1031/brdfkit/blob/main/docs/QUIRKS.md" target="_blank" rel="noopener">How the data departs from physics (GitHub) →</a>
           </div>
         </div>
       </article>

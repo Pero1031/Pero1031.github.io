@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>So Kohinata Portfolio</title>
-  <meta name="description" content="3Dレンダラー、3D Gaussian Splatting、チームでの乗換アプリ開発の作品集。">
+  <meta name="description" content="分光レンダラー、3D Gaussian Splatting、BRDF の計測、質感の視覚実験、チームでの乗換アプリ開発の作品集。">
   <link rel="canonical" href="https://pero1031.github.io/">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="So Kohinata Portfolio">
   <meta property="og:title" content="So Kohinata Portfolio">
-  <meta property="og:description" content="3Dレンダラー、3D Gaussian Splatting、チームでの乗換アプリ開発の作品集。">
+  <meta property="og:description" content="分光レンダラー、3D Gaussian Splatting、BRDF の計測、質感の視覚実験、チームでの乗換アプリ開発の作品集。">
   <meta property="og:url" content="https://pero1031.github.io/">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:image" content="https://pero1031.github.io/assets/ogp.jpg">
@@ -52,11 +52,10 @@
     <!-- 英文は「Veni, vidi, vici(来た、見た、勝った)」へのオマージュ。主語を省いた三つの過去形で、日本語の三句(測る・知覚する・創る)に対応させている -->
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      金の色を分光放射計で測り、光の色を赤・緑・青の3つで近似する一般的な方法(RGB)と、波長ごとに細かく計算する方法とで、見え方がどう違うかを調べました。
-      それをきっかけに、光を波長ごとに計算して絵を描く、レイトレーシングの3Dレンダラーを、0から作りました。
-      金属、ガラス、肌、髪などの質感を数値で変えられ、視覚実験用の画像も作れます。
-      さらに、写真やレンダリングから作った3D(3D Gaussian Splatting)も取り込めます。照明を変えて再現する検証では、このレンダラーの正解画像と比べ、半透明な物では見え方をうまく再現できないことを確かめました。
-      研究とは別に、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、現在も運用しています。
+      金の色を分光放射計で測り、光を RGB の3色で計算すると、波長ごとに計算した場合とどれだけ色が違うかを調べました。
+      それをきっかけに、光を波長ごとに計算する3Dレンダラーを C++ で0から作り、いまは、測る(BRDF の計測)、見え方を調べる(視覚実験)、描く(レンダラー)を、ひとつながりで進めています。
+      写真から作った3D(3D Gaussian Splatting)も取り込み、照明を変えたときにどこまで再現できるかを、自作のレンダラーの正解画像で確かめました。
+      研究とは別に、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">作品を見る</a>
@@ -73,27 +72,27 @@
       <div class="grid five">
         <div class="card">
           <h3>物理を測り、確かめる</h3>
-          <p>分光放射計とロボットアームで物の光の反射を測るところから、解析のプログラムを作るところまで、ひとつながりで進められます。卒業研究で使った計測システムを、いまも作り直して発展させています。</p>
-          <div class="links"><a href="#work-brdf">2D BRDF →</a></div>
+          <p>分光放射計とロボットアームで物の反射を測り、公開されている実測データも、物理の式と照らして確かめてから使います。</p>
+          <div class="links"><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
         </div>
         <div class="card">
           <h3>知覚を、実験で解く</h3>
-          <p>視線の計測や心理物理の実験で、物の質感が人にどう見えるかを調べています。画像づくりから、データの解析まで、自分で進めます。</p>
+          <p>半透明な物の質感を、人がどんな手がかりで感じ取っているかを、視線の計測と心理物理の実験で調べています。</p>
           <div class="links"><a href="#work-thesis">修士研究 →</a></div>
         </div>
         <div class="card">
           <h3>光を計算して、絵を創る</h3>
-          <p>光の動きを波長ごとに計算して絵を描くレンダラーを、C++ で0から作りました。金属、ガラス、肌、髪の質感を数値で変えられ、視覚実験用の画像も作れます。</p>
+          <p>光を波長ごとに計算して絵を描くレンダラーを、C++ で0から作りました。</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
           <h3>最新の論文を、自作のソフトにつなぐ</h3>
-          <p>英語の論文を読んで 3D Gaussian Splatting を取り込み、自作のレンダラーの正解画像と比べて、照明を変えた結果を検証しました。</p>
+          <p>論文を読んで 3D Gaussian Splatting を取り込み、自作のレンダラーの正解画像で、照明を変えたときの限界を確かめました。</p>
           <div class="links"><a href="#work-3dgs">3DGS →</a></div>
         </div>
         <div class="card">
           <h3>仲間と作り、続ける</h3>
-          <p>4人で乗換アプリ「はまこく」を1年半開発しました。調査と要件の整理から始め、毎週の会議で役割を分担し、振り返りを重ねています。私はバックエンドを担当し、いまは運用を続けながら、次のアプリ「鉄チャリたび」も作っています。</p>
+          <p>4人で乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。次のアプリも開発中です。</p>
           <div class="links"><a href="#work-hamakoku">はまこく →</a></div>
         </div>
             </div>
@@ -104,7 +103,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品7つと、その他の制作物です。</p>
+      <p class="sub">主な作品6つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -122,23 +121,20 @@
           <h3>GoLD_rayt</h3>
           <p class="tagline">光を波長ごとに計算して、質感を数値で作り分ける、自作の3Dレンダラー</p>
           <p>
-            卒業研究のために作り始めた、C++ のプログラムです。分光放射計で金を測り、波長ごとに計算する方法(分光)と、
-            画面と同じ RGB の3色で計算する方法とで、色がどれだけ違うかを数値にしました。その研究を自分のコードで再現し、いまは、人の見え方に近い絵を描くことを目指して作り続けています。
-          </p>
-          <p>
-            屈折率や粗さなどを数値で指定でき、設定を固定すれば、同じ画像を何度でも作れます。視覚の実験で見せる画像を作る道具としても使えます。
+            卒業研究で、分光放射計で金を測り、波長ごとに計算する方法(分光)と、RGB の3色で計算する方法とで、色がどれだけ違うかを調べました。
+            その研究を自分のコードで再現するために作り始め、いまは、人の見え方に近い絵を描くことを目指して作り続けています。
           </p>
           <ul>
-            <li>金の彫像を2つの方法で描き比べると、色の違いは、昼の光で平均 1.7、白熱電球の光で 2.6(1 で見分けられ、2〜3 ではっきり違う目安)。暖かい光の下では、RGB の金がくすんで見える</li>
-            <li>質感を物理のモデルで描き分け: 金属、ガラス、シャボン玉の膜、半透明、肌、髪、海、霧と雲</li>
-            <li>実測データを材質として使える: 分光放射計で測った革や、公開されている実測の BRDF 表を読み込んで描ける</li>
-            <li>光を光源側からもたどる手法で、ガラスを通した光の模様や、霧の中の虹も描ける</li>
-            <li>主な部分ごとに、正しく計算できているかを確かめるテストを用意。速度より、読みやすさと確かさを優先</li>
+            <li>金の彫像を2つの方法で描き比べると、色の違いは、昼の光で平均 1.7、白熱電球の光で 2.6(1 で見分けられ、2〜3 ではっきり違う目安)</li>
+            <li>この違いは sRGB の画面では見えなくなることがあるが、それは計算と画面が同じ sRGB の色空間のときだけ。写真のようにホワイトバランスをかけると、ろうそくの光の下で違いは約4倍(色差 14)になり、どの画面でも隠れない</li>
+            <li>カメラも再現: 特許の設計値どおりのレンズ、F値・シャッター速度・ISO による露出、センサーのノイズ、RAW(DNG)の書き出し。書き出した RAW は、一般的な現像ライブラリ(LibRaw)で現像しても、色が 1% 以内で一致する</li>
+            <li>金属、ガラス、シャボン玉の膜、半透明、肌、髪、霧に加え、実測の BRDF も材質として使える</li>
           </ul>
-          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Material Appearance</span><span class="tag">Bidirectional Path Tracing</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
             <a href="gallery.html">ギャラリーを見る →</a>
             <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">GitHub で見る →</a>
+            <a href="https://github.com/Pero1031/GoLD_ray/blob/main/docs/METAL_ACCURACY.md" target="_blank" rel="noopener">色の違いの検証(GitHub)→</a>
           </div>
         </div>
       </article>
@@ -163,15 +159,13 @@
             そこで GoLD_rayt に、撮影から作った3Dを取り込む仕組みを作りました。
           </p>
           <ul>
-            <li>スキャンや3DGSから取り出したメッシュ(PLY、OBJ)を読み込み、撮影のままの見た目でも、金やガラスなど好きな材質に差し替えても、同じ照明の下で描ける</li>
-            <li>3DGSの粒子(<code>point_cloud.ply</code>)を、光を出して遮る粒子として直接経路追跡する。その中に鏡やガラス玉を置くと、撮影した部屋が映り、屈折する</li>
-            <li>再照明の検証: 同じ像を、不透明な材質とロウ(半透明)で描き、それぞれに照明を変えられる3DGS(Relightable 3D Gaussians)を学習した。学習時の照明と別の3つの照明で描き直し、同じ照明でレンダラーが描いた絵と比べると、ロウの像は、どの照明でも、なめらかで淡い正解の2.4〜3.7倍のコントラストの陰影になった(不透明な像は1.0〜1.6倍)。半透明な物の散乱が表面の色に焼き込まれてしまうという、先行研究の報告と合っている</li>
-            <li>粒子の描画は、1粒子の応答、回転した粒子の閉じた式との一致、粒子の合成の順、BVHと総当たりの一致などのテストを用意</li>
+            <li>3DGS の粒子や、そこから取り出したメッシュを読み込み、撮影のままの見た目でも、金やガラスに差し替えても、同じ照明の下で描ける</li>
+            <li>粒子をそのまま光線で追跡するので、中に置いた鏡やガラス玉に、撮影した部屋が映り込み、屈折する</li>
+            <li>照明を変えられる 3DGS を学習し、レンダラーの正解と比べた。陰影のコントラストは、不透明な像では正解の 1.0〜1.6 倍、ロウ(半透明)の像では 2.4〜3.7 倍と強く出すぎた。半透明な物の散乱が表面の色に焼き込まれるためで、先行研究の報告と合っている。半透明な物の見え方は、修士研究のテーマでもある</li>
           </ul>
-          <p class="credit-note" style="font-size:12.5px;color:var(--muted)">256 px の絵、1つの照明につき学習120枚・テスト8枚、学習は1回ずつ。2段階目の学習は標準の1/5に短縮。</p>
           <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
-            <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">GitHub で見る →</a>
+            <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">検証の条件と詳細(GitHub)→</a>
           </div>
         </div>
       </article>
@@ -182,17 +176,18 @@
           <img class="contain" src="assets/research-light-ja.webp" width="1400" height="929" alt="同じ素材の物体を、正面からの光と真後ろからの光で描いた2枚の図。正面からでは白く濁って見え、真後ろからでは明るく光ってつやが目立つ" loading="lazy">
         </div>
         <div class="body">
-          <h3>修士研究: 質感の知覚を調べる視覚実験</h3>
-          <p class="tagline">物の質感が人にどう見えるかを、視線計測と、統制した刺激で調べる</p>
+          <h3>修士研究: 半透明の質感は、何を手がかりに見えているか</h3>
+          <p class="tagline">半透明な物の質感を、人はどんな手がかりで感じ取っているのかを、視覚実験で調べる</p>
           <p>
-            物の質感が人にどう見えるかを調べる、視覚実験の研究です。刺激の作成から、視線計測を含む実験プログラム、データの解析まで、一通りを自分で行っています。
+            半透明な物の質感を、人はどんな手がかりで感じ取っているのかを調べる研究です。その知見を、計算量の少ない質感の変換や、人に近い判断をする AI に応用することを目指しています。
+            刺激の作成から、視線計測を含む実験プログラム、データの解析まで、一通りを自分で行っています。
           </p>
           <ul>
             <li>刺激: Blender で、実験用の刺激画像を作る</li>
             <li>実験: アイトラッカー(Tobii Pro Fusion)で視線を記録しながら、画像を提示する実験プログラムを作る</li>
             <li>解析: 実験で得たデータを、Python で解析する</li>
           </ul>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">Translucency</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
         </div>
       </article>
 
@@ -218,7 +213,6 @@
             <li>最短経路を探す部分。行き方のパターンごとに処理を分けて同時に実行し、着くのが早い順に最大6件を返す</li>
             <li>アプリ全体の部品の分け方の設計。データの取得元ごとに窓口(adapter)を分け、事業者ごとのデータ形式の違いを、そこで吸収する</li>
             <li>どの処理にも使える、不具合の原因を追う仕組み(デバッグシステム)</li>
-            <li>画面側(フロントエンド)との接続</li>
           </ul>
           <div class="tags"><span class="tag">JavaScript</span><span class="tag">Backend</span><span class="tag">Route Search</span><span class="tag">Open Data (ODPT, GBFS)</span><span class="tag">Team Development</span><span class="tag">Node.js</span><span class="tag">Express</span></div>
           <div class="links">
@@ -243,11 +237,9 @@
             以前の計測システムを、整理し直して作り直しています。
           </p>
           <ul>
-            <li>入力はアームの姿勢で、サンプル上の各点の入射角と観測角は、そこから計算する。以前のシステムの角度表(約35万行)と一致を確認した</li>
-            <li>アームの動きを、ブラウザで開ける3Dアニメーション(HTML 1枚)で確認できる。光源、サンプル、カメラの視野、各点の入射と観測の向きを表示し、アーム同士が近づきすぎると赤くなる。実機を動かす前の動作確認に使う</li>
-            <li>模擬のロボットと分光放射計で、校正(円格子ボード)から測定、BRDF の解析まで通しで実行できる。設定は TOML ファイルに書き、動かす前に、関節の範囲とアームの衝突を検査する</li>
-            <li>解析は、放射輝度率(試料÷白色板)から BRDF を求める。以前のシステムの系統誤差(約±11%)を補正でき、模擬の光沢 BRDF を誤差 1e-4 以内で復元する</li>
-            <li>実機を動かすドライバ(ロボットアームと分光放射計)は書き上げた。速度の上限、確認画面、衝突検査などの安全の仕組みを付け、模擬の機器で動作を確認済み。実機での試験は、これから</li>
+            <li>アームの姿勢から、サンプル上の各点の入射角と観測角を計算する。以前のシステムの角度表(約35万行)と一致を確認した</li>
+            <li>模擬の機器で、校正から測定、BRDF の解析まで通しで動く。以前のシステムの系統誤差(約 ±11%)を補正でき、模擬の BRDF を誤差 1e-4 以内で復元する</li>
+            <li>実機のドライバと安全の仕組み(速度の上限、衝突の検査、中止)は完成し、アームの動きはブラウザの3Dアニメーションで事前に確かめられる。実機での試験はこれから</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
@@ -265,63 +257,19 @@
         </div>
         <div class="body">
           <h3>brdfkit</h3>
-          <p class="tagline">実測のBRDFデータを読み込み、圧縮・解析するツール集</p>
+          <p class="tagline">公開されている実測の BRDF データを、物理の式と照らして確かめ、レンダラーで使える形にするツール</p>
           <p>
-            公開されている実測のBRDFデータ(MERL、KAIST の偏光BRDF)を読み込み、レンダラーで使える形に圧縮し、物理量に分けて調べる Python のツールです。
+            公開されている実測の BRDF データ(MERL、KAIST の偏光 BRDF、Moon ら SIGGRAPH Asia 2025 の hpBRDF)を読み込み、圧縮・解析する Python のツールです。データを使う前に、物理的に正しいかを確かめることを重視しています。
           </p>
           <ul>
-            <li>13 GB の偏光BRDF(アルミ)を、主成分分析で 231 MB に圧縮した。C++ のヘッダ1枚で読み込め、GoLD_rayt の素材として組み込める形にした(GoLD_rayt でレンダリングできる)</li>
-            <li>偏光(ミュラー行列)を、二色性・リターダンス・偏光解消に分解し、フレネルの式と比べた。測定したアルミのリターダンスは、アルミに約20 nm の膜(自然酸化膜を想定)があるモデルでよく説明できた</li>
-            <li>MERL の100材質を、材質をまたいで主成分分析した。5成分で分散の96%を説明するが、レンダリングに十分な精度には16〜32成分が必要だった</li>
+            <li>hpBRDF の8材質を調べ、使う前に知っておきたい、物理の式とのずれを10項目にまとめた。たとえば絶対値はそのままでは使えず、鏡面反射の強さは、フレネルの式から決まる値の 0.47 倍(角度 20°)〜0.08 倍(75°)だった。データに含まれる黒ガラスを基準にして、50° くらいまで補正できるようにした</li>
+            <li>13 GB の偏光 BRDF(アルミ)を、主成分分析で 231 MB に圧縮した。C++ のヘッダ1枚で読み込め、GoLD_rayt の素材として使える</li>
+            <li>測った材質を「反射の形・色・偏光」に分けて組み替え、測っていない材質を作れる。アルミの反射の形のまま、色と偏光を金や鋼に替えると、実測の明るさと色に 3% 以内で合う</li>
           </ul>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Mueller Matrix</span><span class="tag">PCA</span><span class="tag">Data Compression</span><span class="tag">C++</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Calibration</span><span class="tag">PCA</span><span class="tag">C++</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/brdfkit" target="_blank" rel="noopener">GitHub で見る →</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Gaze Dodge -->
-      <article class="work" id="work-gaze">
-        <div class="media">
-          <!-- TODO: 実際のプレイ画面のスクリーンショット/GIF に差し替える(assets/gaze-dodge.gif など) -->
-          <svg viewBox="0 0 640 400" role="img" aria-label="Gaze Dodge のイメージ図: 視線の位置にプレイヤーが動き、上から障害物が降ってくる" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-                <stop offset="0" stop-color="#e0b25a" stop-opacity=".35"/>
-                <stop offset="1" stop-color="#e0b25a" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="640" height="400" fill="#10131a"/>
-            <g fill="#2a2f3b">
-              <rect x="70"  y="50"  width="56" height="56" rx="8" transform="rotate(12 98 78)"/>
-              <rect x="210" y="130" width="44" height="44" rx="8" transform="rotate(-18 232 152)"/>
-              <rect x="380" y="40"  width="64" height="64" rx="8" transform="rotate(25 412 72)"/>
-              <rect x="520" y="150" width="50" height="50" rx="8" transform="rotate(-8 545 175)"/>
-              <rect x="300" y="215" width="40" height="40" rx="8" transform="rotate(30 320 235)"/>
-            </g>
-            <circle cx="360" cy="320" r="90" fill="url(#glow)"/>
-            <circle cx="360" cy="320" r="46" fill="none" stroke="#e0b25a" stroke-width="1.5" stroke-dasharray="4 5"/>
-            <line x1="360" y1="262" x2="360" y2="378" stroke="#e0b25a" stroke-opacity=".5"/>
-            <line x1="302" y1="320" x2="418" y2="320" stroke="#e0b25a" stroke-opacity=".5"/>
-            <circle cx="360" cy="320" r="14" fill="#e0b25a"/>
-          </svg>
-        </div>
-        <div class="body">
-          <h3>Gaze Dodge</h3>
-          <p class="tagline">視線でプレイヤーを動かす、障害物よけブラウザゲーム</p>
-          <p>
-            アイトラッカー(Tobii Pro)で操作するゲームです。Web カメラやマウスでも遊べます。
-            ブラウザはアイトラッカーに直接つなげないため、Python のプログラムが視線を受け取り、ブラウザへ送る構成にしました。
-          </p>
-          <ul>
-            <li>1秒に120回測る視線を、すぐにゲームへ送る。瞬きでずれる視線の補正と、視線を見失ったあいだの停止も作った</li>
-            <li>両目の間隔(瞳孔間距離)から「○○さんですか?」と本人確認し、ランキングに記録</li>
-            <li>ボタンは1秒見つめると押せる、視線だけで操作が完結する画面</li>
-          </ul>
-          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Eye Tracking</span><span class="tag">Gaze Interaction</span><span class="tag">Real-time Streaming</span><span class="tag">Eye Tracker (Tobii Pro)</span><span class="tag">WebSocket</span></div>
-          <div class="links">
-            <a href="https://github.com/Pero1031/gaze-dodge" target="_blank" rel="noopener">GitHub で見る →</a>
+            <a href="https://github.com/Pero1031/brdfkit/blob/main/docs/QUIRKS.md" target="_blank" rel="noopener">データのずれの一覧(GitHub)→</a>
           </div>
         </div>
       </article>
