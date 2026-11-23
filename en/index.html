@@ -51,9 +51,9 @@
     <h1><span class="ph">Measure the physics,</span> <span class="ph">decode perception,</span> <span class="ph">create the picture.</span></h1>
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      I measured the color of gold with a spectroradiometer and studied how much it changes when light is calculated with three colors (RGB) instead of wavelength by wavelength.
-      That led me to build, from scratch in C++, a 3D renderer that calculates light wavelength by wavelength, and I now work on measuring (BRDF measurement), studying how things look (vision experiments) and drawing (the renderer) as one line of work.
-      I also implemented 3D Gaussian Splatting, and 4DGS for moving scenes, from scratch in PyTorch and checked against ground truth how far they hold up when the light changes, on glossy surfaces and in motion.
+      I test how far methods that reconstruct or generate 3D from images reproduce the way real light behaves, against both physically based ground truth and human perception.
+      I implemented 3D Gaussian Splatting, 4DGS and diffusion models from scratch in PyTorch and studied where, and why, they break on gloss, motion and translucency. For example, a single-image-to-3D model (Zero-1-to-3) holds information about translucency inside, yet does not use it for the far side it generates.
+      To make the ground-truth images, I built from scratch in C++ a 3D renderer that calculates light wavelength by wavelength, and cross-checked it against Mitsuba 3. In my master's research I run vision experiments on what cues people use to perceive translucent materials.
       Separately from my research, I developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
     </p>
     <div class="btns">
@@ -70,27 +70,27 @@
       <p class="sub">Five things I can do, together with the work behind them.</p>
       <div class="grid five">
         <div class="card">
-          <h3>Measure the physics, and verify it</h3>
-          <p>I measure how surfaces reflect light with a spectroradiometer and robot arms, and I check published measured data against the physics before using it.</p>
-          <div class="links"><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
+          <h3>Reconstruct 3D from images</h3>
+          <p>I implemented 3D Gaussian Splatting and 4DGS from scratch in PyTorch and checked them against ground truth to find where, and why, they break on gloss, in motion and under new lighting.</p>
+          <div class="links"><a href="#work-3dgs-toy">3DGS from scratch →</a><a href="#work-3dgs">3DGS relighting →</a></div>
         </div>
         <div class="card">
-          <h3>Decode perception through experiments</h3>
-          <p>With eye tracking and psychophysics experiments, I study which cues people use to perceive translucent materials.</p>
-          <div class="links"><a href="#work-thesis">Master's research →</a></div>
+          <h3>Write generative models from scratch</h3>
+          <p>I wrote diffusion models (DDPM, DDIM) from scratch and tested how single-image-to-3D models invent the unseen side of a translucent object, against physically based ground truth and human ratings.</p>
+          <div class="links"><a href="#work-i3d">Image to 3D →</a></div>
         </div>
         <div class="card">
-          <h3>Calculate light, create the picture</h3>
-          <p>I built, from scratch in C++, a renderer that calculates light wavelength by wavelength.</p>
+          <h3>Compute light to make ground truth</h3>
+          <p>I built, from scratch in C++, a renderer that calculates light wavelength by wavelength, and cross-checked it against Mitsuba 3 on 23 scenes so it can serve as ground truth.</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
-          <h3>Bring the latest papers into my own software</h3>
-          <p>I read the papers, implemented 3D Gaussian Splatting, 4DGS and diffusion models from scratch in PyTorch, and used my renderer's ground-truth images and public data to find where they break under new lighting, on glossy surfaces, in motion and with translucency.</p>
-          <div class="links"><a href="#work-3dgs">3DGS relighting →</a><a href="#work-3dgs-toy">3DGS from scratch →</a><a href="#work-i3d">Image to 3D →</a></div>
+          <h3>Measure physics and decode perception</h3>
+          <p>I measure how surfaces reflect light with a spectroradiometer and robot arms, and run eye-tracking and psychophysics experiments on what cues people use to perceive translucent materials.</p>
+          <div class="links"><a href="#work-thesis">Master's research →</a><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
         </div>
         <div class="card">
-          <h3>Build together, and keep going</h3>
+          <h3>Keep building with a team</h3>
           <p>With a team of four, I developed a transit app over a year and a half, in charge of the backend, and we still run it. Our next app is in development.</p>
           <div class="links"><a href="#work-hamakoku">Hamakoku →</a></div>
         </div>

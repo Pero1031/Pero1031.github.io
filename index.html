@@ -52,9 +52,9 @@
     <!-- 英文は「Veni, vidi, vici(来た、見た、勝った)」へのオマージュ。主語を省いた三つの過去形で、日本語の三句(測る・知覚する・創る)に対応させている -->
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      金の色を分光放射計で測り、光を RGB の3色で計算すると、波長ごとに計算した場合とどれだけ色が違うかを調べました。
-      それをきっかけに、光を波長ごとに計算する3Dレンダラーを C++ で0から作り、いまは、測る(BRDF の計測)、見え方を調べる(視覚実験)、描く(レンダラー)を、ひとつながりで進めています。
-      3D Gaussian Splatting と、動くシーン向けの 4DGS を PyTorch で一から実装し、照明を変えたとき、光沢のある面、動きでどこまで再現できるかを、正解と突き合わせて確かめました。
+      画像から3Dを復元・生成する技術が、本物の光の振る舞いをどこまで再現できるかを、物理ベースの正解と人の知覚の両方から確かめています。
+      3D Gaussian Splatting・4DGS と拡散モデルを PyTorch で一から実装し、光沢・動き・半透明で、どこがなぜ崩れるかを調べました。たとえば、単一画像から3Dを作るモデル(Zero-1-to-3)は、半透明さの情報を内部に持っているのに、生成する裏側には使っていませんでした。
+      正解の画像を作るために、光を波長ごとに計算する3Dレンダラーを C++ で0から作り、Mitsuba 3 と突き合わせて検証しています。修士研究では、半透明の質感を人が何で感じ取るかを、視覚実験で調べています。
       研究とは別に、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。
     </p>
     <div class="btns">
@@ -71,27 +71,27 @@
       <p class="sub">私にできることを、作品とあわせて5つにまとめました。</p>
       <div class="grid five">
         <div class="card">
-          <h3>物理を測り、確かめる</h3>
-          <p>分光放射計とロボットアームで物の反射を測り、公開されている実測データも、物理の式と照らして確かめてから使います。</p>
-          <div class="links"><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
+          <h3>画像から3Dを復元する</h3>
+          <p>3D Gaussian Splatting と 4DGS を PyTorch で一から実装し、光沢・動き・照明の変化で、どこがなぜ崩れるかを、正解と突き合わせて調べました。</p>
+          <div class="links"><a href="#work-3dgs-toy">3DGS 実装 →</a><a href="#work-3dgs">3DGS 再照明 →</a></div>
         </div>
         <div class="card">
-          <h3>知覚を、実験で解く</h3>
-          <p>半透明な物の質感を、人がどんな手がかりで感じ取っているかを、視線の計測と心理物理の実験で調べています。</p>
-          <div class="links"><a href="#work-thesis">修士研究 →</a></div>
+          <h3>生成モデルを一から書く</h3>
+          <p>拡散モデル(DDPM・DDIM)を一から書き、単一画像から3Dを作るモデルが、見えない側の半透明をどう作るかを、物理ベースの正解と人の評定で調べました。</p>
+          <div class="links"><a href="#work-i3d">画像から3D生成 →</a></div>
         </div>
         <div class="card">
-          <h3>光を計算して、絵を創る</h3>
-          <p>光を波長ごとに計算して絵を描くレンダラーを、C++ で0から作りました。</p>
+          <h3>光を計算して正解を創る</h3>
+          <p>光を波長ごとに計算するレンダラーを C++ で0から作り、Mitsuba 3 と 23 シーンで突き合わせて、正解として使える精度を確かめました。</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
-          <h3>最新の論文を、自作のソフトにつなぐ</h3>
-          <p>論文を読んで 3D Gaussian Splatting・4DGS と拡散モデルを PyTorch で一から実装し、自作のレンダラーの正解画像や公開データで、照明の変化・光沢面・動き・半透明での限界を確かめました。</p>
-          <div class="links"><a href="#work-3dgs">3DGS 再照明 →</a><a href="#work-3dgs-toy">3DGS 実装 →</a><a href="#work-i3d">画像から3D生成 →</a></div>
+          <h3>物理を測って知覚を解く</h3>
+          <p>分光放射計とロボットアームで物の反射を測り、半透明の質感を人が何で感じ取るかを、視線の計測と心理物理の実験で調べています。</p>
+          <div class="links"><a href="#work-thesis">修士研究 →</a><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
         </div>
         <div class="card">
-          <h3>仲間と作り、続ける</h3>
+          <h3>仲間と作り続ける</h3>
           <p>4人で乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。次のアプリも開発中です。</p>
           <div class="links"><a href="#work-hamakoku">はまこく →</a></div>
         </div>
