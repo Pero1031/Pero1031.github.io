@@ -86,8 +86,8 @@
         </div>
         <div class="card">
           <h3>Bring the latest papers into my own software</h3>
-          <p>I read the papers, implemented 3D Gaussian Splatting and 4DGS from scratch in PyTorch, and used my renderer's ground-truth images and public data (D-NeRF) to find where they break under new lighting, on glossy surfaces and in motion.</p>
-          <div class="links"><a href="#work-3dgs">3DGS relighting →</a><a href="#work-3dgs-toy">3DGS from scratch →</a></div>
+          <p>I read the papers, implemented 3D Gaussian Splatting, 4DGS and diffusion models from scratch in PyTorch, and used my renderer's ground-truth images and public data to find where they break under new lighting, on glossy surfaces, in motion and with translucency.</p>
+          <div class="links"><a href="#work-3dgs">3DGS relighting →</a><a href="#work-3dgs-toy">3DGS from scratch →</a><a href="#work-i3d">Image to 3D →</a></div>
         </div>
         <div class="card">
           <h3>Build together, and keep going</h3>
@@ -102,7 +102,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">Seven main projects, and a few other things I have made.</p>
+      <p class="sub">Eight main projects, and a few other things I have made.</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -127,7 +127,7 @@
             <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different)</li>
             <li>An sRGB display can hide this difference, but only when the RGB renderer also works in sRGB. Once the image is white balanced, as a photograph would be, the difference under candlelight grows about fourfold (color difference 14) and no display hides it</li>
             <li>It also simulates the camera: lenses with the glasses of their original patents, exposure set by f-number, shutter time and ISO, sensor noise, and raw (DNG) output. A common raw library (LibRaw) develops the DNG to within 1% of the renderer's colors</li>
-            <li>Cross-checked against Mitsuba 3 on 23 scenes, it agrees within the noise; the check found a bug (rough glass about 0.5% too bright), which I fixed. Materials include metals, glass, translucency, skin and hair, as well as measured BRDFs and fluorescence</li>
+            <li>Cross-checked against Mitsuba 3 on 23 scenes, it agrees within the noise; the check found a bug (rough glass about 0.5% too bright), which I fixed. Materials include metals, glass, translucency, skin and hair, as well as measured BRDFs, fluorescence and the glints of metallic paint (implemented from a 2025 paper)</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
@@ -204,8 +204,32 @@
         </div>
       </article>
 
+      <!-- image-to-3d-diffusion -->
+      <article class="work flip" id="work-i3d">
+        <div class="media">
+          <img class="contain" src="../assets/i3d-translucent-views.webp" width="792" height="827" alt="A translucent object seen from four directions. From the top: ground truth, an opaque object of the same shape, Zero-1-to-3's output and TripoSR's output. The truth stays bright from behind; Zero-1-to-3 makes a dark, metal-like object" loading="lazy">
+          <p class="credit">The leftmost column is the input view. From the top: ground truth (path traced in Blender), an opaque object with the same shape and lighting, Zero-1-to-3 and TripoSR. Light passes through the real object, so its far side stays bright; Zero-1-to-3 turns it into a dark, metal-like object.</p>
+        </div>
+        <div class="body">
+          <h3>Does single-image 3D generation keep translucency?</h3>
+          <p class="tagline">Diffusion models written from scratch in PyTorch, then pretrained single-image-to-3D models checked against physically based ground truth and human ratings for how they handle translucency</p>
+          <p>
+            I implemented DDPM, classifier-free guidance and DDIM from scratch, and wrote Zero-1-to-3's sampling myself on top of its pretrained weights.
+            With stimuli from my master's research as input, I compare the side the models cannot see with path-traced ground truth and with an opaque object of the same shape.
+          </p>
+          <ul>
+            <li>On the unseen side, Zero-1-to-3 produces stronger shading contrast than the real translucent object in all 18 conditions. Given matched translucent and opaque inputs, its output changes in the right direction, but by only a fifth to a third of the true difference</li>
+            <li>Yet perceived translucency can be read out of the models' internal features (61 soaps, r = 0.92, against 0.69 for image statistics). The information is there, but the generated appearance does not use it</li>
+          </ul>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/image-to-3d-diffusion" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Master's research -->
-      <article class="work flip" id="work-thesis">
+      <article class="work" id="work-thesis">
         <div class="media">
           <img class="contain" src="../assets/research-light-en.webp" width="1400" height="891" alt="The same object drawn with light from the front and with light from directly behind. With front light it looks white and cloudy; with light from behind it looks bright, with strong gloss" loading="lazy">
         </div>
@@ -226,7 +250,7 @@
       </article>
 
       <!-- Transit app -->
-      <article class="work" id="work-hamakoku">
+      <article class="work flip" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="../assets/hamakokuex-form.webp" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
@@ -258,7 +282,7 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work flip" id="work-brdf">
+      <article class="work" id="work-brdf">
         <div class="media">
           <img src="../assets/brdf-system.webp" width="785" height="603" alt="Two robot arms, one for the light and one for the sample, in a dark room, with the spectroradiometer (SR-5100) in the foreground. The sample is held by the right arm" loading="lazy">
         </div>
@@ -283,7 +307,7 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work" id="work-brdfkit">
+      <article class="work flip" id="work-brdfkit">
         <div class="media">
           <img class="contain" src="../assets/brdfkit-leather.webp" width="1240" height="432" alt="The same cowhide rendered two ways: matte on the left, with a satin clear coat on the right. The fine grain catches the light" loading="lazy">
           <img class="contain" src="../assets/gallery/gilt_leather.webp" width="1240" height="432" alt="The same cowhide with metal leaf on the raised grain, under daylight and under a lamp. In each picture the left half is gold leaf and the right half is silver leaf under a yellow varnish, and the two look alike" loading="lazy">
@@ -359,7 +383,7 @@
       </div>
       <dl class="skills">
         <dt>Languages</dt><dd>C++ / C / Python / TypeScript &amp; JavaScript (Node.js) / HTML &amp; CSS</dd>
-        <dt>Strengths</dt><dd>Rendering (path tracing, spectral, material appearance), 3D Gaussian Splatting and NeRF, spectral measurement, eye tracking, backend development</dd>
+        <dt>Strengths</dt><dd>Rendering (path tracing, spectral, material appearance), 3D Gaussian Splatting and NeRF, diffusion models and single-image 3D generation, spectral measurement, eye tracking, backend development</dd>
         <dt>Tools</dt><dd>Visual Studio / VS Code / Git &amp; GitHub / PyTorch / CUDA / Embree &amp; Open Image Denoise / Dear ImGui / React &amp; Vite / Hono / MapLibre GL JS / Blender / Mitsuba / Spectroradiometer (SR-5100) / Robot arms (DENSO VP-6242) / Eye tracker (Tobii Pro)</dd>
       </dl>
     </div>

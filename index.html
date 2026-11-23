@@ -87,8 +87,8 @@
         </div>
         <div class="card">
           <h3>最新の論文を、自作のソフトにつなぐ</h3>
-          <p>論文を読んで 3D Gaussian Splatting と 4DGS を PyTorch で一から実装し、自作のレンダラーの正解画像や公開データ(D-NeRF)で、照明の変化・光沢面・動きでの限界を確かめました。</p>
-          <div class="links"><a href="#work-3dgs">3DGS 再照明 →</a><a href="#work-3dgs-toy">3DGS 実装 →</a></div>
+          <p>論文を読んで 3D Gaussian Splatting・4DGS と拡散モデルを PyTorch で一から実装し、自作のレンダラーの正解画像や公開データで、照明の変化・光沢面・動き・半透明での限界を確かめました。</p>
+          <div class="links"><a href="#work-3dgs">3DGS 再照明 →</a><a href="#work-3dgs-toy">3DGS 実装 →</a><a href="#work-i3d">画像から3D生成 →</a></div>
         </div>
         <div class="card">
           <h3>仲間と作り、続ける</h3>
@@ -103,7 +103,7 @@
   <section id="works">
     <div class="wrap">
       <h2>Works</h2>
-      <p class="sub">主な作品7つと、その他の制作物です。</p>
+      <p class="sub">主な作品8つと、その他の制作物です。</p>
 
       <!-- GoLD_ray -->
       <article class="work" id="work-goldray">
@@ -128,7 +128,7 @@
             <li>金の彫像を2つの方法で描き比べると、色の違いは、昼の光で平均 1.7、白熱電球の光で 2.6(1 で見分けられ、2〜3 ではっきり違う目安)</li>
             <li>この違いは sRGB の画面では見えなくなることがあるが、それは計算と画面が同じ sRGB の色空間のときだけ。写真のようにホワイトバランスをかけると、ろうそくの光の下で違いは約4倍(色差 14)になり、どの画面でも隠れない</li>
             <li>カメラも再現: 特許の設計値どおりのレンズ、F値・シャッター速度・ISO による露出、センサーのノイズ、RAW(DNG)の書き出し。書き出した RAW は、一般的な現像ライブラリ(LibRaw)で現像しても、色が 1% 以内で一致する</li>
-            <li>Mitsuba 3 と 23 のシーンで突き合わせ、ノイズの範囲で一致した。その過程で、粗いガラスが 0.5% 明るすぎるバグを見つけて直した。材質は金属、ガラス、半透明、肌、髪に加え、実測の BRDF や蛍光も使える</li>
+            <li>Mitsuba 3 と 23 のシーンで突き合わせ、ノイズの範囲で一致した。その過程で、粗いガラスが 0.5% 明るすぎるバグを見つけて直した。材質は金属、ガラス、半透明、肌、髪に加え、実測の BRDF、蛍光、金属塗装のきらめき(2025 年の論文を実装)も使える</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
@@ -205,8 +205,32 @@
         </div>
       </article>
 
+      <!-- image-to-3d-diffusion -->
+      <article class="work flip" id="work-i3d">
+        <div class="media">
+          <img class="contain" src="assets/i3d-translucent-views.webp" width="792" height="827" alt="半透明な物体を4つの方向から見た図。上から、正解、同じ形の不透明な物体、Zero-1-to-3 の生成、TripoSR の生成。正解は裏側も明るいが、Zero-1-to-3 は暗い金属のような物体を作っている" loading="lazy">
+          <p class="credit">左端が入力の視点。上から、正解(Blender でパストレーシング)、同じ形・同じ照明の不透明な物体、Zero-1-to-3、TripoSR。本物は光が透けて裏側も明るいが、Zero-1-to-3 は暗い金属のような物体にしてしまう。</p>
+        </div>
+        <div class="body">
+          <h3>単一画像からの3D生成は、半透明を保つか</h3>
+          <p class="tagline">拡散モデルを PyTorch で一から書き、単一画像から3Dを作る既存のモデルが半透明をどう扱うかを、物理ベースの正解と人の評定で調べた</p>
+          <p>
+            DDPM、classifier-free guidance、DDIM を一から実装し、Zero-1-to-3 のサンプリングも学習済みの重みの上に自分で書きました。
+            修士研究の刺激画像を入力にして、見えない側を、パストレーシングで描いた正解と、同じ形の不透明な物体と比べています。
+          </p>
+          <ul>
+            <li>Zero-1-to-3 は見えない側を、18 条件すべてで本物の半透明よりコントラストを強く作る。同じ形の半透明と不透明を入れると正しい向きには変わるが、その差は本物の 1/5〜1/3</li>
+            <li>一方、モデルの内部の特徴からは、人が感じる半透明さを読み出せる(石けん 61 個、r = 0.92。画像統計量では 0.69)。情報は持っているのに、生成される見た目には使われていない</li>
+          </ul>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/image-to-3d-diffusion" target="_blank" rel="noopener">GitHub で見る →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- 修士研究 -->
-      <article class="work flip" id="work-thesis">
+      <article class="work" id="work-thesis">
         <div class="media">
           <img class="contain" src="assets/research-light-ja.webp" width="1400" height="929" alt="同じ素材の物体を、正面からの光と真後ろからの光で描いた2枚の図。正面からでは白く濁って見え、真後ろからでは明るく光ってつやが目立つ" loading="lazy">
         </div>
@@ -227,7 +251,7 @@
       </article>
 
       <!-- 乗り換えアプリ -->
-      <article class="work" id="work-hamakoku">
+      <article class="work flip" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="assets/hamakokuex-form.webp" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
@@ -259,7 +283,7 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work flip" id="work-brdf">
+      <article class="work" id="work-brdf">
         <div class="media">
           <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計(SR-5100)。サンプルは右のロボットアームが持っている" loading="lazy">
         </div>
@@ -284,7 +308,7 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work" id="work-brdfkit">
+      <article class="work flip" id="work-brdfkit">
         <div class="media">
           <img class="contain" src="assets/brdfkit-leather.webp" width="1240" height="432" alt="同じ牛革を、2通りで描いた2枚。左はつや消し、右は半つやのクリアコートつき。表面の細かい凹凸に光が当たっている" loading="lazy">
           <img class="contain" src="assets/gallery/gilt_leather.webp" width="1240" height="432" alt="同じ牛革に金属の箔を貼って、昼光とランプの光で描いた2枚。各図の左半分は金箔、右半分は黄色いニスをかけた銀箔で、2つはよく似ている" loading="lazy">
@@ -360,7 +384,7 @@
       </div>
       <dl class="skills">
         <dt>言語</dt><dd>C++ / C / Python / TypeScript・JavaScript(Node.js)/ HTML・CSS</dd>
-        <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光・質感表現)、3D Gaussian Splatting・NeRF、分光計測、視線計測、バックエンド開発</dd>
+        <dt>得意分野</dt><dd>レンダリング(パストレーシング・分光・質感表現)、3D Gaussian Splatting・NeRF、拡散モデル・単一画像からの3D生成、分光計測、視線計測、バックエンド開発</dd>
         <dt>ツール</dt><dd>Visual Studio / VS Code / Git・GitHub / PyTorch / CUDA / Embree・Open Image Denoise / Dear ImGui / React・Vite / Hono / MapLibre GL JS / Blender / Mitsuba / 分光放射計(SR-5100)/ ロボットアーム(DENSO VP-6242)/ アイトラッカー(Tobii Pro)</dd>
       </dl>
     </div>
