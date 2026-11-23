@@ -54,7 +54,7 @@
     <p class="lead">
       金の色を分光放射計で測り、光を RGB の3色で計算すると、波長ごとに計算した場合とどれだけ色が違うかを調べました。
       それをきっかけに、光を波長ごとに計算する3Dレンダラーを C++ で0から作り、いまは、測る(BRDF の計測)、見え方を調べる(視覚実験)、描く(レンダラー)を、ひとつながりで進めています。
-      3D Gaussian Splatting を PyTorch で一から実装し、照明を変えたときや光沢のある面でどこまで再現できるかを、自作のレンダラーの正解画像で確かめました。
+      3D Gaussian Splatting と、動くシーン向けの 4DGS を PyTorch で一から実装し、照明を変えたとき、光沢のある面、動きでどこまで再現できるかを、正解と突き合わせて確かめました。
       研究とは別に、4人のチームで乗換アプリを1年半開発し、バックエンドを担当して、いまも運用しています。
     </p>
     <div class="btns">
@@ -87,7 +87,7 @@
         </div>
         <div class="card">
           <h3>最新の論文を、自作のソフトにつなぐ</h3>
-          <p>論文を読んで 3D Gaussian Splatting を PyTorch で一から実装し、自作のレンダラーの正解画像で、照明の変化や光沢面での限界を確かめました。</p>
+          <p>論文を読んで 3D Gaussian Splatting と 4DGS を PyTorch で一から実装し、自作のレンダラーの正解画像や公開データ(D-NeRF)で、照明の変化・光沢面・動きでの限界を確かめました。</p>
           <div class="links"><a href="#work-3dgs">3DGS 再照明 →</a><a href="#work-3dgs-toy">3DGS 実装 →</a></div>
         </div>
         <div class="card">
@@ -128,7 +128,7 @@
             <li>金の彫像を2つの方法で描き比べると、色の違いは、昼の光で平均 1.7、白熱電球の光で 2.6(1 で見分けられ、2〜3 ではっきり違う目安)</li>
             <li>この違いは sRGB の画面では見えなくなることがあるが、それは計算と画面が同じ sRGB の色空間のときだけ。写真のようにホワイトバランスをかけると、ろうそくの光の下で違いは約4倍(色差 14)になり、どの画面でも隠れない</li>
             <li>カメラも再現: 特許の設計値どおりのレンズ、F値・シャッター速度・ISO による露出、センサーのノイズ、RAW(DNG)の書き出し。書き出した RAW は、一般的な現像ライブラリ(LibRaw)で現像しても、色が 1% 以内で一致する</li>
-            <li>金属、ガラス、シャボン玉の膜、半透明、肌、髪、霧に加え、実測の BRDF も材質として使える</li>
+            <li>Mitsuba 3 と 23 のシーンで突き合わせ、ノイズの範囲で一致した。その過程で、粗いガラスが 0.5% 明るすぎるバグを見つけて直した。材質は金属、ガラス、半透明、肌、髪に加え、実測の BRDF や蛍光も使える</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
@@ -161,11 +161,12 @@
           <ul>
             <li>3DGS の粒子や、そこから取り出したメッシュを読み込み、撮影のままの見た目でも、金やガラスに差し替えても、同じ照明の下で描ける</li>
             <li>粒子をそのまま光線で追跡するので、中に置いた鏡やガラス玉に、撮影した部屋が映り込み、屈折する</li>
-            <li>照明を変えられる 3DGS を学習し、レンダラーの正解と比べた。陰影のコントラストは、不透明な像では正解の 1.0〜1.6 倍、ロウ(半透明)の像では 2.4〜3.7 倍と強く出すぎた。半透明な物の散乱が表面の色に焼き込まれるためで、先行研究の報告と合っている。半透明な物の見え方は、修士研究のテーマでもある</li>
+            <li>照明を変えられる 3DGS(R3DG, ECCV 2024)を公式のコードで学習し、レンダラーの正解と比べた。陰影のコントラストは、不透明な像では正解の 1.0〜1.5 倍、ロウ(半透明)の像では 2.2〜3.6 倍と強く出すぎた。学習を公式の長さ(5倍)にしても変わらなかった。R3DG の材質モデルは不透明な面を前提にしていて、内部の散乱を表せない。半透明な物の見え方は、修士研究のテーマでもある</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">検証の条件と詳細(GitHub)→</a>
+            <a href="https://github.com/Pero1031/3dgs-toy/blob/main/experiments/relight/README.md" target="_blank" rel="noopener">R3DG での再照明の検証(GitHub)→</a>
           </div>
         </div>
       </article>
@@ -173,6 +174,8 @@
       <!-- 3DGS from scratch -->
       <article class="work" id="work-3dgs-toy">
         <div class="media">
+          <img class="contain" src="assets/gs-dnerf-jumpingjacks.webp" width="1000" height="750" alt="ジャンピングジャックをする人を、学習に使っていない時刻の視点から描いた図。上段が正解、中段が 4DGS の描画、下段が変形をかける前のガウシアン" loading="lazy">
+          <p class="credit">変形場の 4DGS を D-NeRF の jumpingjacks(Pumarola ら, CVPR 2021)で学習したもの。上から、正解、描画、変形をかける前のガウシアン。</p>
           <img class="contain" src="assets/gs-gloss-test.webp" width="570" height="660" alt="金の像と、同じ色の拡散面の像を、学習に使っていない視点から描いた図。正解、3DGS、誤差(4倍に強調)を並べている" loading="lazy">
           <p class="credit">
             上段は金、下段は拡散面。左から、正解(レンダラーの絵)、3DGS、誤差(4倍に強調)。<br>
@@ -184,20 +187,20 @@
         </div>
         <div class="body">
           <h3>3D Gaussian Splatting のスクラッチ実装と、崩れる条件の検証</h3>
-          <p class="tagline">3DGS を PyTorch で一から書き、光沢面と動くシーンで、どこがなぜ崩れるかを正解と突き合わせて調べた</p>
+          <p class="tagline">3DGS と 4DGS を PyTorch で一から書き、光沢面と動くシーンで、どこがなぜ崩れるかを正解と突き合わせて調べた</p>
           <p>
             外部の 3DGS ライブラリは使わず、公式の実装では CUDA で書かれている微分可能ラスタライザも PyTorch で書きました。
             GoLD_rayt で描いた正解画像や、動きの式が分かっているデータと比べて、どこがなぜ崩れるかを調べています。
           </p>
           <ul>
-            <li>金の像は、形と照明が同じ拡散面の像より、PSNR が 16〜17 dB 低い。学習に使った視点でも同じくらい悪いので、原因は新しい視点への汎化ではなく、表現力の不足だった</li>
-            <li>照明を点の間で共有するモデルと、遅延シェーディングも試した。照明は正しく復元できたが、相互反射(観測の 38%)と、画素より細かい凹凸が残り、通常の 3DGS の表し方(球面調和関数)を超えられなかった</li>
-            <li>動くシーン(4DGS)を表す3つの方法を、動きの式が分かっているデータで比べた。動きが小さいときは変形場が 2 dB 上、大きいときは時刻つきのガウシアンが 8 dB 上で、得意なところが逆になる</li>
+            <li>静的な 3DGS は練習用のデータで PSNR 37.9 dB、変形場の 4DGS は D-NeRF の jumpingjacks で 34.7 dB(SSIM 0.987)。自作のラスタライザは、素朴な実装と画像も勾配も 1e-6 以内で一致する</li>
+            <li>金の像は、形と照明が同じ拡散面の像より、PSNR が 16〜17 dB 低い。学習に使った視点でも同じくらい悪いので、原因は新しい視点への汎化ではなく、表現力の不足。球面調和関数の次数を上げても直らない</li>
+            <li>PSNR が高くても、動きは間違えていることがある。一様な色の面では、球面に沿った滑り(誤差 0.74)が画像に表れない(開口問題)。動くシーンの3つの表し方は、動きが小さいと変形場が 2 dB 上、大きいと時刻つきのガウシアンが 8 dB 上で、得意なところが逆になる</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/3dgs-toy" target="_blank" rel="noopener">GitHub で見る →</a>
-            <a href="https://github.com/Pero1031/3dgs-toy#%E5%AE%9F%E9%A8%93" target="_blank" rel="noopener">光沢面と動くシーンの検証(GitHub)→</a>
+            <a href="https://github.com/Pero1031/3dgs-toy#experiments" target="_blank" rel="noopener">光沢面・動き・半透明の検証(GitHub)→</a>
           </div>
         </div>
       </article>

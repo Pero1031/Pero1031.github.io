@@ -53,7 +53,7 @@
     <p class="lead">
       I measured the color of gold with a spectroradiometer and studied how much it changes when light is calculated with three colors (RGB) instead of wavelength by wavelength.
       That led me to build, from scratch in C++, a 3D renderer that calculates light wavelength by wavelength, and I now work on measuring (BRDF measurement), studying how things look (vision experiments) and drawing (the renderer) as one line of work.
-      I also implemented 3D Gaussian Splatting from scratch in PyTorch and checked, against my renderer's ground-truth images, how far it holds up when the light changes and on glossy surfaces.
+      I also implemented 3D Gaussian Splatting, and 4DGS for moving scenes, from scratch in PyTorch and checked against ground truth how far they hold up when the light changes, on glossy surfaces and in motion.
       Separately from my research, I developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
     </p>
     <div class="btns">
@@ -86,7 +86,7 @@
         </div>
         <div class="card">
           <h3>Bring the latest papers into my own software</h3>
-          <p>I read the papers, implemented 3D Gaussian Splatting from scratch in PyTorch, and used my renderer's ground-truth images to find where it breaks under new lighting and on glossy surfaces.</p>
+          <p>I read the papers, implemented 3D Gaussian Splatting and 4DGS from scratch in PyTorch, and used my renderer's ground-truth images and public data (D-NeRF) to find where they break under new lighting, on glossy surfaces and in motion.</p>
           <div class="links"><a href="#work-3dgs">3DGS relighting →</a><a href="#work-3dgs-toy">3DGS from scratch →</a></div>
         </div>
         <div class="card">
@@ -127,7 +127,7 @@
             <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different)</li>
             <li>An sRGB display can hide this difference, but only when the RGB renderer also works in sRGB. Once the image is white balanced, as a photograph would be, the difference under candlelight grows about fourfold (color difference 14) and no display hides it</li>
             <li>It also simulates the camera: lenses with the glasses of their original patents, exposure set by f-number, shutter time and ISO, sensor noise, and raw (DNG) output. A common raw library (LibRaw) develops the DNG to within 1% of the renderer's colors</li>
-            <li>Metals, glass, soap-bubble films, translucency, skin, hair and fog, and measured BRDFs can be used as materials</li>
+            <li>Cross-checked against Mitsuba 3 on 23 scenes, it agrees within the noise; the check found a bug (rough glass about 0.5% too bright), which I fixed. Materials include metals, glass, translucency, skin and hair, as well as measured BRDFs and fluorescence</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
@@ -160,11 +160,12 @@
           <ul>
             <li>It reads 3DGS particles, or meshes extracted from them, and draws them as photographed or with gold, glass or any other material, under the same lights</li>
             <li>The particles are ray-traced directly, so a mirror or a glass ball placed among them reflects and refracts the captured room</li>
-            <li>I trained a relightable 3DGS and compared it with the renderer's ground truth. The shading contrast was 1.0 to 1.6 times the ground truth for the opaque statue, but 2.4 to 3.7 times, far too strong, for the wax (translucent) statue. The scattering of translucent objects gets baked into the surface color, as earlier work reported. How translucent objects look is also the subject of my master's research</li>
+            <li>I trained a relightable 3DGS (R3DG, ECCV 2024) from the official code and compared it with the renderer's ground truth. The shading contrast was 1.0 to 1.5 times the ground truth for the opaque statue, but 2.2 to 3.6 times, far too strong, for the wax (translucent) statue. Training for the official length (five times longer) changes nothing; R3DG's material model assumes an opaque surface and cannot express scattering inside. How translucent objects look is also the subject of my master's research</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/GoLD_ray#captured-objects-and-3d-gaussian-splatting" target="_blank" rel="noopener">Setup and details (GitHub) →</a>
+            <a href="https://github.com/Pero1031/3dgs-toy/blob/main/experiments/relight/README.md" target="_blank" rel="noopener">Relighting with R3DG (GitHub) →</a>
           </div>
         </div>
       </article>
@@ -172,6 +173,8 @@
       <!-- 3DGS from scratch -->
       <article class="work" id="work-3dgs-toy">
         <div class="media">
+          <img class="contain" src="../assets/gs-dnerf-jumpingjacks.webp" width="1000" height="750" alt="A person doing jumping jacks, seen from test views at times not used in training. Top row: ground truth; middle row: the 4DGS render; bottom row: the Gaussians before deformation" loading="lazy">
+          <p class="credit">Deformation-field 4DGS trained on D-NeRF's jumpingjacks (Pumarola et al., CVPR 2021). From the top: ground truth, render, and the Gaussians before deformation.</p>
           <img class="contain" src="../assets/gs-gloss-test.webp" width="570" height="660" alt="A gold statue and a diffuse statue of the same color, seen from a view not used in training. The ground truth, the 3DGS render and the error (x4) are shown side by side" loading="lazy">
           <p class="credit">
             Top row: gold; bottom row: diffuse. From the left: the ground truth (a render), 3DGS, and the error (x4).<br>
@@ -183,20 +186,20 @@
         </div>
         <div class="body">
           <h3>3D Gaussian Splatting from scratch, and where it breaks</h3>
-          <p class="tagline">3DGS written from scratch in PyTorch, then checked against ground truth to find where, and why, it breaks on glossy surfaces and moving scenes</p>
+          <p class="tagline">3DGS and 4DGS written from scratch in PyTorch, then checked against ground truth to find where, and why, it breaks on glossy surfaces and moving scenes</p>
           <p>
             I wrote it in PyTorch without any external 3DGS library, including the differentiable rasterizer that the official implementation writes in CUDA.
             I compare it with ground-truth images rendered by GoLD_rayt, and with data whose motion is known exactly, to find where and why it breaks.
           </p>
           <ul>
-            <li>A gold statue scores 16 to 17 dB lower in PSNR than a diffuse statue of the same shape under the same lights. It is just as bad on the training views, so the cause is a lack of expressive power, not poor generalization to new views</li>
-            <li>I also tried a model that shares the lighting across points, and deferred shading. The lighting was recovered correctly, but interreflection (38% of the observations) and bumps finer than a pixel remained, so neither beat the plain 3DGS representation (spherical harmonics)</li>
-            <li>I compared three representations of moving scenes (4DGS) on data whose motion is known. With small motion the deformation field is 2 dB ahead; with large motion, Gaussians that carry their own time are 8 dB ahead, so their strengths are reversed</li>
+            <li>Static 3DGS reaches 37.9 dB PSNR on a toy scene, and deformation-field 4DGS 34.7 dB (SSIM 0.987) on D-NeRF's jumpingjacks. My rasterizer matches a naive per-pixel version in both image and gradients to within 1e-6</li>
+            <li>A gold statue scores 16 to 17 dB lower in PSNR than a diffuse statue of the same shape under the same lights. It is just as bad on the training views, so the cause is a lack of expressive power, not poor generalization to new views. A higher spherical-harmonics degree does not fix it</li>
+            <li>A good PSNR can hide wrong motion. On a uniformly colored surface, sliding along the sphere (error 0.74) does not show in the image (the aperture problem). Of three representations of moving scenes, the deformation field is 2 dB ahead on small motion and Gaussians that carry their own time are 8 dB ahead on large motion, so their strengths are reversed</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/3dgs-toy" target="_blank" rel="noopener">View on GitHub →</a>
-            <a href="https://github.com/Pero1031/3dgs-toy#%E5%AE%9F%E9%A8%93" target="_blank" rel="noopener">Glossy surfaces and moving scenes (GitHub) →</a>
+            <a href="https://github.com/Pero1031/3dgs-toy#experiments" target="_blank" rel="noopener">Gloss, motion and translucency experiments (GitHub) →</a>
           </div>
         </div>
       </article>
