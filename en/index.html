@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>So Kohinata Portfolio</title>
-  <meta name="description" content="Portfolio: a spectral renderer, 3D Gaussian Splatting, BRDF measurement, vision experiments on material perception, and a team-built transit app.">
+  <meta name="description" content="Portfolio: 3D Gaussian Splatting, diffusion models and single-image 3D, a spectral renderer, BRDF measurement, vision experiments on material perception, and a team-built transit app.">
   <link rel="canonical" href="https://pero1031.github.io/en/">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="So Kohinata Portfolio">
   <meta property="og:title" content="So Kohinata Portfolio">
-  <meta property="og:description" content="Portfolio: a spectral renderer, 3D Gaussian Splatting, BRDF measurement, vision experiments on material perception, and a team-built transit app.">
+  <meta property="og:description" content="Portfolio: 3D Gaussian Splatting, diffusion models and single-image 3D, a spectral renderer, BRDF measurement, vision experiments on material perception, and a team-built transit app.">
   <meta property="og:url" content="https://pero1031.github.io/en/">
   <meta property="og:locale" content="en_US">
   <meta property="og:image" content="https://pero1031.github.io/assets/ogp.jpg">
@@ -51,10 +51,10 @@
     <h1><span class="ph">Measure the physics,</span> <span class="ph">decode perception,</span> <span class="ph">create the picture.</span></h1>
     <p class="en" lang="en">Measured, Perceived, Rendered.</p>
     <p class="lead">
-      I test how far methods that reconstruct or generate 3D from images reproduce the way real light behaves, against both physically based ground truth and human perception.
-      I implemented 3D Gaussian Splatting, 4DGS and diffusion models from scratch in PyTorch and studied where, and why, they break on gloss, motion and translucency. For example, a single-image-to-3D model (Zero-1-to-3) holds information about translucency inside, yet does not use it for the far side it generates.
-      To make the ground-truth images, I built from scratch in C++ a 3D renderer that calculates light wavelength by wavelength, and cross-checked it against Mitsuba 3. In my master's research I run vision experiments on what cues people use to perceive translucent materials.
-      Separately from my research, I developed a transit app in a team of four over a year and a half, in charge of the backend, and we still run it.
+      I study how faithfully methods that reconstruct or generate 3D from images reproduce the way real light behaves, judged against both physically based ground truth and human perception.
+      I implemented 3D Gaussian Splatting, 4DGS and diffusion models from scratch in PyTorch and studied where, and why, they break on gloss, motion and translucency. For example, a single-image-to-3D model (Zero-1-to-3) encodes translucency internally, yet does not use it when it generates the unseen side.
+      For the ground truth, I wrote a renderer from scratch in C++ that computes light wavelength by wavelength, and validated it against Mitsuba 3. In my master's research, I run vision experiments on the cues people use to perceive translucent materials.
+      Outside research, I built a transit app with a team of four over a year and a half, handling the backend; it is still in service.
     </p>
     <div class="btns">
       <a class="btn primary" href="#works">See my works</a>
@@ -67,11 +67,11 @@
   <section id="can-do">
     <div class="wrap">
       <h2>What I can do</h2>
-      <p class="sub">Five things I can do, together with the work behind them.</p>
+      <p class="sub">Five things I can do, each with the work behind it.</p>
       <div class="grid five">
         <div class="card">
           <h3>Reconstruct 3D from images</h3>
-          <p>I implemented 3D Gaussian Splatting and 4DGS from scratch in PyTorch and checked them against ground truth to find where, and why, they break on gloss, in motion and under new lighting.</p>
+          <p>I implemented 3D Gaussian Splatting and 4DGS from scratch in PyTorch and tested them against ground truth on glossy surfaces, moving scenes and new lighting.</p>
           <div class="links"><a href="#work-3dgs-toy">3DGS from scratch →</a><a href="#work-3dgs">3DGS relighting →</a></div>
         </div>
         <div class="card">
@@ -81,17 +81,17 @@
         </div>
         <div class="card">
           <h3>Compute light to make ground truth</h3>
-          <p>I built, from scratch in C++, a renderer that calculates light wavelength by wavelength, and cross-checked it against Mitsuba 3 on 23 scenes so it can serve as ground truth.</p>
+          <p>I built a spectral renderer from scratch in C++ and cross-checked it against Mitsuba 3 on 23 scenes, so its images can serve as ground truth.</p>
           <div class="links"><a href="#work-goldray">GoLD_rayt →</a></div>
         </div>
         <div class="card">
           <h3>Measure physics and decode perception</h3>
-          <p>I measure how surfaces reflect light with a spectroradiometer and robot arms, and run eye-tracking and psychophysics experiments on what cues people use to perceive translucent materials.</p>
+          <p>I measure how surfaces reflect light with a spectroradiometer and robot arms, and run eye-tracking and psychophysics experiments on how people perceive translucency.</p>
           <div class="links"><a href="#work-thesis">Master's research →</a><a href="#work-brdf">2D BRDF →</a><a href="#work-brdfkit">brdfkit →</a></div>
         </div>
         <div class="card">
           <h3>Keep building with a team</h3>
-          <p>With a team of four, I developed a transit app over a year and a half, in charge of the backend, and we still run it. Our next app is in development.</p>
+          <p>I handled the backend of a transit app that our team of four built over a year and a half and still runs. Our next app is in development.</p>
           <div class="links"><a href="#work-hamakoku">Hamakoku →</a></div>
         </div>
             </div>
@@ -118,16 +118,16 @@
         </div>
         <div class="body">
           <h3>GoLD_rayt</h3>
-<p class="tagline">A homemade 3D renderer that calculates light wavelength by wavelength, and sets the look of materials by number</p>
+<p class="tagline">My own 3D renderer: it computes light wavelength by wavelength and sets each material's look with physical values</p>
           <p>
-            In my graduation research, I measured gold with a spectroradiometer and quantified how much its color differs between calculating wavelength by wavelength (spectral) and calculating with the three colors of RGB.
-            I started this renderer to repeat that study in my own code, and I keep building it toward pictures that look closer to how people see.
+            For my undergraduate thesis, I measured gold with a spectroradiometer and quantified how much its rendered color differs between spectral (wavelength-by-wavelength) and RGB calculation.
+            I started this renderer to reproduce that study in my own code, and keep extending it toward images closer to what people actually see.
           </p>
           <ul>
-            <li>Drawing a gold statue with both methods gives an average color difference of 1.7 in daylight and 2.6 under an incandescent bulb (a difference of about 1 is just visible, and 2 to 3 is clearly different)</li>
+            <li>Rendered both ways, a gold statue differs in color by 1.7 on average in daylight and 2.6 under an incandescent bulb (about 1 is just noticeable; 2 to 3 is clearly different)</li>
             <li>Once the image is white balanced, as a photograph would be, the difference under candlelight grows about fourfold and shows clearly on any display</li>
-            <li>It also simulates the camera: lenses built to their patents, exposure, sensor noise and raw output. A common raw developer turns the raw files into colors within 1% of the renderer's</li>
-            <li>Cross-checked against Mitsuba 3 on 23 scenes, it agrees within the noise (a bug the check found is fixed). Materials range from metals, glass, skin and hair to measured BRDFs, fluorescence and the glints of metallic paint (implemented from a 2025 paper)</li>
+            <li>It also simulates the camera: lenses built from patent designs, exposure, sensor noise and raw output. Developed in a standard raw converter, the raw files match the renderer's colors within 1%</li>
+            <li>It matches Mitsuba 3 within the noise on 23 scenes (the comparison also caught a bug, now fixed). Materials range from metals, glass, skin and hair to measured BRDFs, fluorescence and the glints of metallic paint (from a 2025 paper)</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
           <div class="links">
@@ -152,15 +152,15 @@
         </div>
         <div class="body">
           <h3>Captured objects and 3D Gaussian Splatting</h3>
-          <p class="tagline">Bringing 3D made from photographs into GoLD_rayt and drawing it by calculating light / a feature of GoLD_rayt</p>
+          <p class="tagline">Bringing 3D captured from photos into GoLD_rayt and rendering it with physically computed light / a GoLD_rayt feature</p>
           <p>
-            3D Gaussian Splatting (3DGS) reproduces "how a scene looked under that light" from photographs taken from many viewpoints. It holds no physical quantities such as reflectance or scattering, so it breaks when the light changes.
-            So I built a way to bring captured 3D into GoLD_rayt.
+            From photos taken from many viewpoints, 3D Gaussian Splatting (3DGS) learns how a scene looked under the light at capture time. It stores no physical properties such as reflectance or scattering, so it breaks when the lighting changes.
+            I built a way to bring these captures into GoLD_rayt.
           </p>
           <ul>
-            <li>It reads 3DGS particles, or meshes extracted from them, and draws them as photographed or with gold, glass or any other material, under the same lights</li>
+            <li>It loads 3DGS particles, or meshes extracted from them, and renders them as captured or as gold, glass or any other material, under the same lights</li>
             <li>The particles are ray-traced directly, so a mirror or a glass ball placed among them reflects and refracts the captured room</li>
-            <li>I trained a relightable 3DGS (R3DG, ECCV 2024) and compared it with ground truth: the wax (translucent) statue came out with more than twice the true shading contrast, so it looks opaque. Training five times longer changes nothing. How translucent objects look is also the subject of my master's research</li>
+            <li>I trained a relightable 3DGS (R3DG, ECCV 2024) and compared it with ground truth: the wax (translucent) statue came out with more than twice the true shading contrast, so it looked opaque. Training five times longer did not change this. How translucent objects look is also the subject of my master's research</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">3D Gaussian Splatting</span><span class="tag">Relighting</span><span class="tag">Ray Tracing</span><span class="tag">Subsurface Scattering</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></div>
           <div class="links">
@@ -186,15 +186,15 @@
         </div>
         <div class="body">
           <h3>3D Gaussian Splatting from scratch, and where it breaks</h3>
-          <p class="tagline">3DGS and 4DGS written from scratch in PyTorch, then checked against ground truth to find where, and why, it breaks on glossy surfaces and moving scenes</p>
+          <p class="tagline">3DGS and 4DGS written from scratch in PyTorch and tested against ground truth on glossy surfaces and moving scenes</p>
           <p>
-            I wrote it in PyTorch without any external 3DGS library, including the differentiable rasterizer that the official implementation writes in CUDA.
-            I compare it with ground-truth images rendered by GoLD_rayt, and with data whose motion is known exactly, to find where and why it breaks.
+            Everything is in PyTorch with no external 3DGS library, including the differentiable rasterizer that the official implementation writes in CUDA.
+            I test it against ground-truth images from GoLD_rayt and against scenes whose motion is known exactly.
           </p>
           <ul>
-            <li>4DGS reproduces a person's motion in public data (D-NeRF; PSNR 34.7 dB). My rasterizer matches a naive per-pixel version in both image and gradients</li>
-            <li>A gold statue scores 16 to 17 dB lower in PSNR than a diffuse statue of the same shape under the same lights. It is just as bad on the training views, so the cause is a lack of expressive power, not poor generalization to new views. A higher spherical-harmonics degree does not fix it</li>
-            <li>A good image score (PSNR) can hide wrong motion. On a surface without texture, sliding sideways does not change the image, so errors of more than 70% of the true motion go unnoticed. Of three representations of moving scenes, which one wins flips with the size of the motion</li>
+            <li>On public data (D-NeRF), 4DGS reproduces a person's motion at 34.7 dB PSNR. The rasterizer matches a naive per-pixel reference in both images and gradients</li>
+            <li>A gold statue scores 16 to 17 dB lower PSNR than a diffuse one of the same shape and lighting. It is just as bad on the training views, so the cause is limited expressiveness, not poor generalization; a higher spherical-harmonics degree does not help</li>
+            <li>A high image score (PSNR) can hide wrong motion: on a textureless surface, sliding sideways leaves the image unchanged, so errors of more than 70% of the true motion go unnoticed. Among three ways to represent moving scenes, the winner flips with the size of the motion</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
           <div class="links">
@@ -212,14 +212,14 @@
         </div>
         <div class="body">
           <h3>Does single-image 3D generation keep translucency?</h3>
-          <p class="tagline">Diffusion models written from scratch in PyTorch, then pretrained single-image-to-3D models checked against physically based ground truth and human ratings for how they handle translucency</p>
+          <p class="tagline">Diffusion models written from scratch in PyTorch, and pretrained single-image-to-3D models tested on translucency against physically based ground truth and human ratings</p>
           <p>
             I implemented DDPM, classifier-free guidance and DDIM from scratch, and wrote Zero-1-to-3's sampling myself on top of its pretrained weights.
-            With stimuli from my master's research as input, I compare the side the models cannot see with path-traced ground truth and with an opaque object of the same shape.
+            Using stimuli from my master's research as input, I compare the unseen side the models generate with path-traced ground truth and with an opaque object of the same shape.
           </p>
           <ul>
-            <li>On the unseen side, Zero-1-to-3 draws stronger shading than the real object in all 18 conditions. Switching between translucent and opaque inputs moves its output the right way, but by only a fifth to a third of the true change</li>
-            <li>Yet perceived translucency can be predicted quite accurately from the models' internal features (correlation 0.92, against 0.69 for conventional image features). The information is there, but the generated appearance does not use it</li>
+            <li>On the unseen side, Zero-1-to-3 produces stronger shading than the real object in all 18 conditions. Switching between translucent and opaque inputs moves its output the right way, but by only a fifth to a third of the true change</li>
+            <li>Yet perceived translucency can be predicted quite accurately from the models' internal features (correlation 0.92, against 0.69 for conventional image features). The information is there; the generated appearance just does not use it</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
           <div class="links">
@@ -237,13 +237,13 @@
           <h3>Master's research: the cues behind translucent appearance</h3>
           <p class="tagline">Vision experiments on the cues people use to perceive translucent materials</p>
           <p>
-            The aim is to apply what this study finds to lighter-weight material transfer and to AI that judges materials more like people do.
-            I handle everything from creating the stimuli and building the experiment program, including eye tracking, to analyzing the data.
+            The goal is to apply the findings to lighter-weight material transfer and to AI that judges materials the way people do.
+            I run every step myself:
           </p>
           <ul>
-            <li>Stimuli: creating the stimulus images with Blender</li>
-            <li>Experiment: building an experiment program that presents images while recording gaze with an eye tracker (Tobii Pro Fusion)</li>
-            <li>Analysis: analyzing the experimental data in Python</li>
+            <li>Stimuli: rendered in Blender</li>
+            <li>Experiment: a program that presents images while recording gaze with an eye tracker (Tobii Pro Fusion)</li>
+            <li>Analysis: in Python</li>
           </ul>
           <div class="tags"><span class="tag">Python</span><span class="tag">Psychophysics</span><span class="tag">Eye Tracking</span><span class="tag">Material Perception</span><span class="tag">Translucency</span><span class="tag">PsychoPy</span><span class="tag">Blender</span></div>
         </div>
@@ -259,18 +259,18 @@
         </div>
         <div class="body">
           <h3>Hamakoku (team 301)</h3>
-          <p class="tagline">A transit app that guides you by the fastest route from Yokohama National University to Yokohama Station / Team of 4, backend</p>
+          <p class="tagline">A transit app that finds the fastest way from Yokohama National University to Yokohama Station / team of 4, backend</p>
           <p>
-            A web app (Hamakoku Exp.) that finds the fastest route from campus to Yokohama Station by combining bus, train, bike share and walking.
-            There is also a map (Hamakoku Map) that shows bike-share availability on campus and the buses currently running.
-            It uses Open Data for Public Transportation (ODPT) and bike-share availability data.
-            Four of us developed it over a year and a half, and we still operate and improve it. We are also entering the Open Data Challenge for Public Transportation 2026.
+            Hamakoku Exp. searches routes that combine bus, train, bike share and walking.
+            Hamakoku Map shows bike-share availability on campus and the buses running now.
+            Both use Open Data for Public Transportation (ODPT) and bike-share availability data.
+            Four of us built them over a year and a half and still operate and improve them. We are also entering the Open Data Challenge for Public Transportation 2026.
           </p>
-          <p class="role-label">My role (backend overall)</p>
+          <p class="role-label">My role (the whole backend)</p>
           <ul>
-            <li>The part that finds the shortest route: it splits the work by type of route, runs them at the same time, and returns up to 6 results in order of arrival time</li>
-            <li>The design of the app's overall structure: one gateway (adapter) per data source, absorbing the differences in data formats between operators</li>
-            <li>A debugging system, usable from any process, for tracing the cause of a problem</li>
+            <li>Route search: splits the search by route pattern, runs the patterns in parallel and returns up to six results in order of arrival</li>
+            <li>Overall architecture: one adapter per data source absorbs the differences in operators' data formats</li>
+            <li>A shared debugging module: one line anywhere in the code shows the data at that point, to trace the cause of a problem</li>
           </ul>
           <div class="tags"><span class="tag">JavaScript</span><span class="tag">Backend</span><span class="tag">Route Search</span><span class="tag">Open Data (ODPT, GBFS)</span><span class="tag">Team Development</span><span class="tag">Node.js</span><span class="tag">Express</span></div>
           <div class="links">
@@ -290,14 +290,14 @@
           <h3>2D BRDF Measurement System</h3>
           <p class="tagline">A system that measures how a surface reflects light (its BRDF) with a spectroradiometer and two robot arms / in progress</p>
           <p>
-            A system that measures BRDFs with a 2D spectroradiometer (SR-5100) and two robot arms (DENSO VP-6242), one for the light and one for the sample.
+            It pairs a 2D spectroradiometer (SR-5100) with two robot arms (DENSO VP-6242), one holding the light and one the sample.
             Because the spectroradiometer captures an image, a single shot measures the reflection at many slightly different angles, one for each point on the sample.
-            It is a restructured rewrite of the previous measurement system.
+            I am rewriting the lab's previous measurement system with a cleaner structure.
           </p>
           <ul>
-            <li>The incidence and observation angles of each point on the sample are computed from the arm poses. The results match those of the previous system</li>
-            <li>On simulated devices, a run goes end to end, from calibration through measurement to BRDF analysis. It corrects an error of about 11% in the previous system and recovers simulated data almost exactly</li>
-            <li>The drivers for the real hardware and their safety measures (speed limit, collision checks, abort) are written, and the arm motion can be checked beforehand in a 3D animation in the browser. Trying them on the real hardware comes next</li>
+            <li>The incident and viewing angles at each point on the sample are computed from the arm poses and match the previous system's results</li>
+            <li>With simulated hardware, the whole pipeline runs from calibration through measurement to BRDF analysis. It corrects an error of about 11% in the previous system and recovers simulated data almost exactly</li>
+            <li>Hardware drivers and safety measures (speed limits, collision checks, emergency stop) are written, and arm motion can be previewed as a 3D animation in the browser. Testing on the real hardware comes next</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">BRDF Measurement</span><span class="tag">Spectroradiometer</span><span class="tag">Robot Arms</span><span class="tag">Simulation</span><span class="tag">CMake</span><span class="tag">OpenCV</span></div>
           <div class="links">
@@ -315,14 +315,14 @@
         </div>
         <div class="body">
           <h3>brdfkit</h3>
-          <p class="tagline">Tools that check published measured BRDF data against the physics and turn it into something a renderer can use</p>
+          <p class="tagline">Tools that check published measured BRDF data against physics and turn it into something a renderer can use</p>
           <p>
-            Python tools that load, compress and analyze published measured BRDF data (MERL, KAIST polarimetric BRDF, and hpBRDF by Moon et al., SIGGRAPH Asia 2025). Before using the data, I check whether it is physically right.
+            Python tools that load, compress and analyze published measured BRDF data (MERL, KAIST polarimetric BRDF, and hpBRDF by Moon et al., SIGGRAPH Asia 2025). Before using the data, I check that it is physically plausible.
           </p>
           <ul>
-            <li>Across eight hpBRDF materials, I collected ten ways the tables depart from the physics, worth knowing before using them. For example, the specular reflection is only a half to a tenth as strong as the physics says it should be. Using the black glass in the data set as a reference, it can be corrected</li>
-            <li>A 13 GB polarimetric BRDF (aluminum) is compressed to 231 MB by principal component analysis. A single C++ header reads it, and GoLD_rayt can use it as a material</li>
-            <li>A measured material can be split into lobe shape, color and polarization and recombined into materials that were never measured. Keeping aluminum's lobe and taking the color and polarization of gold or steel matches the measured luminance and color within 3%</li>
+            <li>Across eight hpBRDF materials, I documented ten ways the tables depart from physics that users should know about. For example, specular reflection is only a half to a tenth as strong as it should be; the black glass in the dataset serves as a reference to correct it</li>
+            <li>Principal component analysis compresses a 13 GB polarimetric BRDF (aluminum) to 231 MB, which a single C++ header reads and GoLD_rayt uses as a material</li>
+            <li>A measured material can be split into lobe shape, color and polarization and recombined into materials that were never measured. Aluminum's lobe with the color and polarization of gold or steel matches the measured gold or steel within 3% in luminance and color</li>
           </ul>
           <div class="tags"><span class="tag">Python</span><span class="tag">Measured BRDF</span><span class="tag">Polarization</span><span class="tag">Calibration</span><span class="tag">PCA</span><span class="tag">C++</span></div>
           <div class="links">
@@ -337,9 +337,9 @@
       <div class="grid" style="margin-top:16px">
         <div class="card">
           <h3>Tetsu-Chari Tabi (in development)</h3>
-          <p>A web app that looks for the best detour, not the fastest route. With trains as the trunk and bike share as the branches, it plans trips that get off partway and explore by bike while still arriving on time.</p>
-          <p>A prototype already plans trips on five Tokyo lines from timetables, fares and live bike-share availability, and it extended to a regional line (Izuhakone Railway Sunzu Line) by adding configuration alone.</p>
-          <p>As the follow-up to Hamakoku, I am building the whole app, from requirements through design and implementation, with feedback from the team; the team will take on parts of the UI and server from here. We are also entering the Open Data Challenge for Public Transportation 2026.</p>
+          <p>A web app that finds the best detour rather than the fastest route. With trains as the trunk and bike share as the branches, it plans trips where you get off partway and explore by bike, while still arriving on time.</p>
+          <p>A prototype already plans trips on five Tokyo lines from timetables, fares and live bike-share availability, and it was extended to a regional line (Izuhakone Railway Sunzu Line) with configuration alone.</p>
+          <p>As the follow-up to Hamakoku, I am building the whole app, from requirements through design and implementation, with feedback from the team; the team will take on parts of the UI and server going forward. We are also entering the Open Data Challenge for Public Transportation 2026.</p>
           <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Hono</span><span class="tag">MapLibre GL JS</span><span class="tag">Open Data (ODPT, GBFS)</span><span class="tag">Team Development</span></div>
         </div>
       </div>
@@ -375,18 +375,18 @@
       <div>
         <h2>About</h2>
         <p>
-          My nickname is Petrichor, a word for the smell of dry earth when rain falls on it.
-          I love the beautiful subjectivity, unique to each person, that comes from smell, scenery and multisensory perception.
-          This interest leads to my current research and development aimed at a perception-based renderer.
+          My nickname is Petrichor, the scent of rain on dry earth.
+          I love the personal, subjective beauty that comes from smell, scenery and the interplay of the senses.
+          This interest drives my current work toward a perception-based renderer.
         </p>
         <p>
-          I like to carry measuring, building and verifying through as one flow. I add numerical tests and checks to what I build.
+          I like to carry a project from measurement through building to verification, and I back what I build with numerical tests.
         </p>
       </div>
       <dl class="skills">
         <dt>Languages</dt><dd>C++ / C / Python / TypeScript &amp; JavaScript (Node.js) / HTML &amp; CSS</dd>
         <dt>Strengths</dt><dd>Rendering (path tracing, spectral, material appearance), 3D Gaussian Splatting and NeRF, diffusion models and single-image 3D generation, spectral measurement, eye tracking, backend development</dd>
-        <dt>Tools</dt><dd>Visual Studio / VS Code / Git &amp; GitHub / PyTorch / CUDA / Embree &amp; Open Image Denoise / Dear ImGui / React &amp; Vite / Hono / MapLibre GL JS / Blender / Mitsuba / Spectroradiometer (SR-5100) / Robot arms (DENSO VP-6242) / Eye tracker (Tobii Pro)</dd>
+        <dt>Tools</dt><dd>Visual Studio / VS Code / Git &amp; GitHub / PyTorch / CUDA / Embree &amp; Open Image Denoise / Dear ImGui / React &amp; Vite / Hono / MapLibre GL JS / Blender / Mitsuba 3 / Spectroradiometer (SR-5100) / Robot arms (DENSO VP-6242) / Eye tracker (Tobii Pro)</dd>
       </dl>
     </div>
   </section>
@@ -395,7 +395,7 @@
   <section id="contact">
     <div class="wrap">
       <h2>Contact</h2>
-      <p class="sub">For inquiries, please email me or contact me through GitHub.</p>
+      <p class="sub">For inquiries, email me or reach me through GitHub.</p>
       <div class="btns">
         <a class="btn primary" href="https://github.com/Pero1031" target="_blank" rel="noopener">GitHub: Pero1031</a>
         <a class="btn" href="mailto:kohinataso1031@gmail.com">Mail: kohinataso1031@gmail.com</a>
