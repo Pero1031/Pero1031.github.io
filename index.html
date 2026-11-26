@@ -129,8 +129,9 @@
             <li>写真のようにホワイトバランスをかけると、ろうそくの光の下では違いが約4倍に広がり、どの画面でもはっきり見える</li>
             <li>カメラも再現: 特許の設計どおりのレンズ、露出、センサーのノイズ、RAW の書き出し。RAW は一般的な現像ソフトで現像しても、色が 1% 以内で一致する</li>
             <li>Mitsuba 3 と 23 シーンで突き合わせ、ノイズの範囲で一致(途中で見つけたバグも修正)。材質は金属・ガラス・肌・髪から、実測の BRDF、蛍光、金属塗装のきらめき(2025 年の論文を実装)まで</li>
+            <li>GPU でも動かし始めた(CUDA・OptiX)。CPU と GPU が同じコードをコンパイルし、同じ場面を描くと2つの絵がビット単位で一致し、CPU 版の本体の絵にも収束することを確かめた。対応はまだ拡散面と面光源だけで、機能を1つずつ移している</li>
           </ul>
-          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span></div>
+          <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span><span class="tag">CUDA</span><span class="tag">OptiX</span></div>
           <div class="links">
             <a href="gallery.html">ギャラリーを見る →</a>
             <a href="https://github.com/Pero1031/GoLD_ray" target="_blank" rel="noopener">GitHub で見る →</a>
