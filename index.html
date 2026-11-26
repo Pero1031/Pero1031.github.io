@@ -195,12 +195,13 @@
           <ul>
             <li>4DGS は、公開データ(D-NeRF)の人の動きも再現できる(PSNR 34.7 dB)。自作のラスタライザは、素朴な実装と画像も勾配も一致することを確かめた</li>
             <li>金の像は、形と照明が同じ拡散面の像より、PSNR が 16〜17 dB 低い。学習に使った視点でも同じくらい悪いので、原因は新しい視点への汎化ではなく、表現力の不足。球面調和関数の次数を上げても直らない</li>
+            <li>光沢の知覚実験で使われる灰色の物体では、つやの強い面のハイライトの約1割しか再現できない。人の光沢感を予測するモデル(CLIP の特徴から学習)の値を損失に加えると、予測値は正解に近づくが、画像はほとんど変わらず、予測モデルをだましただけだった。反射を別に計算する手法(3DGS-DR の公式実装)では約9割が戻る。直すべきは損失関数ではなく、表現のほう</li>
             <li>画質の指標(PSNR)が高くても、動きは間違えていることがある。模様のない面では、表面が横に滑っても画像が変わらないため、真の動きの7割を超える誤差でも見逃される。3つの表し方は、動きの大小で得意・不得意が逆になる</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/3dgs-toy" target="_blank" rel="noopener">GitHub で見る →</a>
-            <a href="https://github.com/Pero1031/3dgs-toy#experiments" target="_blank" rel="noopener">光沢面・動き・半透明の検証(GitHub)→</a>
+            <a href="https://github.com/Pero1031/3dgs-toy#experiments" target="_blank" rel="noopener">光沢面・動き・色・半透明の検証(GitHub)→</a>
           </div>
         </div>
       </article>
@@ -220,7 +221,8 @@
           </p>
           <ul>
             <li>Zero-1-to-3 は見えない側を、18 条件すべてで本物より陰影を強く作る。半透明と不透明を入れ分けると、出力も正しい向きには変わるが、変化の大きさは本物の 1/5〜1/3 しかない</li>
-            <li>一方、人が感じる半透明さは、モデルの内部の特徴からかなり正確に予測できる(相関 0.92。従来の画像の特徴では 0.69)。情報は持っているのに、生成される見た目には使われていない</li>
+            <li>一方、人が感じる半透明さは、Zero-1-to-3 の内部の特徴からかなり正確に予測できる(石鹸の写真で、人の評定との相関 0.93。従来の画像の特徴では 0.69)。これを物差しに使うと、本物は裏から見たほうが半透明に見えるのに、生成された裏側は入力した表の値をそのまま引き継いでいる</li>
+            <li>その特徴を半透明の方向へ動かしても、生成はほとんど応えない。石鹸の写真の範囲で最も半透明な端まで動かしても、本物の裏側との差は4分の1ほどしか縮まらず、見た目は金属のまま。情報は持っているのに、生成される見た目にはほとんど使われていない</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
           <div class="links">

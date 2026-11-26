@@ -194,12 +194,13 @@
           <ul>
             <li>On public data (D-NeRF), 4DGS reproduces a person's motion at 34.7 dB PSNR. The rasterizer matches a naive per-pixel reference in both images and gradients</li>
             <li>A gold statue scores 16 to 17 dB lower PSNR than a diffuse one of the same shape and lighting. It is just as bad on the training views, so the cause is limited expressiveness, not poor generalization; a higher spherical-harmonics degree does not help</li>
+            <li>On gray objects of the kind used in gloss-perception studies, 3DGS reproduces only about a tenth of the highlights on a sharp coat. Adding a predictor of perceived gloss (learned from CLIP features) to the loss brings its score close to the truth, but the image barely changes: the loss only fools the predictor. A method that computes reflection separately (the official 3DGS-DR) brings back about nine tenths. The fix lies in the representation, not the loss</li>
             <li>A high image score (PSNR) can hide wrong motion: on a textureless surface, sliding sideways leaves the image unchanged, so errors of more than 70% of the true motion go unnoticed. Among three ways to represent moving scenes, the winner flips with the size of the motion</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
           <div class="links">
             <a href="https://github.com/Pero1031/3dgs-toy" target="_blank" rel="noopener">View on GitHub →</a>
-            <a href="https://github.com/Pero1031/3dgs-toy#experiments" target="_blank" rel="noopener">Gloss, motion and translucency experiments (GitHub) →</a>
+            <a href="https://github.com/Pero1031/3dgs-toy#experiments" target="_blank" rel="noopener">Gloss, motion, color and translucency experiments (GitHub) →</a>
           </div>
         </div>
       </article>
@@ -219,7 +220,8 @@
           </p>
           <ul>
             <li>On the unseen side, Zero-1-to-3 produces stronger shading than the real object in all 18 conditions. Switching between translucent and opaque inputs moves its output the right way, but by only a fifth to a third of the true change</li>
-            <li>Yet perceived translucency can be predicted quite accurately from the models' internal features (correlation 0.92, against 0.69 for conventional image features). The information is there; the generated appearance just does not use it</li>
+            <li>Yet perceived translucency can be predicted quite accurately from Zero-1-to-3's internal features (correlation 0.93 with human ratings of soap photos, against 0.69 for conventional image features). Used as a measure, this predictor shows that the real object looks more translucent from behind, while the generated back simply carries over the value of the input front view</li>
+            <li>Pushing those features toward translucency barely changes the output. Even pushed to the most translucent end of the soap photos, the generated back closes only about a quarter of the gap to the real one and still looks like metal. The information is there; the generated appearance hardly uses it</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
           <div class="links">
