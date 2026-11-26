@@ -209,8 +209,8 @@
       <!-- image-to-3d-diffusion -->
       <article class="work flip" id="work-i3d">
         <div class="media">
-          <img class="contain" src="assets/i3d-translucent-views.webp" width="792" height="827" alt="半透明な物体を4つの方向から見た図。上から、正解、同じ形の不透明な物体、Zero-1-to-3 の生成、TripoSR の生成。正解は裏側も明るいが、Zero-1-to-3 は暗い金属のような物体を作っている" loading="lazy">
-          <p class="credit">左端が入力の視点。上から、正解(Blender でパストレーシング)、同じ形・同じ照明の不透明な物体、Zero-1-to-3、TripoSR。本物は光が透けて裏側も明るいが、Zero-1-to-3 は暗い金属のような物体にしてしまう。</p>
+          <img class="contain" src="assets/i3d-views-front-ja.webp" width="900" height="970" alt="半透明な物体を4つの方向から見た図。上から、正解、同じ形の不透明な物体、Zero-1-to-3 の生成、TripoSR の生成。正解は裏側も柔らかく明るいが、Zero-1-to-3 は陰影の強い、光沢のある見た目にしている" loading="lazy">
+          <p class="credit">入力は左上の1枚だけ。上から、正解(Blender でパストレーシング)、同じ形・同じ照明の不透明な物体、Zero-1-to-3、TripoSR。本物は光が中まで入り込むので、裏側も陰影が柔らかく明るい。Zero-1-to-3 は、その半透明な見た目を、陰影の強い、光沢のある見た目にしてしまう。</p>
         </div>
         <div class="body">
           <h3>単一画像からの3D生成は、半透明を保つか</h3>
@@ -222,7 +222,7 @@
           <ul>
             <li>Zero-1-to-3 は見えない側を、18 条件すべてで本物より陰影を強く作る。半透明と不透明を入れ分けると、出力も正しい向きには変わるが、変化の大きさは本物の 1/5〜1/3 しかない</li>
             <li>一方、人が感じる半透明さは、Zero-1-to-3 の内部の特徴からかなり正確に予測できる(石鹸の写真で、人の評定との相関 0.93。従来の画像の特徴では 0.69)。これを物差しに使うと、本物は裏から見たほうが半透明に見えるのに、生成された裏側は入力した表の値をそのまま引き継いでいる</li>
-            <li>その特徴を半透明の方向へ動かしても、生成はほとんど応えない。石鹸の写真の範囲で最も半透明な端まで動かしても、本物の裏側との差は4分の1ほどしか縮まらず、見た目は金属のまま。情報は持っているのに、生成される見た目にはほとんど使われていない</li>
+            <li>その特徴を半透明の方向へ動かしても、生成はほとんど応えない。石鹸の写真の範囲で最も半透明な端まで動かしても、本物の裏側との差は4分の1ほどしか縮まらず、光沢のある見た目のまま。情報は持っているのに、生成される見た目にはほとんど使われていない</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
           <div class="links">

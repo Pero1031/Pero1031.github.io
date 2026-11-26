@@ -208,8 +208,8 @@
       <!-- image-to-3d-diffusion -->
       <article class="work flip" id="work-i3d">
         <div class="media">
-          <img class="contain" src="../assets/i3d-translucent-views.webp" width="792" height="827" alt="A translucent object seen from four directions. From the top: ground truth, an opaque object of the same shape, Zero-1-to-3's output and TripoSR's output. The truth stays bright from behind; Zero-1-to-3 makes a dark, metal-like object" loading="lazy">
-          <p class="credit">The leftmost column is the input view. From the top: ground truth (path traced in Blender), an opaque object with the same shape and lighting, Zero-1-to-3 and TripoSR. Light passes through the real object, so its far side stays bright; Zero-1-to-3 turns it into a dark, metal-like object.</p>
+          <img class="contain" src="../assets/i3d-views-front-en.webp" width="900" height="902" alt="A translucent object seen from four directions. From the top: ground truth, an opaque object of the same shape, Zero-1-to-3's output and TripoSR's output. The truth stays soft and bright from behind; Zero-1-to-3 makes it strongly shaded and glossy" loading="lazy">
+          <p class="credit">The only input is the top-left image. From the top: ground truth (path traced in Blender), an opaque object with the same shape and lighting, Zero-1-to-3 and TripoSR. Light enters the real object, so even its far side has soft, bright shading. Zero-1-to-3 turns this translucent look into a strongly shaded, glossy one.</p>
         </div>
         <div class="body">
           <h3>Does single-image 3D generation keep translucency?</h3>
@@ -221,7 +221,7 @@
           <ul>
             <li>On the unseen side, Zero-1-to-3 produces stronger shading than the real object in all 18 conditions. Switching between translucent and opaque inputs moves its output the right way, but by only a fifth to a third of the true change</li>
             <li>Yet perceived translucency can be predicted quite accurately from Zero-1-to-3's internal features (correlation 0.93 with human ratings of soap photos, against 0.69 for conventional image features). Used as a measure, this predictor shows that the real object looks more translucent from behind, while the generated back simply carries over the value of the input front view</li>
-            <li>Pushing those features toward translucency barely changes the output. Even pushed to the most translucent end of the soap photos, the generated back closes only about a quarter of the gap to the real one and still looks like metal. The information is there; the generated appearance hardly uses it</li>
+            <li>Pushing those features toward translucency barely changes the output. Even pushed to the most translucent end of the soap photos, the generated back closes only about a quarter of the gap to the real one and still looks glossy. The information is there; the generated appearance hardly uses it</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">Diffusion Models</span><span class="tag">Zero-1-to-3</span><span class="tag">TripoSR</span><span class="tag">Single-image 3D</span><span class="tag">Translucency</span></div>
           <div class="links">
