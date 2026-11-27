@@ -231,8 +231,37 @@
         </div>
       </article>
 
+      <!-- gloss-perception-lab -->
+      <article class="work" id="work-gloss">
+        <div class="media">
+          <img class="contain" src="../assets/gloss-peaches.webp" width="1008" height="936" alt="Two images of peaches from a still-life painting. Top: the original, with matte peaches. Bottom: gloss added, with a highlight on the lit upper left of every peach" loading="lazy">
+          <p class="credit">Top: peaches in a still-life painting by Raphaelle Peale (1816). Bottom: gloss added using the shape estimated from this single image.<br>
+            Yale University Art Gallery, public domain, via <a href="https://commons.wikimedia.org/wiki/File:Still_Life_Basket_of_Peaches_by_Raphaelle_Peale_1816.jpeg" target="_blank" rel="noopener">Wikimedia Commons</a>. Changes: cropped.</p>
+        </div>
+        <div class="body">
+          <h3>Adding and removing gloss on objects in images</h3>
+          <p class="tagline">Using what is known about gloss perception to edit material appearance from a single image / Personal research</p>
+          <p>
+            If the gloss of an object in a photo or a generated image could be changed afterwards, its material appearance could be adjusted at will.
+            I am building methods that estimate an object's shape (surface normals) from one image and use it to add or remove gloss.
+          </p>
+          <ul>
+            <li>Adding gloss: small highlights alone look like white paint. A broad sheen over the whole lit side, which keeps the object's color, makes them look glossy. The amount comes from the lighting estimated from the image's shading</li>
+            <li>It suits round objects with clear shading and a medium or dark color, such as fruit. On flat or near-white objects it changes little</li>
+            <li>Removing gloss: diffuse shading is fitted as a smooth function of the shape, and the light above the fit is removed. On rendered images this is more accurate than a published highlight remover (TSHRNet, ICCV 2023) and leaves matte objects unchanged. On photographs with many shadows or uneven color it still breaks</li>
+            <li>Shape estimation: with shapes estimated by MoGe-2, the broad sheen is kept, but not the position of small highlights</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Material Editing</span><span class="tag">Gloss Perception</span><span class="tag">Monocular Geometry</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/gloss-perception-lab" target="_blank" rel="noopener">Overview and results (GitHub) →</a>
+            <a href="https://github.com/Pero1031/gloss-perception-lab/blob/main/docs/GLOSS_SYNTHESIS.md" target="_blank" rel="noopener">How gloss is added (GitHub) →</a>
+            <a href="https://github.com/Pero1031/gloss-perception-lab/blob/main/docs/GLOSS_SUPPRESSION.md" target="_blank" rel="noopener">How gloss is removed (GitHub) →</a>
+          </div>
+        </div>
+      </article>
+
       <!-- Master's research -->
-      <article class="work" id="work-thesis">
+      <article class="work flip" id="work-thesis">
         <div class="media">
           <img class="contain" src="../assets/research-light-en.webp" width="1400" height="891" alt="The same object drawn with light from the front and with light from directly behind. With front light it looks white and cloudy; with light from behind it looks bright, with strong gloss" loading="lazy">
         </div>
@@ -253,7 +282,7 @@
       </article>
 
       <!-- Transit app -->
-      <article class="work flip" id="work-hamakoku">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="../assets/hamakokuex-form.webp" width="468" height="900" alt="Hamakoku Exp. before a search: the route request form" loading="lazy">
@@ -285,7 +314,7 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work" id="work-brdf">
+      <article class="work flip" id="work-brdf">
         <div class="media">
           <img src="../assets/brdf-system.webp" width="785" height="603" alt="Two robot arms, one for the light and one for the sample, in a dark room, with the spectroradiometer (SR-5100) in the foreground. The sample is held by the right arm" loading="lazy">
         </div>
@@ -310,7 +339,7 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work flip" id="work-brdfkit">
+      <article class="work" id="work-brdfkit">
         <div class="media">
           <img class="contain" src="../assets/brdfkit-leather.webp" width="1240" height="432" alt="The same cowhide rendered two ways: matte on the left, with a satin clear coat on the right. The fine grain catches the light" loading="lazy">
           <img class="contain" src="../assets/gallery/gilt_leather.webp" width="1240" height="432" alt="The same cowhide with metal leaf on the raised grain, under daylight and under a lamp. In each picture the left half is gold leaf and the right half is silver leaf under a yellow varnish, and the two look alike" loading="lazy">

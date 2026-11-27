@@ -232,8 +232,37 @@
         </div>
       </article>
 
+      <!-- gloss-perception-lab -->
+      <article class="work" id="work-gloss">
+        <div class="media">
+          <img class="contain" src="assets/gloss-peaches.webp" width="1008" height="936" alt="静物画の桃の2枚の図。上は元の絵で、つやのない桃。下は光沢を足したもので、どの桃も照らされた左上にハイライトが乗っている" loading="lazy">
+          <p class="credit">上: Raphaelle Peale の静物画(1816年)の桃。下: 画像1枚から推定した形をもとに、光沢を足したもの。<br>
+            イェール大学美術館所蔵、パブリックドメイン。<a href="https://commons.wikimedia.org/wiki/File:Still_Life_Basket_of_Peaches_by_Raphaelle_Peale_1816.jpeg" target="_blank" rel="noopener">Wikimedia Commons</a> より。変更: 一部の切り抜き。</p>
+        </div>
+        <div class="body">
+          <h3>画像の中の物体の光沢を、足す・消す</h3>
+          <p class="tagline">光沢の見え方の知見を、画像1枚からの質感の編集に使う / 個人研究</p>
+          <p>
+            写真や生成した画像の物体の光沢を後から変えられれば、質感を思いどおりに調整できます。
+            そこで、画像1枚から物体の形(法線)を推定し、それをもとに光沢を足したり消したりする方法を作っています。
+          </p>
+          <ul>
+            <li>光沢を足す: 小さなハイライトだけを足すと、白い塗料が付いたように見える。照らされた側全体に広い光沢を重ね、物体の色味を保つと、光沢として見える。足す量は、画像の陰影から推定した照明で決める</li>
+            <li>果物のように、丸くて陰影がはっきりし、色が中くらいから暗い物体に向く。平たい物や白に近い物では、ほとんど変わらない</li>
+            <li>光沢を消す: 陰影を形の滑らかな関数として当てはめ、はみ出た分を取り除く。描画した画像では、既存の除去手法(TSHRNet, ICCV 2023)より正確で、つや消しの物体には手を付けない。写真では、影や色むらの多い場面でまだ崩れる</li>
+            <li>形の推定: MoGe-2 で推定した形でも、広い光沢は保たれる。細いハイライトの位置までは保たれない</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Material Editing</span><span class="tag">Gloss Perception</span><span class="tag">Monocular Geometry</span></div>
+          <div class="links">
+            <a href="https://github.com/Pero1031/gloss-perception-lab" target="_blank" rel="noopener">概要と結果(GitHub)→</a>
+            <a href="https://github.com/Pero1031/gloss-perception-lab/blob/main/docs/GLOSS_SYNTHESIS.md" target="_blank" rel="noopener">光沢を足す方法(GitHub)→</a>
+            <a href="https://github.com/Pero1031/gloss-perception-lab/blob/main/docs/GLOSS_SUPPRESSION.md" target="_blank" rel="noopener">光沢を消す方法(GitHub)→</a>
+          </div>
+        </div>
+      </article>
+
       <!-- 修士研究 -->
-      <article class="work" id="work-thesis">
+      <article class="work flip" id="work-thesis">
         <div class="media">
           <img class="contain" src="assets/research-light-ja.webp" width="1400" height="929" alt="同じ素材の物体を、正面からの光と真後ろからの光で描いた2枚の図。正面からでは白く濁って見え、真後ろからでは明るく光ってつやが目立つ" loading="lazy">
         </div>
@@ -254,7 +283,7 @@
       </article>
 
       <!-- 乗り換えアプリ -->
-      <article class="work flip" id="work-hamakoku">
+      <article class="work" id="work-hamakoku">
         <div class="media">
           <div class="shots">
             <img src="assets/hamakokuex-form.webp" width="468" height="900" alt="はまこく Exp. の検索前の画面(経路申込書)" loading="lazy">
@@ -286,7 +315,7 @@
       </article>
 
       <!-- 2D BRDF -->
-      <article class="work" id="work-brdf">
+      <article class="work flip" id="work-brdf">
         <div class="media">
           <img src="assets/brdf-system.webp" width="785" height="603" alt="暗室に並ぶ、光源側とサンプル側の2台のロボットアームと、手前の分光放射計(SR-5100)。サンプルは右のロボットアームが持っている" loading="lazy">
         </div>
@@ -311,7 +340,7 @@
       </article>
 
       <!-- brdfkit -->
-      <article class="work flip" id="work-brdfkit">
+      <article class="work" id="work-brdfkit">
         <div class="media">
           <img class="contain" src="assets/brdfkit-leather.webp" width="1240" height="432" alt="同じ牛革を、2通りで描いた2枚。左はつや消し、右は半つやのクリアコートつき。表面の細かい凹凸に光が当たっている" loading="lazy">
           <img class="contain" src="assets/gallery/gilt_leather.webp" width="1240" height="432" alt="同じ牛革に金属の箔を貼って、昼光とランプの光で描いた2枚。各図の左半分は金箔、右半分は黄色いニスをかけた銀箔で、2つはよく似ている" loading="lazy">
