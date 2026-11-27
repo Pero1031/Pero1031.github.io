@@ -128,7 +128,7 @@
             <li>Once the image is white balanced, as a photograph would be, the difference under candlelight grows about fourfold and shows clearly on any display</li>
             <li>It also simulates the camera: lenses built from patent designs, exposure, sensor noise and raw output. Developed in a standard raw converter, the raw files match the renderer's colors within 1%</li>
             <li>It matches Mitsuba 3 within the noise on 23 scenes (the comparison also caught a bug, now fixed). Materials range from metals, glass, skin and hair to measured BRDFs, fluorescence and the glints of metallic paint (from a 2025 paper)</li>
-            <li>It is starting to run on the GPU (CUDA, OptiX). The CPU and the GPU compile the same code, render the same scene to bit-identical pictures, and both converge to the main CPU renderer's picture. So far only diffuse surfaces and area lights; features move over one at a time</li>
+            <li>It is being ported to the GPU (CUDA, OptiX)</li>
           </ul>
           <div class="tags"><span class="tag">C++</span><span class="tag">Path Tracing</span><span class="tag">Spectral Rendering</span><span class="tag">Color Science</span><span class="tag">Camera Simulation</span><span class="tag">Embree</span><span class="tag">Open Image Denoise</span><span class="tag">CUDA</span><span class="tag">OptiX</span></div>
           <div class="links">
