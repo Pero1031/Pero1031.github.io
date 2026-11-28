@@ -174,15 +174,10 @@
       <!-- 3DGS from scratch -->
       <article class="work" id="work-3dgs-toy">
         <div class="media">
-          <img class="contain" src="../assets/gs-dnerf-jumpingjacks.webp" width="1000" height="750" alt="A person doing jumping jacks, seen from test views at times not used in training. Top row: ground truth; middle row: the 4DGS render; bottom row: the Gaussians before deformation" loading="lazy">
-          <p class="credit">Deformation-field 4DGS trained on D-NeRF's jumpingjacks (Pumarola et al., CVPR 2021). From the top: ground truth, render, and the Gaussians before deformation.</p>
-          <img class="contain" src="../assets/gs-gloss-test.webp" width="570" height="660" alt="A gold statue and a diffuse statue of the same color, seen from a view not used in training. The ground truth, the 3DGS render and the error (x4) are shown side by side" loading="lazy">
+          <img class="contain narrow" src="../assets/gs-gloss-motion.webp" width="256" height="784" alt="A glossy bunny turning, seen from a fixed view. From the top: the ground truth, 4DGS-DR, and 4DGS-DR with its motion and normals pinned" loading="lazy">
           <p class="credit">
-            Top row: gold; bottom row: diffuse. From the left: the ground truth (a render), 3DGS, and the error (x4).<br>
-            Model: Erato by Geoffrey Marchal (© 2016,
-            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).
-            From <a href="https://casual-effects.com/data/" target="_blank" rel="noopener">Morgan McGuire's Computer Graphics Archive</a>.
-            Modifications: materials applied and rendered.
+            A turning glossy object seen from a fixed view not used in training. From the top: the ground truth (a render), 4DGS-DR, and 4DGS-DR with fixes that pin its motion and normals. In the truth the highlights slide over the surface; in the trained models they stay attached to it.<br>
+            Model: Stanford Bunny (<a href="https://graphics.stanford.edu/data/3Dscanrep/" target="_blank" rel="noopener">Stanford 3D Scanning Repository</a>). Modifications: holes filled, texture and material applied, and rendered.
           </p>
         </div>
         <div class="body">
@@ -197,6 +192,7 @@
             <li>A gold statue scores 16 to 17 dB lower PSNR than a diffuse one of the same shape and lighting. It is just as bad on the training views, so the cause is limited expressiveness, not poor generalization; a higher spherical-harmonics degree does not help</li>
             <li>On gray objects of the kind used in gloss-perception studies, 3DGS reproduces only about a tenth of the highlights on a sharp coat. Adding a predictor of perceived gloss (learned from CLIP features) to the loss brings its score close to the truth, but the image barely changes: the loss only fools the predictor. A method that computes reflection separately (the official 3DGS-DR) brings back about nine tenths. The fix lies in the representation, not the loss</li>
             <li>A high image score (PSNR) can hide wrong motion: on a textureless surface, sliding sideways leaves the image unchanged, so errors of more than 70% of the true motion go unnoticed. Among three ways to represent moving scenes, the winner flips with the size of the motion</li>
+            <li>For a glossy object that turns, 4DGS-DR (3DGS-DR, which computes reflection separately, combined with a deformation field) leaves the reflection unused: the highlights are painted onto the surface as color (the reflection part carries at most 1% of their brightness). Three existing fixes cut the normal error from 30° to 7°, but the highlights still do not slide over the surface</li>
           </ul>
           <div class="tags"><span class="tag">PyTorch</span><span class="tag">3D Gaussian Splatting</span><span class="tag">4D Gaussian Splatting</span><span class="tag">Differentiable Rendering</span></div>
           <div class="links">
